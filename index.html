@@ -460,7 +460,7 @@
   </div>
 
   <script>
-    const { createApp, ref, computed } = Vue;
+    const { createApp, ref, computed, nextTick } = Vue;
 
     createApp({
       setup() {
@@ -540,32 +540,50 @@
           { id: 'ios', name: 'Apple (iOS)', desc: 'Điện thoại iPhone và iPad.', icon: 'fab fa-apple', color: 'gray' }
         ]);
         
-        const selectOs = (id) => { 
-          os.value = id; 
-          app.value = null; 
-          // Chọn sẵn app nếu chỉ có 1 sự lựa chọn (ví dụ Android có mỗi v2rayNG)
-          if (id === 'android') {
-              app.value = 'v2rayNG';
-          }
-          setTimeout(() => nextStep(), 250); 
-        };
-
-        const app = ref(null);
+        // --- LOGIC CHỌN APP THEO NỀN TV360 HOẶC TIKTOK ---
         const currentApps = computed(() => {
-          if (os.value === 'android') {
-            return [
-              { name: 'v2rayNG', desc: 'Ứng dụng kết nối Xray nhẹ.', icon: 'fab fa-google-play', link: 'https://play.google.com/store/apps/details?id=com.v2ray.ang', specs: ['Tải an toàn qua Google Play', 'Hoạt động ngầm tốt'] }
-            ];
-          } else if (os.value === 'ios') {
-            return [
-              { name: 'Shadowrocket', desc: 'Hoạt động cực kì ổn định.', icon: 'fab fa-app-store-ios', link: 'https://apps.apple.com/us/app/shadowrocket/id932747118', specs: ['Yêu cầu iOS 11.0 trở lên', 'Phí: $2.99 trên App Store'] },
-              { name: 'NapsternetV', desc: 'Ứng dụng miễn phí.', icon: 'fab fa-app-store', link: 'https://apps.apple.com/us/app/napsternetv/id1625902092', specs: ['Hỗ trợ đầy đủ giao thức', 'Có thể xuất hiện quảng cáo'] }
-            ];
+          if (platform.value === 'tv360') {
+             // NẾU CHỌN NỀN TV360 -> HIỂN THỊ PLATFORM NEXT CHO CẢ ANDROID & IOS
+             if (os.value === 'android') {
+                return [
+                  { name: 'Platform Next', desc: 'Ứng dụng tối ưu riêng cho nền TV360 (Android).', icon: 'fab fa-google-play', link: '[LINK_TẢI_PLATFORM_NEXT_ANDROID]', specs: ['Dành riêng cho kết nối TV360', 'Tốc độ phản hồi cực nhanh'] }
+                ];
+             } else if (os.value === 'ios') {
+                return [
+                  { name: 'Platform Next', desc: 'Ứng dụng tối ưu riêng cho nền TV360 (iOS).', icon: 'fab fa-app-store-ios', link: '[LINK_TẢI_PLATFORM_NEXT_IOS]', specs: ['Tối ưu hóa mạng TV360 trên iOS', 'Không tốn pin'] }
+                ];
+             }
+          } else {
+             // NẾU CHỌN NỀN TIKTOK -> HIỂN THỊ CÁC APP CŨ
+             if (os.value === 'android') {
+                return [
+                  { name: 'v2rayNG', desc: 'Ứng dụng kết nối Xray nhẹ.', icon: 'fab fa-google-play', link: 'https://play.google.com/store/apps/details?id=com.v2ray.ang', specs: ['Tải an toàn qua Google Play', 'Hoạt động ngầm tốt'] }
+                ];
+             } else if (os.value === 'ios') {
+                return [
+                  { name: 'Shadowrocket', desc: 'Hoạt động cực kì ổn định.', icon: 'fab fa-app-store-ios', link: 'https://apps.apple.com/us/app/shadowrocket/id932747118', specs: ['Yêu cầu iOS 11.0 trở lên', 'Phí: $2.99 trên App Store'] },
+                  { name: 'NapsternetV', desc: 'Ứng dụng miễn phí.', icon: 'fab fa-app-store', link: 'https://apps.apple.com/us/app/napsternetv/id1625902092', specs: ['Hỗ trợ đầy đủ giao thức', 'Có thể xuất hiện quảng cáo'] }
+                ];
+             }
           }
           return [];
         });
 
-        // TỰ ĐỘNG THAY ĐỔI CÂU CHỮ THEO TỪNG LOẠI NỀN ĐÃ CHỌN
+        const app = ref(null);
+        
+        const selectOs = (id) => { 
+          os.value = id; 
+          app.value = null; 
+          
+          // Tự động chuyển bước và chọn app nếu chỉ có 1 ứng dụng hiển thị
+          setTimeout(() => {
+              if (currentApps.value.length === 1) {
+                  app.value = currentApps.value[0].name;
+              }
+              nextStep(); 
+          }, 250); 
+        };
+
         const currentTutorial = computed(() => {
           const appName = app.value || (os.value === 'android' ? 'v2rayNG' : 'Shadowrocket');
           const platformName = platform.value === 'tv360' ? 'TV360' : 'Tiktok';
