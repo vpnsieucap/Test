@@ -432,7 +432,7 @@
                   </h4>
                   
                   <div v-if="os === 'android' && platform === 'tiktok'" class="w-full relative z-10">
-                      <p class="text-xs text-textMuted mb-3">Cách cấu hình v2rayNG trên Android <span class="font-bold text-white">(Gói nền Tiktok)</span>:</p>
+                      <p class="text-xs text-textMuted mb-3">Cách cấu hình V2ray tun trên Android <span class="font-bold text-white">(Gói nền Tiktok)</span>:</p>
                       <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-appBorder bg-black">
                           <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/LINK_VIDEO_ANDROID_TIKTOK_CUA_BAN_O_DAY" title="Hướng dẫn Android Tiktok" frameborder="0" allowfullscreen></iframe>
                       </div>
@@ -605,12 +605,13 @@
           } else {
              if (os.value === 'android') {
                 return [
-                  { name: 'v2rayNG', desc: 'Ứng dụng kết nối Xray nhẹ.', icon: 'fab fa-google-play', link: 'https://play.google.com/store/apps/details?id=com.v2ray.ang', specs: ['Tải an toàn qua Google Play', 'Hoạt động ngầm tốt'] }
+                  // ĐÃ THAY ĐỔI APP THÀNH V2RAY TUN THEO YÊU CẦU
+                  { name: 'V2ray tun', desc: 'Ứng dụng kết nối VPN mạnh mẽ, dễ sử dụng.', icon: 'fab fa-google-play', link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=vi', specs: ['Tải an toàn qua Google Play', 'Hoạt động ngầm tốt, ít tốn pin'] }
                 ];
              } else if (os.value === 'ios') {
                 return [
-                  { name: 'Shadowrocket', desc: 'Hoạt động cực kì ổn định.', icon: 'fab fa-app-store-ios', link: 'https://apps.apple.com/us/app/shadowrocket/id932747118', specs: ['Yêu cầu iOS 11.0 trở lên', 'Phí: $2.99 trên App Store'] },
-                  { name: 'NapsternetV', desc: 'Ứng dụng miễn phí.', icon: 'fab fa-app-store', link: 'https://apps.apple.com/us/app/napsternetv/id1625902092', specs: ['Hỗ trợ đầy đủ giao thức', 'Có thể xuất hiện quảng cáo'] }
+                  // ĐÃ XÓA NAPSTERNETV, CHỈ GIỮ LẠI SHADOWROCKET CHO IOS TIKTOK
+                  { name: 'Shadowrocket', desc: 'Hoạt động cực kì ổn định.', icon: 'fab fa-app-store-ios', link: 'https://apps.apple.com/us/app/shadowrocket/id932747118', specs: ['Yêu cầu iOS 11.0 trở lên', 'Phí: $2.99 trên App Store'] }
                 ];
              }
           }
@@ -620,7 +621,7 @@
         const getFinalAppName = computed(() => {
           if (platform.value === 'tv360') return 'Platform Next';
           if (app.value) return app.value;
-          if (os.value === 'android') return 'v2rayNG';
+          if (os.value === 'android') return 'V2ray tun';
           return 'Shadowrocket';
         });
 
@@ -650,16 +651,16 @@
           } else {
              // NỀN TIKTOK
              if (os.value === 'android') {
-                 // Android v2rayNG
+                 // Android V2ray tun
                  return [
                     { text: `Mở ứng dụng ${appName} trên thiết bị Android của bạn.` },
                     { text: `Sử dụng trình duyệt Chrome, đăng nhập vào VPNSIEUCAP.SHOP.` },
                     { text: `Tìm phần máy chủ, bấm "Đồng bộ Máy Chủ nền Tiktok" -> Chọn "Chuyển đến ${appName}".` },
                     { text: `Vào lại ứng dụng ${appName}, vuốt màn hình từ trên xuống để cập nhật danh sách máy chủ.` },
-                    { text: `Bật mạng 4G (gói Tiktok), chọn một máy chủ trong danh sách và bấm vào biểu tượng chữ V ở góc dưới để kết nối.` }
+                    { text: `Bật mạng 4G (gói Tiktok), chọn một máy chủ trong danh sách và bấm nút kết nối (hoặc biểu tượng chữ V) để sử dụng mạng.` }
                  ];
              } else {
-                 // iOS Shadowrocket / NapsternetV
+                 // iOS Shadowrocket
                  return [
                     { text: `Mở ứng dụng ${appName} trên iPhone hoặc iPad của bạn.` },
                     { text: `Sử dụng Safari, đăng nhập vào trang VPNSIEUCAP.SHOP.` },
