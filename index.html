@@ -228,6 +228,7 @@
               <div class="grid gap-3">
                 <div v-for="(pkg, idx) in getCurrentPackages()" :key="idx"
                   class="group p-4 sm:p-5 rounded-xl bg-appBg border border-appBorder hover:border-brand/50 transition-all duration-300 relative overflow-hidden">
+
                   <div class="flex justify-between items-start mb-4 relative z-10">
                     <div class="flex-1">
                       <div class="font-bold text-white text-base sm:text-lg">{{ pkg.name }}</div>
@@ -237,12 +238,14 @@
                       <i :class="pkg.icon" class="text-lg"></i>
                     </div>
                   </div>
+
                   <ul v-if="pkg.specs && pkg.specs.length > 0" class="mb-4 space-y-2.5 relative z-10">
                     <li v-for="(spec, sIdx) in pkg.specs" :key="sIdx" class="flex items-start gap-2.5 text-xs sm:text-sm">
                       <i class="fas fa-angle-right text-brand mt-1 text-[10px]"></i>
                       <span class="text-slate-300 leading-relaxed" v-html="spec"></span>
                     </li>
                   </ul>
+
                   <div class="pt-3 border-t border-appBorder flex justify-between items-center relative z-10">
                     <span class="text-xs font-bold text-white bg-appBorder px-2.5 py-1 rounded-md border border-appBorder">{{ pkg.price }}</span>
                   </div>
@@ -411,7 +414,7 @@
 
             <div class="flex-1 overflow-y-auto p-5 sm:p-6 custom-scrollbar">
               
-              <!-- THÔNG BÁO HƯỚNG DẪN RIÊNG BIỆT CHO TỪNG APP VÀ TỪNG HỆ ĐIỀU HÀNH -->
+              <!-- THÔNG BÁO HƯỚNG DẪN RIÊNG BIỆT -->
               <div class="space-y-5 mb-8">
                   <div v-for="(item, index) in currentTutorial" :key="index" class="relative pl-10 group">
                     <div class="absolute left-[15px] top-8 bottom-[-1.25rem] w-0.5 bg-appBorder group-last:hidden"></div>
@@ -435,7 +438,7 @@
                   <div v-if="os === 'android' && platform === 'tiktok'" class="w-full relative z-10">
                       <p class="text-xs text-textMuted mb-3">Cách cấu hình V2ray tun trên Android <span class="font-bold text-white">(Gói nền Tiktok)</span>:</p>
                       <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-appBorder bg-black">
-                          <!-- THAY ID VIDEO YOUTUBE VÀO DƯỚI ĐÂY -->
+                          <!-- THAY LINK VIDEO ANDROID TIKTOK VÀO DƯỚI ĐÂY (NẾU CÓ) -->
                           <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/ID_VIDEO_YOUTUBE_ANDROID_TIKTOK" title="Hướng dẫn Android Tiktok" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
                       </div>
                   </div>
@@ -444,7 +447,7 @@
                   <div v-if="os === 'android' && platform === 'tv360'" class="w-full relative z-10">
                       <p class="text-xs text-textMuted mb-3">Cách cấu hình Platform Next trên Android <span class="font-bold text-white">(Gói nền TV360)</span>:</p>
                       <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-appBorder bg-black">
-                          <!-- THAY ID VIDEO YOUTUBE VÀO DƯỚI ĐÂY -->
+                          <!-- THAY LINK VIDEO ANDROID TV360 VÀO DƯỚI ĐÂY (NẾU CÓ) -->
                           <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/ID_VIDEO_YOUTUBE_ANDROID_TV360" title="Hướng dẫn Android TV360" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
                       </div>
                   </div>
@@ -453,16 +456,16 @@
                   <div v-if="os === 'ios' && platform === 'tiktok'" class="w-full relative z-10">
                       <p class="text-xs text-textMuted mb-3">Cách cấu hình trên iPhone/iPad <span class="font-bold text-white">(Gói nền Tiktok)</span>:</p>
                       <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-appBorder bg-black">
-                          <!-- THAY ID VIDEO YOUTUBE VÀO DƯỚI ĐÂY -->
+                          <!-- THAY LINK VIDEO IOS TIKTOK VÀO DƯỚI ĐÂY (NẾU CÓ) -->
                           <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/ID_VIDEO_YOUTUBE_IOS_TIKTOK" title="Hướng dẫn iOS Tiktok" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
                       </div>
                   </div>
 
-                  <!-- IOS - NỀN TV360 (ĐÃ FIX IFRAMELY TỰ ĐỘNG) -->
+                  <!-- IOS - NỀN TV360 (ĐÃ FIX CHẠY LINK VEED.IO) -->
                   <div v-if="os === 'ios' && platform === 'tv360'" class="w-full relative z-10">
                       <p class="text-xs text-textMuted mb-3">Cách cấu hình Platform Next trên iPhone/iPad <span class="font-bold text-white">(Gói nền TV360)</span>:</p>
                       <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-appBorder bg-black">
-                          <iframe class="absolute top-0 left-0 w-full h-full" src="https://iframely.net/hFqUpxWs?theme=dark" title="Hướng dẫn iOS TV360" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+                          <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.veed.io/embed/b9b4692d-36ed-4350-8674-5e52d17a7a7a" title="Hướng dẫn iOS TV360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
                       </div>
                   </div>
               </div>
@@ -533,19 +536,19 @@
                 name: 'Gói Nền Tiktok', 
                 desc: 'Truy cập Tiktok mượt mà', 
                 icon: 'fab fa-tiktok', 
-                price: '10.000đ/tháng', 
+                price: '50.000đ/tháng', 
                 specs: [
-                    'Soạn tin: <span class="text-white font-mono bg-appCard px-1.5 py-0.5 rounded border border-appBorder text-[11px] sm:text-xs">[Cú pháp của bạn]</span> gửi <span class="text-white font-mono bg-appCard px-1.5 py-0.5 rounded border border-appBorder text-[11px] sm:text-xs">191</span>', 
+                    'Soạn tin: <span class="text-white font-mono bg-appCard px-1.5 py-0.5 rounded border border-appBorder text-[11px] sm:text-xs">T50K</span> gửi <span class="text-white font-mono bg-appCard px-1.5 py-0.5 rounded border border-appBorder text-[11px] sm:text-xs">191</span>', 
                     'Hoặc tự đăng ký trên app MyViettel'
                 ] 
             },
             { 
                 name: 'Gói Nền TV360', 
-                desc: 'Máy chủ ổn định với TV360', 
+                desc: 'Dung lượng không giới hạn', 
                 icon: 'fas fa-tv', 
-                price: '10.000đ/tháng', 
+                price: '15.000đ/tháng', 
                 specs: [
-                    'Soạn tin: <span class="text-white font-mono bg-appCard px-1.5 py-0.5 rounded border border-appBorder text-[11px] sm:text-xs">[Cú pháp của bạn]</span> gửi <span class="text-white font-mono bg-appCard px-1.5 py-0.5 rounded border border-appBorder text-[11px] sm:text-xs">191</span>', 
+                    'Soạn tin: <span class="text-white font-mono bg-appCard px-1.5 py-0.5 rounded border border-appBorder text-[11px] sm:text-xs">5GSPORT</span> gửi <span class="text-white font-mono bg-appCard px-1.5 py-0.5 rounded border border-appBorder text-[11px] sm:text-xs">191</span>', 
                     'Hoặc tự đăng ký trên app MyViettel'
                 ] 
             }
@@ -555,9 +558,9 @@
                 name: 'Gói Nền Tiktok', 
                 desc: 'Dung lượng không giới hạn', 
                 icon: 'fab fa-tiktok', 
-                price: '15.000đ/tháng', 
+                price: '30.000đ/tháng', 
                 specs: [
-                    'Soạn tin: <span class="text-white font-mono bg-appCard px-1.5 py-0.5 rounded border border-appBorder text-[11px] sm:text-xs">[Cú pháp của bạn]</span> gửi <span class="text-white font-mono bg-appCard px-1.5 py-0.5 rounded border border-appBorder text-[11px] sm:text-xs">888</span>', 
+                    'Soạn tin: <span class="text-white font-mono bg-appCard px-1.5 py-0.5 rounded border border-appBorder text-[11px] sm:text-xs">TK30</span> gửi <span class="text-white font-mono bg-appCard px-1.5 py-0.5 rounded border border-appBorder text-[11px] sm:text-xs">888</span>', 
                     'Hoặc tự đăng ký qua app MyVNPT'
                 ] 
             }
@@ -630,6 +633,7 @@
           return 'Shadowrocket';
         });
 
+        // HƯỚNG DẪN 4 KỊCH BẢN
         const currentTutorial = computed(() => {
           const appName = getFinalAppName.value;
           
