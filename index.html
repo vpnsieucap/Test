@@ -32,8 +32,8 @@
             textMuted: '#94A3B8',
           },
           animation: {
-            'fade-in': 'fadeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
-            'slide-up': 'slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+            'fade-in': 'fadeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+            'slide-up': 'slideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards',
             'float': 'float 3s ease-in-out infinite',
           },
           keyframes: {
@@ -284,10 +284,10 @@
             </div>
           </div>
 
-          <!-- Step 6: App Selection (BẢN VÁ LỖI HIỂN THỊ CHẮC CHẮN 100%) -->
+          <!-- Step 6: App Selection -->
           <div v-else-if="step === 6" key="step6" class="space-y-5 animate-slide-up">
             
-            <!-- NẾU CHỈ CÓ 1 APP DUY NHẤT ĐƯỢC PHÉP CHỌN (VD: Platform Next cho TV360) -->
+            <!-- HIỂN THỊ NẾU CHỈ CÓ 1 LỰA CHỌN APP (VD: TV360 => Platform Next) -->
             <div v-if="currentApps.length === 1" class="glass-card p-5 sm:p-7 rounded-[2rem] border-t-4 border-t-brand">
                 <div class="flex flex-col sm:flex-row items-center gap-4 mb-5">
                     <div class="flex-1 text-center sm:text-left">
@@ -310,14 +310,13 @@
                       </ul>
                 </div>
 
-                <!-- Bấm là lưu thẳng biến và đi tiếp luôn -->
-                <button @click="app = currentApps[0].name; nextStep()"
+                <button @click="confirmApp(currentApps[0].name)"
                     class="w-full py-3 bg-appBorder hover:bg-appBorder/80 rounded-xl text-sm font-bold text-white transition-all active:scale-95">
                     Tôi đã cài đặt xong, xem hướng dẫn
                 </button>
             </div>
 
-            <!-- NẾU CÓ NHIỀU APP CHO KHÁCH TỰ CHỌN (VD: iOS Tiktok) -->
+            <!-- HIỂN THỊ NẾU CÓ NHIỀU APP ĐỂ CHỌN (VD: iOS Tiktok => Shadowrocket/NapsternetV) -->
             <div v-else class="space-y-5">
                 <div class="glass-card p-5 sm:p-7 rounded-[2rem]">
                   <h3 class="text-lg sm:text-xl font-bold text-white mb-5">Chọn ứng dụng kết nối</h3>
@@ -340,7 +339,7 @@
                   </div>
                 </div>
 
-                <!-- Hiện thông tin app khi chọn -->
+                <!-- Bảng chi tiết của App được chọn -->
                 <div v-if="app" class="glass-card p-5 sm:p-7 rounded-[2rem] animate-fade-in border-t-4 border-t-brand">
                      <div v-for="item in currentApps" :key="item.name + '-detail'">
                         <div v-if="app === item.name">
@@ -358,7 +357,7 @@
                                 <i :class="item.icon" class="mr-1.5"></i> Mở App Store
                               </a>
 
-                              <button @click="nextStep"
+                              <button @click="confirmApp(app)"
                                 class="flex-1 py-3 bg-brand hover:bg-brandHover rounded-xl text-sm font-bold text-white transition-all active:scale-95 shadow-[0_0_10px_rgba(6,182,212,0.3)]">
                                 Đã cài xong, xem hướng dẫn
                               </button>
@@ -381,9 +380,8 @@
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
                     </span>
-                    <!-- FIX HIỂN THỊ CHUẨN TÊN APP -->
                     <p class="text-[10px] text-textMuted uppercase tracking-wider font-bold">
-                      NỀN {{ platform === 'tv360' ? 'TV360' : 'TIKTOK' }} &bull; {{ os }} &bull; {{ getFinalAppName.toUpperCase() }}
+                      NỀN {{ platform === 'tv360' ? 'TV360' : 'TIKTOK' }} &bull; {{ os }} &bull; {{ app ? app.toUpperCase() : '' }}
                     </p>
                 </div>
               </div>
@@ -475,8 +473,15 @@
     </div>
   </div>
 
-  <div class="w-full text-center py-6 text-[10px] sm:text-xs text-textMuted/50 font-mono tracking-widest relative z-10">
-    &copy; 2024 VPNSIEUCAP.SHOP
+  <div class="w-full text-center py-4 flex flex-col items-center gap-2 relative z-10">
+    <div class="text-[10px] sm:text-xs text-textMuted/50 font-mono tracking-widest uppercase">
+      &copy; 2024 VPNSIEUCAP.SHOP - BẢN HOÀN THIỆN V3
+    </div>
+    <!-- NÚT LÀM MỚI CHỐNG CACHE TRÌNH DUYỆT -->
+    <button onclick="window.location.href = window.location.pathname + '?v=' + new Date().getTime()" 
+            class="text-[10px] text-brand hover:underline opacity-60 hover:opacity-100 transition-opacity">
+      🔄 Làm mới dữ liệu web (Fix lỗi)
+    </button>
   </div>
 
   <script>
@@ -512,7 +517,7 @@
                 icon: 'fab fa-tiktok', 
                 price: '10.000đ/tháng', 
                 specs: [
-                    'Soạn tin: <span class="text-white font-mono bg-appBorder px-1.5 py-0.5 rounded text-[11px] sm:text-xs">[Cú pháp của bạn]</span> gửi <span class="text-white font-mono bg-appBorder px-1.5 py-0.5 rounded text-[11px] sm:text-xs">191</span>', 
+                    'Soạn tin: [CÚ PHÁP CỦA BẠN] gửi 191', 
                     'Hoặc tự đăng ký trên app MyViettel'
                 ] 
             },
@@ -522,7 +527,7 @@
                 icon: 'fas fa-tv', 
                 price: '10.000đ/tháng', 
                 specs: [
-                    'Soạn tin: <span class="text-white font-mono bg-appBorder px-1.5 py-0.5 rounded text-[11px] sm:text-xs">[Cú pháp của bạn]</span> gửi <span class="text-white font-mono bg-appBorder px-1.5 py-0.5 rounded text-[11px] sm:text-xs">191</span>', 
+                    'Soạn tin: [CÚ PHÁP CỦA BẠN] gửi 191', 
                     'Hoặc tự đăng ký trên app MyViettel'
                 ] 
             }
@@ -534,7 +539,7 @@
                 icon: 'fab fa-tiktok', 
                 price: '15.000đ/tháng', 
                 specs: [
-                    'Soạn tin: <span class="text-white font-mono bg-appBorder px-1.5 py-0.5 rounded text-[11px] sm:text-xs">[Cú pháp của bạn]</span> gửi <span class="text-white font-mono bg-appBorder px-1.5 py-0.5 rounded text-[11px] sm:text-xs">888</span>', 
+                    'Soạn tin: [CÚ PHÁP CỦA BẠN] gửi 888', 
                     'Hoặc tự đăng ký qua app MyVNPT'
                 ] 
             }
@@ -549,10 +554,12 @@
           { id: 'tiktok', name: 'Server Tiktok', desc: 'Dành cho nền Tiktok.', icon: 'fab fa-tiktok', color: 'blue' },
           { id: 'tv360', name: 'Server TV360', desc: 'Dành cho nền TV360.', icon: 'fas fa-tv', color: 'red' }
         ]);
+        
+        // RESET SẠCH SẼ KHI CHỌN LẠI NỀN
         const selectPlatform = (id) => { 
           platform.value = id;
-          app.value = null; // Xóa sạch bộ nhớ app cũ nếu quay lại đổi nền
-          setTimeout(() => nextStep(), 250);
+          app.value = null; 
+          setTimeout(() => nextStep(), 200);
         };
 
         const os = ref(null);
@@ -561,24 +568,35 @@
           { id: 'ios', name: 'Apple (iOS)', desc: 'Điện thoại iPhone và iPad.', icon: 'fab fa-apple', color: 'gray' }
         ]);
         
+        // RESET SẠCH SẼ KHI CHỌN LẠI OS
         const selectOs = (id) => { 
           os.value = id; 
-          app.value = null; // Xóa sạch bộ nhớ
-          setTimeout(() => nextStep(), 250); 
+          app.value = null; 
+          
+          setTimeout(() => {
+              // Bỏ tính năng tự nhảy để tránh lỗi mất chữ app, người dùng sẽ tự bấm nút.
+              nextStep(); 
+          }, 200); 
         };
 
         const app = ref(null);
         
-        // LUỒNG DỮ LIỆU ĐƯỢC CHIA RÕ RÀNG
+        // HÀM LƯU TÊN APP VÀ ĐI TIẾP (FIX LỖI MẤT TÊN APP KHI CHỈ CÓ 1 LỰA CHỌN)
+        const confirmApp = (appName) => {
+            app.value = appName;
+            nextStep();
+        };
+        
+        // PHÂN NHÁNH ỨNG DỤNG THEO NỀN (CỨ TV360 LÀ ÉP DÙNG PLATFORM NEXT)
         const currentApps = computed(() => {
           if (platform.value === 'tv360') {
              if (os.value === 'android') {
                 return [
-                  { name: 'Platform Next', desc: 'Ứng dụng tối ưu riêng cho nền TV360 (Android).', icon: 'fab fa-google-play', link: '[LINK_TẢI_PLATFORM_NEXT_ANDROID]', specs: ['Dành riêng cho kết nối TV360', 'Tốc độ phản hồi cực nhanh'] }
+                  { name: 'Platform Next', desc: 'Ứng dụng tối ưu riêng cho nền TV360.', icon: 'fab fa-google-play', link: '[LINK_TẢI_PLATFORM_NEXT_ANDROID]', specs: ['Dành riêng cho kết nối TV360', 'Tốc độ phản hồi cực nhanh'] }
                 ];
              } else if (os.value === 'ios') {
                 return [
-                  { name: 'Platform Next', desc: 'Ứng dụng tối ưu riêng cho nền TV360 (iOS).', icon: 'fab fa-app-store-ios', link: '[LINK_TẢI_PLATFORM_NEXT_IOS]', specs: ['Tối ưu hóa mạng TV360 trên iOS', 'Không tốn pin'] }
+                  { name: 'Platform Next', desc: 'Ứng dụng tối ưu riêng cho nền TV360.', icon: 'fab fa-app-store-ios', link: '[LINK_TẢI_PLATFORM_NEXT_IOS]', specs: ['Tối ưu hóa mạng TV360 trên iOS', 'Không tốn pin'] }
                 ];
              }
           } else {
@@ -596,16 +614,8 @@
           return [];
         });
 
-        // HÀM ÉP BUỘC CHỌN ĐÚNG TÊN ỨNG DỤNG BẤT CHẤP LỖI
-        const getFinalAppName = computed(() => {
-          if (platform.value === 'tv360') return 'Platform Next';
-          if (app.value) return app.value;
-          if (os.value === 'android') return 'v2rayNG';
-          return 'Shadowrocket';
-        });
-
         const currentTutorial = computed(() => {
-          const appName = getFinalAppName.value;
+          const appName = app.value || 'Ứng dụng';
           const platformName = platform.value === 'tv360' ? 'TV360' : 'Tiktok';
           
           return [
@@ -623,7 +633,7 @@
           sim, sims, selectSim, getCurrentPackages, handlePackageAction,
           platform, platforms, selectPlatform,
           os, devices, selectOs, app, currentApps,
-          getFinalAppName, currentTutorial
+          confirmApp, currentTutorial
         };
       }
     }).mount('#app');
