@@ -117,7 +117,6 @@
           </p>
         </div>
 
-        <!-- Segmented Progress Bar (7 Steps) -->
         <div class="flex items-center justify-center lg:justify-start gap-1.5">
           <template v-for="i in 7" :key="i">
             <div class="h-1.5 rounded-full transition-all duration-700 ease-in-out"
@@ -125,7 +124,6 @@
           </template>
         </div>
 
-        <!-- Back Button -->
         <button v-if="step > 1" @click="prevStep"
           class="hidden lg:inline-flex items-center gap-2.5 text-textMuted hover:text-white text-xs font-medium transition-all group">
           <div class="w-8 h-8 rounded-full border border-appBorder flex items-center justify-center group-hover:bg-appBorder group-hover:border-transparent transition-all">
@@ -184,7 +182,6 @@
               <h3 class="text-lg sm:text-xl font-bold text-white">Lựa chọn nền & nhà mạng</h3>
             </div>
 
-            <!-- Carrier Tabs -->
             <div class="flex p-1 bg-appBg rounded-xl border border-appBorder mb-5">
               <button v-for="s in sims" :key="s.id" @click="selectSim(s.id)"
                 class="flex-1 py-2.5 px-3 rounded-lg text-sm font-bold transition-all duration-300"
@@ -201,7 +198,6 @@
                 </p>
               </div>
 
-              <!-- Packages -->
               <div class="grid gap-3">
                 <div v-for="(pkg, idx) in getCurrentPackages()" :key="idx"
                   class="group p-4 sm:p-5 rounded-xl bg-appBg border border-appBorder hover:border-brand/50 hover:bg-appBg/50 transition-all duration-300 relative overflow-hidden">
@@ -288,14 +284,13 @@
             </div>
           </div>
 
-          <!-- Step 6: App Selection (RIÊNG BIỆT) -->
+          <!-- Step 6: App Selection -->
           <div v-else-if="step === 6" key="step6" class="space-y-5 animate-slide-up">
             <div class="glass-card p-5 sm:p-7 rounded-[2rem]">
               <div class="flex items-center gap-3 mb-5">
                   <h3 class="text-lg sm:text-xl font-bold text-white">Chọn ứng dụng kết nối</h3>
               </div>
 
-              <!-- Lưới chọn App -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <button v-for="(item, idx) in currentApps" :key="idx" @click="app = item.name"
                       class="relative group p-5 rounded-xl border bg-appBg text-left transition-all duration-300"
@@ -315,7 +310,7 @@
               </div>
             </div>
 
-            <!-- Khung thông tin Tải App hiện ra khi 1 app được chọn -->
+            <!-- Khung thông tin Tải App -->
             <div v-if="app" class="glass-card p-5 sm:p-7 rounded-[2rem] animate-fade-in border-t-4 border-t-brand">
                  <div v-for="item in currentApps" :key="item.name + '-detail'">
                     <div v-if="app === item.name">
@@ -350,7 +345,7 @@
             </div>
           </div>
 
-          <!-- Step 7: Instructions CHIA 2 NỀN -->
+          <!-- Step 7: Instructions -->
           <div v-else-if="step === 7" key="step7"
             class="glass-card rounded-[2rem] animate-fade-in flex flex-col h-[550px] sm:h-[600px] overflow-hidden border-t-4 border-t-brand">
             
@@ -386,7 +381,7 @@
                   </div>
               </div>
 
-              <!-- MỤC VIDEO CHIA THEO TỪNG HỆ ĐIỀU HÀNH VÀ NỀN -->
+              <!-- MỤC VIDEO CHIA THEO NỀN VÀ OS -->
               <div class="bg-appBg border border-appBorder rounded-2xl p-5 mt-2 relative overflow-hidden">
                   <div class="absolute -right-8 -top-8 w-24 h-24 bg-red-500/10 rounded-full blur-xl"></div>
                   
@@ -460,7 +455,7 @@
   </div>
 
   <script>
-    const { createApp, ref, computed, nextTick } = Vue;
+    const { createApp, ref, computed } = Vue;
 
     createApp({
       setup() {
@@ -540,7 +535,22 @@
           { id: 'ios', name: 'Apple (iOS)', desc: 'Điện thoại iPhone và iPad.', icon: 'fab fa-apple', color: 'gray' }
         ]);
         
-        // --- LOGIC CHỌN APP THEO NỀN TV360 HOẶC TIKTOK ---
+        // SỬA LỖI TẠI ĐÂY: KHÔNG GÁN CỨNG 'v2rayNG' NỮA!
+        const selectOs = (id) => { 
+          os.value = id; 
+          app.value = null; 
+          
+          setTimeout(() => {
+              // Tự động nhận diện và chọn app nếu nền đó chỉ có 1 ứng dụng
+              if (currentApps.value.length === 1) {
+                  app.value = currentApps.value[0].name;
+              }
+              nextStep(); 
+          }, 250); 
+        };
+
+        const app = ref(null);
+        
         const currentApps = computed(() => {
           if (platform.value === 'tv360') {
              // NẾU CHỌN NỀN TV360 -> HIỂN THỊ PLATFORM NEXT CHO CẢ ANDROID & IOS
@@ -554,7 +564,7 @@
                 ];
              }
           } else {
-             // NẾU CHỌN NỀN TIKTOK -> HIỂN THỊ CÁC APP CŨ
+             // NẾU CHỌN NỀN TIKTOK -> HIỂN THỊ CÁC APP BÌNH THƯỜNG
              if (os.value === 'android') {
                 return [
                   { name: 'v2rayNG', desc: 'Ứng dụng kết nối Xray nhẹ.', icon: 'fab fa-google-play', link: 'https://play.google.com/store/apps/details?id=com.v2ray.ang', specs: ['Tải an toàn qua Google Play', 'Hoạt động ngầm tốt'] }
@@ -568,21 +578,6 @@
           }
           return [];
         });
-
-        const app = ref(null);
-        
-        const selectOs = (id) => { 
-          os.value = id; 
-          app.value = null; 
-          
-          // Tự động chuyển bước và chọn app nếu chỉ có 1 ứng dụng hiển thị
-          setTimeout(() => {
-              if (currentApps.value.length === 1) {
-                  app.value = currentApps.value[0].name;
-              }
-              nextStep(); 
-          }, 250); 
-        };
 
         const currentTutorial = computed(() => {
           const appName = app.value || (os.value === 'android' ? 'v2rayNG' : 'Shadowrocket');
