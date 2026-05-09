@@ -208,7 +208,6 @@
             </div>
 
             <div v-if="sim" class="animate-fade-in space-y-4">
-              <!-- Hộp thông báo được chia nhỏ thành danh sách -->
               <div class="p-4 rounded-xl bg-orange-500/10 border border-orange-500/20">
                 <div class="flex items-center gap-2 mb-2.5">
                   <i class="fas fa-exclamation-circle text-orange-500 text-sm"></i>
@@ -240,7 +239,6 @@
                     </div>
                   </div>
 
-                  <!-- Danh sách Cú pháp với Icon riêng biệt -->
                   <ul v-if="pkg.specs && pkg.specs.length > 0" class="mb-4 space-y-2.5 relative z-10">
                     <li v-for="(spec, sIdx) in pkg.specs" :key="sIdx" class="flex items-start gap-2.5 text-xs sm:text-sm">
                       <i class="fas fa-angle-right text-brand mt-1 text-[10px]"></i>
@@ -416,7 +414,7 @@
 
             <div class="flex-1 overflow-y-auto p-5 sm:p-6 custom-scrollbar">
               
-              <!-- THÔNG BÁO HƯỚNG DẪN RIÊNG BIỆT CHO TỪNG APP VÀ TỪNG HỆ ĐIỀU HÀNH -->
+              <!-- THÔNG BÁO HƯỚNG DẪN RIÊNG BIỆT -->
               <div class="space-y-5 mb-8">
                   <div v-for="(item, index) in currentTutorial" :key="index" class="relative pl-10 group">
                     <div class="absolute left-[15px] top-8 bottom-[-1.25rem] w-0.5 bg-appBorder group-last:hidden"></div>
@@ -440,7 +438,8 @@
                   <div v-if="os === 'android' && platform === 'tiktok'" class="w-full relative z-10">
                       <p class="text-xs text-textMuted mb-3">Cách cấu hình V2ray tun trên Android <span class="font-bold text-white">(Gói nền Tiktok)</span>:</p>
                       <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-appBorder bg-black">
-                          <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/LINK_VIDEO_ANDROID_TIKTOK_CUA_BAN_O_DAY" title="Hướng dẫn Android Tiktok" frameborder="0" allowfullscreen></iframe>
+                          <!-- THAY LINK VIDEO ANDROID TIKTOK VÀO DƯỚI ĐÂY (NẾU CÓ) -->
+                          <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/ID_VIDEO_YOUTUBE_ANDROID_TIKTOK" title="Hướng dẫn Android Tiktok" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
                       </div>
                   </div>
 
@@ -448,7 +447,8 @@
                   <div v-if="os === 'android' && platform === 'tv360'" class="w-full relative z-10">
                       <p class="text-xs text-textMuted mb-3">Cách cấu hình Platform Next trên Android <span class="font-bold text-white">(Gói nền TV360)</span>:</p>
                       <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-appBorder bg-black">
-                          <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/LINK_VIDEO_ANDROID_TV360_CUA_BAN_O_DAY" title="Hướng dẫn Android TV360" frameborder="0" allowfullscreen></iframe>
+                          <!-- THAY LINK VIDEO ANDROID TV360 VÀO DƯỚI ĐÂY (NẾU CÓ) -->
+                          <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/ID_VIDEO_YOUTUBE_ANDROID_TV360" title="Hướng dẫn Android TV360" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
                       </div>
                   </div>
 
@@ -456,16 +456,16 @@
                   <div v-if="os === 'ios' && platform === 'tiktok'" class="w-full relative z-10">
                       <p class="text-xs text-textMuted mb-3">Cách cấu hình trên iPhone/iPad <span class="font-bold text-white">(Gói nền Tiktok)</span>:</p>
                       <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-appBorder bg-black">
-                          <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/LINK_VIDEO_IOS_TIKTOK_CUA_BAN_O_DAY" title="Hướng dẫn iOS Tiktok" frameborder="0" allowfullscreen></iframe>
+                          <!-- THAY LINK VIDEO IOS TIKTOK VÀO DƯỚI ĐÂY (NẾU CÓ) -->
+                          <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/ID_VIDEO_YOUTUBE_IOS_TIKTOK" title="Hướng dẫn iOS Tiktok" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
                       </div>
                   </div>
 
-                  <!-- IOS - NỀN TV360 -->
+                  <!-- IOS - NỀN TV360 (ĐÃ FIX CHẠY LINK VEED.IO) -->
                   <div v-if="os === 'ios' && platform === 'tv360'" class="w-full relative z-10">
                       <p class="text-xs text-textMuted mb-3">Cách cấu hình Platform Next trên iPhone/iPad <span class="font-bold text-white">(Gói nền TV360)</span>:</p>
                       <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-appBorder bg-black">
-                          <!-- ĐÃ CẬP NHẬT ĐÚNG LINK VIDEO VEED CHO IOS TV360 NHƯ YÊU CẦU -->
-                          <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.veed.io/embed/b9b4692d-36ed-4350-8674-5e52d17a7a7a" title="Hướng dẫn iOS TV360" frameborder="0" allowfullscreen></iframe>
+                          <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.veed.io/embed/b9b4692d-36ed-4350-8674-5e52d17a7a7a" title="Hướng dẫn iOS TV360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
                       </div>
                   </div>
               </div>
@@ -497,7 +497,7 @@
 
   <div class="w-full text-center py-4 flex flex-col items-center gap-2 relative z-10">
     <div class="text-[10px] sm:text-xs text-textMuted/50 font-mono tracking-widest uppercase">
-      &copy; 2024 VPNSIEUCAP.SHOP - BẢN HOÀN THIỆN V6
+      &copy; 2024 VPNSIEUCAP.SHOP - BẢN HOÀN THIỆN
     </div>
     <button onclick="window.location.href = window.location.pathname + '?v=' + new Date().getTime()" 
             class="text-[10px] text-brand hover:underline opacity-60 hover:opacity-100 transition-opacity">
@@ -615,12 +615,10 @@
           } else {
              if (os.value === 'android') {
                 return [
-                  // ĐÃ THAY ĐỔI APP THÀNH V2RAY TUN THEO YÊU CẦU
                   { name: 'V2ray tun', desc: 'Ứng dụng kết nối VPN mạnh mẽ, dễ sử dụng.', icon: 'fab fa-google-play', link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=vi', specs: ['Tải an toàn qua Google Play', 'Hoạt động ngầm tốt, ít tốn pin'] }
                 ];
              } else if (os.value === 'ios') {
                 return [
-                  // ĐÃ XÓA NAPSTERNETV, CHỈ GIỮ LẠI SHADOWROCKET CHO IOS TIKTOK
                   { name: 'Shadowrocket', desc: 'Hoạt động cực kì ổn định.', icon: 'fab fa-app-store-ios', link: 'https://apps.apple.com/us/app/shadowrocket/id932747118', specs: ['Yêu cầu iOS 11.0 trở lên', 'Phí: $2.99 trên App Store'] }
                 ];
              }
@@ -635,7 +633,7 @@
           return 'Shadowrocket';
         });
 
-        // LOGIC CHIA HƯỚNG DẪN 4 KỊCH BẢN RIÊNG BIỆT HOÀN TOÀN
+        // HƯỚNG DẪN 4 KỊCH BẢN
         const currentTutorial = computed(() => {
           const appName = getFinalAppName.value;
           
@@ -649,7 +647,6 @@
                     { text: `Bật mạng 4G (phải có gói TV360), mở lại ứng dụng và nhấn nút Kết Nối to ở giữa màn hình để bắt đầu lướt web!` }
                  ];
              } else {
-                 // iOS TV360
                  return [
                     { text: `Mở ứng dụng ${appName} trên iPhone hoặc iPad của bạn.` },
                     { text: `Sử dụng trình duyệt Safari, đăng nhập vào VPNSIEUCAP.SHOP.` },
@@ -659,9 +656,7 @@
                  ];
              }
           } else {
-             // NỀN TIKTOK
              if (os.value === 'android') {
-                 // Android V2ray tun
                  return [
                     { text: `Mở ứng dụng ${appName} trên thiết bị Android của bạn.` },
                     { text: `Sử dụng trình duyệt Chrome, đăng nhập vào VPNSIEUCAP.SHOP.` },
@@ -670,7 +665,6 @@
                     { text: `Bật mạng 4G (gói Tiktok), chọn một máy chủ trong danh sách và bấm nút kết nối (hoặc biểu tượng chữ V) để sử dụng mạng.` }
                  ];
              } else {
-                 // iOS Shadowrocket
                  return [
                     { text: `Mở ứng dụng ${appName} trên iPhone hoặc iPad của bạn.` },
                     { text: `Sử dụng Safari, đăng nhập vào trang VPNSIEUCAP.SHOP.` },
