@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trình Cài Đặt VPN Siêu Cấp v2</title>
+  <title>Trình Cài Đặt VPN Siêu Cấp</title>
   
   <!-- Vue 3 -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -284,63 +284,86 @@
             </div>
           </div>
 
-          <!-- Step 6: App Selection -->
+          <!-- Step 6: App Selection (BẢN VÁ LỖI HIỂN THỊ CHẮC CHẮN 100%) -->
           <div v-else-if="step === 6" key="step6" class="space-y-5 animate-slide-up">
-            <div class="glass-card p-5 sm:p-7 rounded-[2rem]">
-              <div class="flex items-center gap-3 mb-5">
-                  <h3 class="text-lg sm:text-xl font-bold text-white">Chọn ứng dụng kết nối</h3>
-              </div>
+            
+            <!-- NẾU CHỈ CÓ 1 APP DUY NHẤT ĐƯỢC PHÉP CHỌN (VD: Platform Next cho TV360) -->
+            <div v-if="currentApps.length === 1" class="glass-card p-5 sm:p-7 rounded-[2rem] border-t-4 border-t-brand">
+                <div class="flex flex-col sm:flex-row items-center gap-4 mb-5">
+                    <div class="flex-1 text-center sm:text-left">
+                        <h4 class="font-bold text-lg text-white mb-1">Cài đặt {{ currentApps[0].name }}</h4>
+                        <p class="text-textMuted text-xs sm:text-sm">{{ currentApps[0].desc }}</p>
+                    </div>
+                    <div class="shrink-0 w-full sm:w-auto">
+                        <a v-if="currentApps[0].link" :href="currentApps[0].link" target="_blank"
+                           class="w-full sm:w-auto px-5 py-2.5 rounded-full font-bold flex items-center justify-center gap-2 transition-all text-white text-sm hover:-translate-y-0.5 shadow-lg bg-brand hover:bg-brandHover">
+                            <i :class="currentApps[0].icon"></i> Tải Ứng Dụng
+                        </a>
+                    </div>
+                </div>
+                
+                <div v-if="currentApps[0].specs && currentApps[0].specs.length > 0" class="p-4 mb-5 rounded-xl bg-appBg border border-appBorder">
+                      <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
+                        <li v-for="spec in currentApps[0].specs" :key="spec" class="flex items-start gap-2.5">
+                            <i class="fas fa-circle text-[5px] text-textMuted mt-1.5"></i> {{ spec }}
+                        </li>
+                      </ul>
+                </div>
 
-              <!-- Lưới chọn App -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <button v-for="(item, idx) in currentApps" :key="idx" @click="app = item.name"
-                      class="relative group p-5 rounded-xl border bg-appBg text-left transition-all duration-300"
-                      :class="app === item.name ? 'border-brand bg-brand/10 ring-1 ring-brand' : 'border-appBorder hover:border-textMuted'">
-                      
-                      <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4 transition-transform group-hover:scale-105" 
-                           :class="app === item.name ? 'bg-brand/20 text-brand border border-brand/30' : 'bg-appCard text-white border border-appBorder'">
-                          <i :class="item.icon"></i>
-                      </div>
-                      <div class="font-bold text-base text-white">{{ item.name }}</div>
-                      <div class="text-textMuted text-xs mt-1.5">{{ item.desc }}</div>
-                      
-                      <div v-if="app === item.name" class="absolute top-4 right-4 text-brand">
-                          <i class="fas fa-check-circle text-lg"></i>
-                      </div>
-                  </button>
-              </div>
+                <!-- Bấm là lưu thẳng biến và đi tiếp luôn -->
+                <button @click="app = currentApps[0].name; nextStep()"
+                    class="w-full py-3 bg-appBorder hover:bg-appBorder/80 rounded-xl text-sm font-bold text-white transition-all active:scale-95">
+                    Tôi đã cài đặt xong, xem hướng dẫn
+                </button>
             </div>
 
-            <!-- Khung thông tin Tải App -->
-            <div v-if="app" class="glass-card p-5 sm:p-7 rounded-[2rem] animate-fade-in border-t-4 border-t-brand">
-                 <div v-for="item in currentApps" :key="item.name + '-detail'">
-                    <div v-if="app === item.name">
-                        <div class="flex flex-col sm:flex-row items-center gap-4 mb-5">
-                            <div class="flex-1 text-center sm:text-left">
-                                <h4 class="font-bold text-lg text-white mb-1">Cài đặt {{ item.name }}</h4>
-                                <p class="text-textMuted text-xs sm:text-sm">Tải ứng dụng về máy trước khi tiếp tục</p>
-                            </div>
-                            <div class="shrink-0 w-full sm:w-auto">
-                                <a v-if="item.link" :href="item.link" target="_blank"
-                                   class="w-full sm:w-auto px-5 py-2.5 rounded-full font-bold flex items-center justify-center gap-2 transition-all text-white text-sm hover:-translate-y-0.5 shadow-lg"
-                                   :class="os === 'android' ? 'bg-emerald-500 hover:bg-emerald-400 shadow-emerald-500/20' : 'bg-white !text-black hover:bg-gray-200'">
-                                    <i :class="item.icon"></i> Tải Ứng Dụng
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div v-if="item.specs && item.specs.length > 0" class="p-4 mb-5 rounded-xl bg-appBg border border-appBorder">
-                              <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
-                                <li v-for="spec in item.specs" :key="spec" class="flex items-start gap-2.5">
-                                    <i class="fas fa-circle text-[5px] text-textMuted mt-1.5"></i> {{ spec }}
-                                </li>
-                              </ul>
-                        </div>
+            <!-- NẾU CÓ NHIỀU APP CHO KHÁCH TỰ CHỌN (VD: iOS Tiktok) -->
+            <div v-else class="space-y-5">
+                <div class="glass-card p-5 sm:p-7 rounded-[2rem]">
+                  <h3 class="text-lg sm:text-xl font-bold text-white mb-5">Chọn ứng dụng kết nối</h3>
+                  <div class="grid gap-3">
+                      <button v-for="(item, idx) in currentApps" :key="idx" @click="app = item.name"
+                          class="relative flex items-center gap-3.5 p-3.5 rounded-xl border transition-all text-left"
+                          :class="app === item.name ? 'bg-appBorder border-brand' : 'bg-appBg border-appBorder hover:bg-appBorder/50'">
+                          <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xl bg-appCard border border-appBorder">
+                              <i :class="item.icon"></i>
+                          </div>
+                          <div class="flex-1">
+                              <div class="font-bold text-white text-base">{{ item.name }}</div>
+                              <div class="text-xs text-textMuted">{{ item.desc }}</div>
+                          </div>
+                          <div class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                               :class="app === item.name ? 'border-brand bg-brand' : 'border-appBorder'">
+                              <i v-if="app === item.name" class="fas fa-check text-[10px] text-appBg"></i>
+                          </div>
+                      </button>
+                  </div>
+                </div>
 
-                        <button @click="nextStep"
-                            class="w-full py-3 bg-brand hover:bg-brandHover rounded-xl text-sm font-bold text-white transition-all active:scale-95 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
-                            Đã cài đặt xong, xem hướng dẫn
-                        </button>
+                <!-- Hiện thông tin app khi chọn -->
+                <div v-if="app" class="glass-card p-5 sm:p-7 rounded-[2rem] animate-fade-in border-t-4 border-t-brand">
+                     <div v-for="item in currentApps" :key="item.name + '-detail'">
+                        <div v-if="app === item.name">
+                            <div v-if="item.specs && item.specs.length > 0" class="p-4 mb-5 rounded-xl bg-appBg border border-appBorder">
+                                  <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
+                                    <li v-for="spec in item.specs" :key="spec" class="flex items-start gap-2.5">
+                                        <i class="fas fa-circle text-[5px] text-textMuted mt-1.5"></i> {{ spec }}
+                                    </li>
+                                  </ul>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row gap-3">
+                              <a v-if="item.link" :href="item.link" target="_blank"
+                                class="flex-1 py-3 rounded-xl text-center font-bold text-sm text-slate-900 transition-all bg-white hover:bg-gray-200">
+                                <i :class="item.icon" class="mr-1.5"></i> Mở App Store
+                              </a>
+
+                              <button @click="nextStep"
+                                class="flex-1 py-3 bg-brand hover:bg-brandHover rounded-xl text-sm font-bold text-white transition-all active:scale-95 shadow-[0_0_10px_rgba(6,182,212,0.3)]">
+                                Đã cài xong, xem hướng dẫn
+                              </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -358,9 +381,9 @@
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
                     </span>
-                    <!-- FIX TẬN GỐC TÊN APP TRONG HEADER -->
+                    <!-- FIX HIỂN THỊ CHUẨN TÊN APP -->
                     <p class="text-[10px] text-textMuted uppercase tracking-wider font-bold">
-                      NỀN {{ platform === 'tv360' ? 'TV360' : 'TIKTOK' }} &bull; {{ os }} &bull; {{ selectedAppName.toUpperCase() }}
+                      NỀN {{ platform === 'tv360' ? 'TV360' : 'TIKTOK' }} &bull; {{ os }} &bull; {{ getFinalAppName.toUpperCase() }}
                     </p>
                 </div>
               </div>
@@ -527,7 +550,8 @@
           { id: 'tv360', name: 'Server TV360', desc: 'Dành cho nền TV360.', icon: 'fas fa-tv', color: 'red' }
         ]);
         const selectPlatform = (id) => { 
-          platform.value = id; 
+          platform.value = id;
+          app.value = null; // Xóa sạch bộ nhớ app cũ nếu quay lại đổi nền
           setTimeout(() => nextStep(), 250);
         };
 
@@ -537,18 +561,10 @@
           { id: 'ios', name: 'Apple (iOS)', desc: 'Điện thoại iPhone và iPad.', icon: 'fab fa-apple', color: 'gray' }
         ]);
         
-        // RESET APP KHÔNG CHO DÍNH TÊN CŨ
         const selectOs = (id) => { 
           os.value = id; 
-          app.value = null; // Xóa trắng bộ nhớ app cũ
-          
-          setTimeout(() => {
-              // Tự động gán ngay tên App nếu mảng currentApps chỉ có 1 phần tử
-              if (currentApps.value.length === 1) {
-                  app.value = currentApps.value[0].name;
-              }
-              nextStep(); 
-          }, 250); 
+          app.value = null; // Xóa sạch bộ nhớ
+          setTimeout(() => nextStep(), 250); 
         };
 
         const app = ref(null);
@@ -580,16 +596,16 @@
           return [];
         });
 
-        // HÀM BẢO VỆ (Tránh việc mất chữ nếu chưa chọn app)
-        const selectedAppName = computed(() => {
-          if (app.value) return app.value;
+        // HÀM ÉP BUỘC CHỌN ĐÚNG TÊN ỨNG DỤNG BẤT CHẤP LỖI
+        const getFinalAppName = computed(() => {
           if (platform.value === 'tv360') return 'Platform Next';
-          if (os.value === 'ios') return 'Shadowrocket';
-          return 'v2rayNG';
+          if (app.value) return app.value;
+          if (os.value === 'android') return 'v2rayNG';
+          return 'Shadowrocket';
         });
 
         const currentTutorial = computed(() => {
-          const appName = selectedAppName.value;
+          const appName = getFinalAppName.value;
           const platformName = platform.value === 'tv360' ? 'TV360' : 'Tiktok';
           
           return [
@@ -607,7 +623,7 @@
           sim, sims, selectSim, getCurrentPackages, handlePackageAction,
           platform, platforms, selectPlatform,
           os, devices, selectOs, app, currentApps,
-          selectedAppName, currentTutorial
+          getFinalAppName, currentTutorial
         };
       }
     }).mount('#app');
