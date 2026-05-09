@@ -11,7 +11,6 @@
   
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: { sans: ['Inter', 'sans-serif'] },
@@ -21,7 +20,6 @@
             appBorder: '#27272a',
             brand: '#f97316',
             brandHover: '#ea580c',
-            textMain: '#fafafa',
             textMuted: '#a1a1aa',
           }
         }
@@ -30,7 +28,7 @@
   </script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style type="text/tailwindcss">
     @layer utilities {
@@ -49,14 +47,14 @@
 
     <div class="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[3.5fr_6.5fr] gap-6 lg:gap-10 items-start">
 
-      <!-- Left Side -->
+      <!-- Left Side: Header -->
       <div class="lg:sticky lg:top-10 space-y-8 text-center lg:text-left pt-4">
         <div>
           <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand to-rose-600 mb-5 shadow-lg">
             <i class="fas fa-bolt text-xl text-white"></i>
           </div>
           <h1 class="text-3xl sm:text-4xl font-extrabold text-white uppercase tracking-tighter">VPNSIEUCAP</h1>
-          <p class="text-textMuted text-sm font-medium leading-relaxed">Cài đặt trực quan qua hình ảnh.</p>
+          <p class="text-textMuted text-sm font-medium leading-relaxed">Hệ thống cài đặt trực quan.</p>
         </div>
 
         <div class="flex items-center justify-center lg:justify-start gap-2">
@@ -64,32 +62,102 @@
             <div class="h-2 rounded-full transition-all duration-500" :class="step >= i ? 'w-8 bg-brand' : 'w-4 bg-appBorder'"></div>
           </template>
         </div>
+
+        <button v-if="step > 1" @click="prevStep" class="hidden lg:inline-flex items-center gap-2 text-textMuted hover:text-white font-semibold">
+           <i class="fas fa-arrow-left text-xs"></i> QUAY LẠI
+        </button>
       </div>
 
-      <!-- Right Side -->
+      <!-- Right Side: Content Area -->
       <div class="w-full relative">
         <transition name="fade" mode="out-in">
 
-          <!-- Các bước 1-6 giữ nguyên logic cũ của bạn... (Rút gọn để tập trung vào Bước 7) -->
-          <div v-if="step < 7" class="solid-card p-10 rounded-2xl text-center">
-             <h2 class="text-xl font-bold mb-6 text-white">Bước {{step}}</h2>
-             <button @click="nextStep" class="px-8 py-3 bg-white text-black rounded-xl font-bold">Tiếp tục</button>
-             <p class="mt-4 text-textMuted text-xs">Vui lòng hoàn thành các lựa chọn trước đó.</p>
+          <!-- Step 1: Start -->
+          <div v-if="step === 1" key="step1" class="solid-card p-10 rounded-2xl text-center">
+            <div class="mb-6 w-16 h-16 rounded-xl bg-brand/10 text-brand flex items-center justify-center mx-auto border border-brand/20">
+              <i class="fas fa-power-off text-2xl"></i>
+            </div>
+            <h2 class="text-xl font-bold mb-8">Bắt Đầu Cài Đặt</h2>
+            <button @click="nextStep" class="px-8 py-3 bg-white text-black rounded-xl font-bold w-full sm:w-auto">Bắt đầu ngay</button>
           </div>
 
-          <!-- Step 7: Hướng dẫn chi tiết kèm ẢNH DƯỚI CHỮ -->
-          <div v-else-if="step === 7" key="step7" class="solid-card rounded-2xl flex flex-col h-[650px] overflow-hidden">
-            
-            <div class="p-5 border-b border-appBorder bg-appBg/90 backdrop-blur-md sticky top-0 z-20 flex justify-between items-center">
-              <h3 class="font-bold text-lg text-white uppercase tracking-tight">Hướng dẫn chi tiết</h3>
+          <!-- Step 2: Check Status -->
+          <div v-else-if="step === 2" key="step2" class="solid-card p-10 rounded-2xl text-center">
+            <h2 class="text-xl font-bold mb-4">Kiểm tra tài khoản</h2>
+            <p class="text-textMuted mb-8">Bạn cần mua gói cước trên website trước khi thực hiện.</p>
+            <div class="flex flex-col gap-3 max-w-xs mx-auto">
+                <button @click="nextStep" class="px-5 py-3 bg-brand text-white rounded-xl font-bold">Tôi đã có gói cước</button>
+                <a href="https://vpnsieucap.shop" target="_blank" class="px-5 py-3 bg-appBg border border-appBorder rounded-xl font-semibold">Đi tới cửa hàng</a>
+            </div>
+          </div>
+
+          <!-- Step 3: SIM & Background -->
+          <div v-else-if="step === 3" key="step3" class="solid-card p-6 rounded-2xl">
+            <h3 class="text-lg font-bold mb-5">Đăng ký nền nhà mạng</h3>
+            <div class="grid gap-4">
+                <div v-for="pkg in packages" class="p-4 rounded-xl bg-appBg border border-appBorder">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="font-bold text-white">{{pkg.name}}</span>
+                        <i :class="pkg.icon" class="text-brand"></i>
+                    </div>
+                    <ul class="text-xs text-slate-300 space-y-1">
+                        <li v-for="s in pkg.specs">- {{s}}</li>
+                    </ul>
+                </div>
+                <button @click="nextStep" class="w-full py-3 bg-white text-black rounded-xl font-bold mt-2">Tôi đã đăng ký thành công</button>
+            </div>
+          </div>
+
+          <!-- Step 4: Platform Selection -->
+          <div v-else-if="step === 4" key="step4" class="solid-card p-6 rounded-2xl">
+            <h3 class="text-lg font-bold mb-5">Chọn nền máy chủ</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button v-for="p in platforms" @click="selectPlatform(p.id)" class="p-5 rounded-xl border text-left" :class="platform === p.id ? 'border-brand bg-brand/10' : 'border-appBorder bg-appBg'">
+                <i :class="p.icon" class="text-xl mb-3 block"></i>
+                <div class="font-bold">{{p.name}}</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 5: OS Selection -->
+          <div v-else-if="step === 5" key="step5" class="solid-card p-6 rounded-2xl">
+            <h3 class="text-lg font-bold mb-5">Hệ điều hành của bạn</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button v-for="d in devices" @click="selectOs(d.id)" class="p-5 rounded-xl border text-left" :class="os === d.id ? 'border-brand bg-brand/10' : 'border-appBorder bg-appBg'">
+                <i :class="d.icon" class="text-xl mb-3 block"></i>
+                <div class="font-bold">{{d.name}}</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 6: App Info -->
+          <div v-else-if="step === 6" key="step6" class="solid-card p-6 rounded-2xl border-t-2 border-t-brand">
+            <div v-for="item in currentApps" class="text-center sm:text-left">
+                <h4 class="font-bold text-lg mb-2">Cài đặt {{item.name}}</h4>
+                <p class="text-textMuted text-sm mb-6">{{item.desc}}</p>
+                <div class="p-4 bg-appBg border border-appBorder rounded-xl mb-6 text-left">
+                    <ul class="text-xs space-y-2">
+                        <li v-for="s in item.specs" class="flex items-start gap-2">
+                            <i class="fas fa-check text-brand mt-0.5"></i> {{s}}
+                        </li>
+                    </ul>
+                </div>
+                <a :href="item.link" target="_blank" class="block w-full py-3 bg-brand text-white rounded-xl font-bold mb-3 text-center">Tải Ứng Dụng</a>
+                <button @click="confirmApp(item.name)" class="w-full py-3 bg-appBorder rounded-xl font-bold">Tôi đã cài xong, xem hướng dẫn</button>
+            </div>
+          </div>
+
+          <!-- Step 7: Final Tutorial with IMAGES -->
+          <div v-else-if="step === 7" key="step7" class="solid-card rounded-2xl flex flex-col h-[700px] overflow-hidden">
+            <div class="p-5 border-b border-appBorder bg-appBg/90 sticky top-0 z-20 flex justify-between items-center">
+              <h3 class="font-bold text-sm uppercase tracking-widest text-brand">{{platform.toUpperCase()}} - {{os.toUpperCase()}}</h3>
               <button @click="resetFlow" class="w-8 h-8 rounded-lg bg-appBorder flex items-center justify-center hover:bg-white hover:text-black transition-all">
                 <i class="fas fa-rotate-left text-xs"></i>
               </button>
             </div>
 
-            <div class="flex-1 overflow-y-auto p-5 sm:p-8 custom-scrollbar space-y-10">
-              
-              <!-- Vòng lặp hiển thị: CHỮ TRÊN - ẢNH DƯỚI -->
+            <div class="flex-1 overflow-y-auto p-5 sm:p-8 custom-scrollbar space-y-12">
+              <!-- Hiển thị CHỮ TRÊN - ẢNH DƯỚI -->
               <div v-for="(item, index) in currentTutorial" :key="index" class="space-y-4 animate-fade-in">
                 <div class="flex gap-4">
                   <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-brand/10 border border-brand/20 text-brand font-bold flex items-center justify-center">
@@ -97,25 +165,26 @@
                   </div>
                   <p class="text-slate-200 font-medium leading-relaxed pt-1">{{ item.text }}</p>
                 </div>
-
-                <!-- Khung chứa ảnh minh họa -->
-                <div class="ml-12 group">
-                  <img :src="item.image" 
-                       :alt="'Minh họa bước ' + (index + 1)"
-                       class="w-full max-w-md rounded-xl border border-appBorder shadow-xl group-hover:border-brand/50 transition-colors duration-300">
+                <div class="ml-12">
+                   <img :src="item.image" class="w-full max-w-sm rounded-xl border border-appBorder shadow-xl" loading="lazy">
                 </div>
               </div>
 
               <!-- Mục Video -->
               <div class="pt-6 border-t border-appBorder">
                 <h4 class="font-bold text-white mb-4 flex items-center gap-2">
-                  <i class="fab fa-youtube text-brand"></i> Video thực tế
+                  <i class="fab fa-youtube text-brand"></i> Video hướng dẫn
                 </h4>
                 <div class="aspect-video rounded-xl overflow-hidden border border-appBorder bg-black">
-                   <iframe class="w-full h-full" :src="videoLink" frameborder="0" allowfullscreen></iframe>
+                   <iframe class="w-full h-full" :src="videoLink" frameborder="0" allow="autoplay; encrypted-media; fullscreen;" allowfullscreen></iframe>
                 </div>
               </div>
 
+              <div class="p-8 text-center bg-brand/5 rounded-2xl border border-brand/10">
+                  <i class="fas fa-check-circle text-4xl text-brand mb-4"></i>
+                  <h4 class="text-xl font-bold">Bạn đã sẵn sàng!</h4>
+                  <p class="text-textMuted text-sm">Bật 4G (đúng gói nền) và kết nối VPN ngay.</p>
+              </div>
             </div>
           </div>
 
@@ -124,47 +193,85 @@
     </div>
   </div>
 
+  <div class="w-full text-center py-6 text-[10px] text-textMuted/50 font-mono tracking-widest uppercase z-10">
+    &copy; 2024 VPNSIEUCAP.SHOP - BẢN ẢNH MINH HỌA V7
+  </div>
+
   <script>
     const { createApp, ref, computed } = Vue;
 
     createApp({
       setup() {
-        const step = ref(7); // Để mặc định 7 để bạn dễ xem giao diện ảnh
-        const platform = ref('tv360'); // 'tiktok' hoặc 'tv360'
-        const os = ref('ios'); // 'android' hoặc 'ios'
+        const step = ref(1);
+        const platform = ref(null);
+        const os = ref(null);
+        const app = ref(null);
 
-        const resetFlow = () => { step.value = 1; };
         const nextStep = () => { step.value++; };
+        const prevStep = () => { step.value--; };
+        const resetFlow = () => { step.value = 1; platform.value = null; os.value = null; app.value = null; };
 
-        // DỮ LIỆU HƯỚNG DẪN: CHỮ VÀ LINK ẢNH TƯƠNG ỨNG
+        const packages = [
+            { name: "Nền Tiktok", icon: "fab fa-tiktok", specs: ["Soạn tin: [CÚ PHÁP] gửi 191", "Giá: 10.000đ/tháng"] },
+            { name: "Nền TV360", icon: "fas fa-tv", specs: ["Soạn tin: [CÚ PHÁP] gửi 191", "Ưu điểm: Máy chủ ổn định"] }
+        ];
+
+        const platforms = [
+            { id: 'tiktok', name: 'Nền Tiktok', icon: 'fab fa-tiktok' },
+            { id: 'tv360', name: 'Nền TV360', icon: 'fas fa-tv' }
+        ];
+        const selectPlatform = (id) => { platform.value = id; nextStep(); };
+
+        const devices = [
+            { id: 'android', name: 'Android', icon: 'fab fa-android' },
+            { id: 'ios', name: 'iOS (iPhone)', icon: 'fab fa-apple' }
+        ];
+        const selectOs = (id) => { os.value = id; nextStep(); };
+
+        const confirmApp = (name) => { app.value = name; nextStep(); };
+
+        const currentApps = computed(() => {
+          if (platform.value === 'tv360') {
+             return os.value === 'android' ? 
+             [{ name: 'Platform Next', desc: 'Ứng dụng tối ưu cho Android.', link: 'https://play.google.com/store/apps/details?id=dev.platformnext.vpn', specs: ['Hỗ trợ Android 7.0+', 'Tốc độ cao'] }] :
+             [{ name: 'Platform Next', desc: 'Ứng dụng tối ưu cho iOS.', link: 'https://apps.apple.com/vn/app/platform-next-unlimited-vpn/id6741474000', specs: ['Dành cho iPhone/iPad', 'Tiết kiệm pin'] }];
+          } else {
+             return os.value === 'android' ? 
+             [{ name: 'V2ray tun', desc: 'Ứng dụng VPN mạnh mẽ.', link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android', specs: ['Đầy đủ giao thức', 'Dễ cấu hình'] }] :
+             [{ name: 'Shadowrocket', desc: 'App ổn định nhất trên iOS.', link: 'https://apps.apple.com/us/app/shadowrocket/id932747118', specs: ['Phí mua app: $2.99', 'Hỗ trợ cực tốt'] }];
+          }
+        });
+
+        // PHẦN BẠN THAY LINK ẢNH TẠI ĐÂY ---------------------------
         const currentTutorial = computed(() => {
           if (platform.value === 'tv360') {
-            if (os.value === 'android') {
-              return [
-                { text: "Mở app Platform Next trên Android.", image: "https://via.placeholder.com/600x300/18181b/f97316?text=Anh+Mo+App+Android" },
-                { text: "Đăng nhập web và bấm Đồng bộ TV360.", image: "https://via.placeholder.com/600x300/18181b/f97316?text=Anh+Dong+Bo+Web" },
-                { text: "Nhấn nút Kết nối to ở giữa.", image: "https://via.placeholder.com/600x300/18181b/f97316?text=Anh+Ket+Noi" }
-              ];
-            } else {
-              return [
-                { text: "Mở app Platform Next trên iPhone.", image: "https://via.placeholder.com/600x300/18181b/f97316?text=Anh+Mo+App+iOS" },
-                { text: "Cho phép thêm cấu hình VPN.", image: "https://via.placeholder.com/600x300/18181b/f97316?text=Anh+Cap+Quyen+VPN" },
-                { text: "Bật công tắc để sử dụng.", image: "https://via.placeholder.com/600x300/18181b/f97316?text=Anh+Bat+Mang" }
-              ];
-            }
+            return [
+                { text: "Mở ứng dụng Platform Next vừa tải.", image: "LINK_ANH_1_CUA_BAN" },
+                { text: "Đăng nhập vpnsieucap.shop và bấm Đồng bộ TV360.", image: "LINK_ANH_2_CUA_BAN" },
+                { text: "Nhấn nút Kết nối màu cam to ở giữa.", image: "LINK_ANH_3_CUA_BAN" }
+            ];
           } else {
-             // Tương tự cho nền Tiktok...
-             return [
-                { text: "Mở Shadowrocket và chọn server.", image: "https://via.placeholder.com/400x200?text=Shadowrocket+1" }
-             ];
+            // NỀN TIKTOK
+            return os.value === 'android' ? 
+            [
+                { text: "Mở V2ray tun trên máy Android.", image: "LINK_ANH_TKT_ADR_1" },
+                { text: "Đồng bộ nền Tiktok trên web về app.", image: "LINK_ANH_TKT_ADR_2" },
+                { text: "Bật nút Connect để bắt đầu sử dụng.", image: "LINK_ANH_TKT_ADR_3" }
+            ] : 
+            [
+                { text: "Mở Shadowrocket trên iPhone.", image: "LINK_ANH_TKT_IOS_1" },
+                { text: "Chọn máy chủ trong danh sách đã đồng bộ.", image: "LINK_ANH_TKT_IOS_2" },
+                { text: "Gạt công tắc phía trên cùng để kết nối.", image: "LINK_ANH_TKT_IOS_3" }
+            ];
           }
         });
 
         const videoLink = computed(() => {
-            return os.value === 'ios' ? "https://www.veed.io/embed/b9b4692d-36ed-4350-8674-5e52d17a7a7a" : "https://www.youtube.com/embed/ID_VIDEO_ANDROID";
+            if (platform.value === 'tv360' && os.value === 'ios') return "https://iframely.net/hFqUpxWs?theme=dark";
+            return "https://www.youtube.com/embed/ID_VIDEO_CUA_BAN";
         });
 
-        return { step, platform, os, resetFlow, nextStep, currentTutorial, videoLink };
+        return { step, platform, os, app, nextStep, prevStep, resetFlow, packages, platforms, selectPlatform, devices, selectOs, currentApps, confirmApp, currentTutorial, videoLink };
       }
     }).mount('#app');
   </script>
