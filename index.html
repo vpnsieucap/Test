@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trình Cài Đặt VPN Siêu Cấp</title>
+  <title>Trình Cài Đặt VPN Siêu Cấp v2</title>
   
   <!-- Vue 3 -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -291,6 +291,7 @@
                   <h3 class="text-lg sm:text-xl font-bold text-white">Chọn ứng dụng kết nối</h3>
               </div>
 
+              <!-- Lưới chọn App -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <button v-for="(item, idx) in currentApps" :key="idx" @click="app = item.name"
                       class="relative group p-5 rounded-xl border bg-appBg text-left transition-all duration-300"
@@ -310,6 +311,7 @@
               </div>
             </div>
 
+            <!-- Khung thông tin Tải App -->
             <div v-if="app" class="glass-card p-5 sm:p-7 rounded-[2rem] animate-fade-in border-t-4 border-t-brand">
                  <div v-for="item in currentApps" :key="item.name + '-detail'">
                     <div v-if="app === item.name">
@@ -356,8 +358,9 @@
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
                     </span>
+                    <!-- FIX TẬN GỐC TÊN APP TRONG HEADER -->
                     <p class="text-[10px] text-textMuted uppercase tracking-wider font-bold">
-                      NỀN {{ platform === 'tv360' ? 'TV360' : 'TIKTOK' }} &bull; {{ os }} &bull; {{ app ? app.toUpperCase() : (platform === 'tv360' ? 'PLATFORM NEXT' : 'V2RAYNG') }}
+                      NỀN {{ platform === 'tv360' ? 'TV360' : 'TIKTOK' }} &bull; {{ os }} &bull; {{ selectedAppName.toUpperCase() }}
                     </p>
                 </div>
               </div>
@@ -380,7 +383,7 @@
                   </div>
               </div>
 
-              <!-- MỤC VIDEO -->
+              <!-- MỤC VIDEO CHIA THEO TỪNG HỆ ĐIỀU HÀNH VÀ NỀN -->
               <div class="bg-appBg border border-appBorder rounded-2xl p-5 mt-2 relative overflow-hidden">
                   <div class="absolute -right-8 -top-8 w-24 h-24 bg-red-500/10 rounded-full blur-xl"></div>
                   
@@ -534,32 +537,32 @@
           { id: 'ios', name: 'Apple (iOS)', desc: 'Điện thoại iPhone và iPad.', icon: 'fab fa-apple', color: 'gray' }
         ]);
         
-        // LUỒNG XỬ LÝ FOOLPROOF CHO PHẦN OS VÀ APP
+        // RESET APP KHÔNG CHO DÍNH TÊN CŨ
         const selectOs = (id) => { 
           os.value = id; 
-          app.value = null; 
+          app.value = null; // Xóa trắng bộ nhớ app cũ
           
-          // Tự động nhận diện luôn app nếu nền chọn là TV360 hoặc Android Tiktok
-          if (platform.value === 'tv360') {
-             app.value = 'Platform Next';
-          } else if (id === 'android') {
-             app.value = 'v2rayNG';
-          }
-          
-          setTimeout(() => nextStep(), 250); 
+          setTimeout(() => {
+              // Tự động gán ngay tên App nếu mảng currentApps chỉ có 1 phần tử
+              if (currentApps.value.length === 1) {
+                  app.value = currentApps.value[0].name;
+              }
+              nextStep(); 
+          }, 250); 
         };
 
         const app = ref(null);
         
+        // LUỒNG DỮ LIỆU ĐƯỢC CHIA RÕ RÀNG
         const currentApps = computed(() => {
           if (platform.value === 'tv360') {
              if (os.value === 'android') {
                 return [
-                  { name: 'Platform Next', desc: 'Ứng dụng tối ưu riêng cho nền TV360.', icon: 'fab fa-google-play', link: '[LINK_TẢI_PLATFORM_NEXT_ANDROID]', specs: ['Dành riêng cho kết nối TV360', 'Tốc độ phản hồi cực nhanh'] }
+                  { name: 'Platform Next', desc: 'Ứng dụng tối ưu riêng cho nền TV360 (Android).', icon: 'fab fa-google-play', link: '[LINK_TẢI_PLATFORM_NEXT_ANDROID]', specs: ['Dành riêng cho kết nối TV360', 'Tốc độ phản hồi cực nhanh'] }
                 ];
              } else if (os.value === 'ios') {
                 return [
-                  { name: 'Platform Next', desc: 'Ứng dụng tối ưu riêng cho nền TV360.', icon: 'fab fa-app-store-ios', link: '[LINK_TẢI_PLATFORM_NEXT_IOS]', specs: ['Tối ưu hóa mạng TV360 trên iOS', 'Không tốn pin'] }
+                  { name: 'Platform Next', desc: 'Ứng dụng tối ưu riêng cho nền TV360 (iOS).', icon: 'fab fa-app-store-ios', link: '[LINK_TẢI_PLATFORM_NEXT_IOS]', specs: ['Tối ưu hóa mạng TV360 trên iOS', 'Không tốn pin'] }
                 ];
              }
           } else {
@@ -577,12 +580,16 @@
           return [];
         });
 
+        // HÀM BẢO VỆ (Tránh việc mất chữ nếu chưa chọn app)
+        const selectedAppName = computed(() => {
+          if (app.value) return app.value;
+          if (platform.value === 'tv360') return 'Platform Next';
+          if (os.value === 'ios') return 'Shadowrocket';
+          return 'v2rayNG';
+        });
+
         const currentTutorial = computed(() => {
-          let defaultApp = 'v2rayNG';
-          if (platform.value === 'tv360') defaultApp = 'Platform Next';
-          else if (os.value === 'ios') defaultApp = 'Shadowrocket';
-          
-          const appName = app.value || defaultApp;
+          const appName = selectedAppName.value;
           const platformName = platform.value === 'tv360' ? 'TV360' : 'Tiktok';
           
           return [
@@ -600,7 +607,7 @@
           sim, sims, selectSim, getCurrentPackages, handlePackageAction,
           platform, platforms, selectPlatform,
           os, devices, selectOs, app, currentApps,
-          currentTutorial
+          selectedAppName, currentTutorial
         };
       }
     }).mount('#app');
