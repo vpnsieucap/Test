@@ -1,473 +1,316 @@
 <!DOCTYPE html>
-<html lang="vi" class="dark">
+<html lang="vi">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hướng Dẫn 4G & VPN</title>
-  <!-- Vue 3 -->
+  <title>Kích Hoạt VPN Siêu Tốc</title>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <!-- Tailwind CSS v4 -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <!-- FontAwesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts: Plus Jakarta Sans for a premium feel -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Bricolage Grotesque"', 'sans-serif'],
+          },
+          colors: {
+            cyber: {
+              bg: '#020617',
+              card: '#0f172a',
+              border: '#1e293b',
+              accent: '#22d3ee', // Cyan
+              accentDark: '#0891b2',
+              muted: '#64748b'
+            }
+          }
+        }
+      }
+    }
+  </script>
 
   <style type="text/tailwindcss">
-    @theme {
-      --font-sans: "Plus Jakarta Sans", sans-serif;
-      --color-background: #09090b;
-      --color-surface: #18181b;
-      --color-surfaceHighlight: #27272a;
-      --color-border: #3f3f46;
-      --color-primary: #3b82f6;
-      --color-primaryDark: #2563eb;
-      --color-textMain: #f4f4f5;
-      --color-textMuted: #a1a1aa;
-      --animate-fade-in: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      --animate-slide-up: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-    @keyframes slideUp {
-      0% { transform: translateY(10px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-
     @layer utilities {
-      .glass-panel {
-        @apply bg-[var(--color-surface)]/50 backdrop-blur-2xl border border-white/5;
+      .neon-border {
+        @apply border border-cyber-border hover:border-cyber-accent transition-all duration-300;
       }
-      .card-hover {
-        @apply transition-all duration-300 hover:bg-white/5 hover:border-white/10 hover:shadow-lg hover:-translate-y-0.5;
+      .neon-glow {
+        box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
       }
-      [v-cloak] {
-        display: none !important;
-      }
+      [v-cloak] { display: none !important; }
     }
     body {
-      background-color: var(--color-background);
+      background-color: #020617;
       background-image: 
-        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%), 
-        radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.08), transparent 25%);
-    }
-    
-    html {
-      scroll-behavior: smooth;
+        radial-gradient(at 0% 0%, rgba(34, 211, 238, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(34, 211, 238, 0.03) 0px, transparent 50%);
     }
   </style>
 </head>
 
-<body class="text-textMain min-h-screen flex flex-col selection:bg-primary/30 selection:text-white">
+<body class="text-slate-100 min-h-screen flex flex-col font-sans">
 
-  <div id="app" v-cloak class="flex-grow flex flex-col items-center justify-center p-4 sm:p-6">
+  <div id="app" v-cloak class="flex-grow flex flex-col items-center justify-center p-4">
 
-    <!-- Main Layout -->
-    <div
-      class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 lg:gap-12 items-start relative z-10">
+    <div class="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.8fr] gap-8 items-start relative z-10">
 
-      <!-- Left Side: Header & Progress (Desktop Sticky) -->
-      <div class="lg:sticky lg:top-12 space-y-8 animate-fade-in lg:pt-8 text-center lg:text-left">
-        <!-- Branding -->
-        <div>
-          <div
-            class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-purple-600 mb-6 shadow-lg shadow-primary/20">
-            <i class="fas fa-bolt text-xl text-white"></i>
-          </div>
-          <h1
-            class="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 break-words">
-            5GSIEUTOCDO.COM
-          </h1>
-          <p class="text-textMuted text-lg font-light leading-relaxed max-w-md mx-auto lg:mx-0">
-            Hướng dẫn kích hoạt gói cước 4G & VPN. <br class="hidden sm:block">Đơn giản, tự động & bảo mật.
-          </p>
+      <div class="space-y-6 text-center lg:text-left animate-fade-in">
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-cyber-accent/10 border border-cyber-accent/20 text-cyber-accent mb-4 neon-glow">
+          <i class="fas fa-shield-halved text-2xl"></i>
         </div>
+        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-white uppercase italic">
+          VPN <span class="text-cyber-accent">Super</span>
+        </h1>
+        <p class="text-cyber-muted text-lg font-light leading-relaxed">
+          Tối ưu hóa kết nối 4G/5G của bạn chỉ với vài bước đơn giản.
+        </p>
 
-        <!-- Minimal Step Indicator -->
-        <div class="flex items-center justify-center lg:justify-start gap-3">
+        <div class="flex items-center justify-center lg:justify-start gap-2 pt-4">
           <template v-for="i in 6" :key="i">
-            <div class="h-1.5 rounded-full transition-all duration-500 ease-out"
-              :class="step >= i ? 'w-8 bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]' : 'w-2 bg-border'"></div>
+            <div class="h-1 rounded-full transition-all duration-700"
+              :class="step >= i ? 'w-8 bg-cyber-accent' : 'w-3 bg-cyber-border'"></div>
           </template>
         </div>
-
-        <!-- Back Button (Mobile only logic handled in template) -->
-        <button v-if="step > 1" @click="prevStep"
-          class="hidden lg:flex items-center gap-2 text-textMuted hover:text-white text-sm font-medium transition-colors pl-1">
-          <div
-            class="w-8 h-8 rounded-full border border-border flex items-center justify-center group-hover:border-white/20">
-            <i class="fas fa-arrow-left text-xs"></i>
-          </div>
-          <span class="tracking-wide">Quay lại bước trước</span>
+        
+        <button v-if="step > 1" @click="prevStep" class="text-cyber-muted hover:text-cyber-accent text-sm font-medium transition-all">
+          <i class="fas fa-arrow-left mr-2"></i> Quay lại
         </button>
       </div>
 
-      <!-- Right Side: Content Area -->
       <div class="w-full relative">
-        <transition name="fade" mode="out-in">
-
-          <!-- Step 1: Start -->
-          <div v-if="step === 1" key="step1"
-            class="glass-panel p-8 sm:p-10 rounded-[2rem] shadow-2xl animate-fade-in flex flex-col items-center text-center space-y-8 min-h-[400px] justify-center">
-            <div
-              class="mb-6 inline-flex items-center justify-center w-24 h-24 rounded-full bg-blue-600/10 text-blue-500 animate-fade-in transition-transform hover:scale-105 duration-300">
-              <i class="fas fa-book-open text-4xl drop-shadow-md"></i>
-            </div>
-
-            <div>
-              <h2 class="text-2xl font-semibold text-white mb-2">Hướng dẫn sử dụng</h2>
-              <p class="text-textMuted text-sm">Hướng dẫn sử dụng nhanh</p>
-            </div>
-
-            <button @click="nextStep"
-              class="group relative px-8 py-4 bg-white text-black rounded-full font-semibold shadow-xl shadow-white/5 hover:shadow-white/10 hover:scale-[1.02] transition-all duration-300 w-full sm:w-auto min-w-[200px]">
-              Bắt đầu ngay
-              <i class="fas fa-arrow-right ml-2 opacity-70 group-hover:translate-x-1 transition-transform"></i>
-            </button>
+        <div v-if="step === 1" class="bg-cyber-card border border-cyber-border p-8 sm:p-12 rounded-3xl shadow-2xl flex flex-col items-center text-center">
+          <div class="w-20 h-20 bg-cyber-accent/10 rounded-full flex items-center justify-center mb-8 border border-cyber-accent/20">
+            <i class="fas fa-rocket text-3xl text-cyber-accent"></i>
           </div>
-
-          <!-- Step 2: Buy Status Check -->
-          <div v-else-if="step === 2" key="step2"
-            class="glass-panel p-8 sm:p-10 rounded-[2rem] shadow-2xl animate-fade-in flex flex-col items-center text-center space-y-8 min-h-[400px] justify-center">
-            <div
-              class="mb-6 inline-flex items-center justify-center w-24 h-24 rounded-full bg-primary/10 text-primary animate-fade-in transition-transform hover:scale-105 duration-300">
-              <i class="fas fa-shopping-bag text-4xl drop-shadow-md"></i>
-            </div>
-
-            <div class="space-y-3">
-              <h2 class="text-2xl font-bold text-white uppercase tracking-wider">Bạn đã mua gói chưa?</h2>
-              <p class="text-textMuted text-sm max-w-sm mx-auto">Để tiếp tục hướng dẫn, bạn cần có một gói cước 4G/VPN đang hoạt động.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-md">
-                <button @click="step = 3"
-                    class="px-6 py-4 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-primary/20 hover:bg-primaryDark transition-all active:scale-95">
-                    Đã mua rồi
-                </button>
-                <a href="https://5gsieutocdo.com" :href="adminLink" target="_blank"
-                    class="px-6 py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-bold hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center gap-2">
-                    Tôi chưa có gói <i class="fas fa-external-link-alt text-xs opacity-50"></i>
-                </a>
-            </div>
-          </div>
-
-          <!-- Step 3: SIM Selection -->
-          <div v-else-if="step === 3" key="step3"
-            class="glass-panel p-1 rounded-[2rem] shadow-2xl animate-slide-up overflow-hidden">
-            <div class="p-6 sm:p-8 space-y-6 bg-surfaceHighlight/30 rounded-[1.8rem]">
-              <div class="flex justify-between items-center mb-2">
-                <h3 class="text-xl font-semibold">Chọn gói cước</h3>
-                <span class="text-xs font-mono px-2 py-1 rounded bg-white/5 text-textMuted">NỀN TIKTOK</span>
-              </div>
-
-              <!-- Carrier Tabs -->
-              <div class="grid grid-cols-3 gap-2 bg-black/20 p-1.5 rounded-2xl">
-                <button v-for="s in sims" :key="s.id" @click="selectSim(s.id)"
-                  class="py-3 px-2 rounded-xl text-sm font-medium transition-all duration-300 relative overflow-hidden"
-                  :class="sim === s.id ? 'text-white shadow-lg bg-surfaceHighlight' : 'text-textMuted hover:text-white hover:bg-white/5'">
-                  <span class="relative z-10">{{ s.name }}</span>
-                  <div v-if="sim === s.id"
-                    class="absolute bottom-0 left-0 h-0.5 w-full bg-gradient-to-r from-transparent via-primary to-transparent">
-                  </div>
-                </button>
-              </div>
-
-              <!-- Package Details -->
-              <div v-if="sim" class="animate-fade-in space-y-4 pt-2">
-
-                <!-- Alert Box -->
-                <div class="p-4 rounded-xl border border-yellow-500/20 bg-yellow-500/5 flex gap-3 items-start">
-                  <i class="fas fa-info-circle text-yellow-500 mt-0.5"></i>
-                  <p class="text-xs text-yellow-200/80 leading-relaxed">
-                    Đăng ký nền là bắt buộc , không đăng ký sẽ không dùng được 4G - 5G đâu
-                  </p>
-                </div>
-
-                <!-- Packages List -->
-                <div class="grid gap-3">
-                  <div v-for="(pkg, idx) in getCurrentPackages()" :key="idx"
-                    class="group p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 cursor-pointer relative"
-                    @click="handlePackageAction(pkg)">
-                    <div class="flex justify-between items-start mb-2">
-                      <div class="flex-1">
-                        <div class="font-bold text-white text-lg leading-tight">{{ pkg.name }}</div>
-                        <div class="text-sm text-textMuted mt-1">{{ pkg.desc }}</div>
-                      </div>
-                      <div
-                        class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors ml-3 shrink-0">
-                        <i :class="pkg.icon"></i>
-                      </div>
-                    </div>
-
-                    <!-- NEW: Features Specs List -->
-                    <div v-if="pkg.specs && pkg.specs.length > 0" class="mb-4 space-y-1.5">
-                      <div v-for="(spec, sIdx) in pkg.specs" :key="sIdx"
-                        class="flex items-center gap-2 text-xs font-medium">
-                        <i class="fas fa-check-circle text-green-500/80 text-[10px]"></i>
-                        <span class="text-gray-300">{{ spec }}</span>
-                      </div>
-                    </div>
-
-                    <div class="pt-4 border-t border-white/5 flex justify-between items-center">
-                      <span class="text-xs font-mono font-bold text-white bg-white/10 px-2.5 py-1 rounded-lg">{{
-                        pkg.price }}</span>
-                      <span class="text-xs text-primary font-medium group-hover:underline flex items-center gap-1">
-                        Đăng ký ngay <i class="fas fa-arrow-right text-[10px]"></i>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <button @click="nextStep"
-                  class="w-full py-4 mt-4 bg-primary hover:bg-primaryDark text-white rounded-2xl font-semibold shadow-lg shadow-blue-900/20 transition-all active:scale-[0.98]">
-                  Tôi đã đăng ký xong
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 4: Platform Selection -->
-          <div v-else-if="step === 4" key="step4" class="space-y-6 animate-slide-up">
-            <div class="glass-panel p-6 sm:p-8 rounded-[2rem]">
-              <h3 class="text-xl font-semibold mb-6">Chọn Loại Nền</h3>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <button v-for="plat in platforms" :key="plat.id" @click="selectPlatform(plat.id)" 
-                        class="relative group p-6 rounded-2xl border border-white/5 bg-gradient-to-br from-surface to-surfaceHighlight text-left transition-all duration-300 hover:border-white/10" 
-                        :class="platform === plat.id ? `ring-2 ring-${plat.color}-500 bg-${plat.color}-900/10` : ''">
-                      <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform" 
-                           :class="`bg-${plat.color}-500/20 text-${plat.color}-400`">
-                          <i :class="plat.icon"></i>
-                      </div>
-                      <div class="font-semibold text-lg">{{ plat.name }}</div>
-                      <div class="text-textMuted text-sm mt-1">{{ plat.desc }}</div>
-                  </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 5: OS Selection -->
-          <div v-else-if="step === 5" key="step5" class="space-y-6 animate-slide-up">
-            <div class="glass-panel p-6 sm:p-8 rounded-[2rem]">
-              <h3 class="text-xl font-semibold mb-6">Thiết bị sử dụng</h3>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <button v-for="device in devices" :key="device.id" @click="selectOs(device.id)"
-                  class="relative group p-6 rounded-2xl border border-white/5 bg-gradient-to-br from-surface to-surfaceHighlight text-left transition-all duration-300"
-                  :class="[
-                    os === device.id ? `ring-2 ring-${device.color}-500 bg-${device.color}-900/10` : 'hover:border-white/10'
-                  ]">
-                  <div
-                    class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform"
-                    :class="`bg-${device.color}-500/20 text-${device.color}-400`">
-                    <i :class="device.icon"></i>
-                  </div>
-                  <div class="font-semibold text-lg">{{ device.name }}</div>
-                  <div class="text-textMuted text-sm mt-1">{{ device.desc }}</div>
-                </button>
-              </div>
-            </div>
-
-            <!-- App Selection & Download Link (Dynamic) -->
-            <div v-if="currentApps?.length > 0" class="glass-panel p-6 rounded-[2rem] animate-fade-in border-l-4" :class="os && os.includes('android') ? 'border-green-500' : 'border-blue-500'">
-                
-                <!-- Single App Logic (Direct Download) -->
-                <div v-if="currentApps?.length === 1">
-                    <div v-for="item in currentApps" :key="item.name">
-                        <div class="flex flex-col sm:flex-row items-center gap-6 mb-4">
-                            <div class="flex-1">
-                                <h4 class="font-bold text-lg mb-2">Tải ứng dụng {{ item.name }}</h4>
-                                <p class="text-textMuted text-sm">{{ item.desc }}</p>
-                            </div>
-                            <div class="flex flex-col gap-2 shrink-0">
-                                <a v-if="item.link" :href="item.link" :target="item.link === '#platformnext' ? '_self' : '_blank'"
-                                   class="px-6 py-3 rounded-xl font-medium shadow-lg flex items-center justify-center gap-2 transition-all text-white"
-                                   :class="os && os.includes('android') ? 'bg-green-600 hover:bg-green-700 shadow-green-900/20' : 'bg-blue-600 hover:bg-blue-700 shadow-blue-900/20'">
-                                    <i :class="item.icon"></i> Tải về
-                                </a>
-
-                            </div>
-                        </div>
-                        
-                        <!-- Specs/Notes for Single App -->
-                        <div v-if="item.specs && item.specs.length > 0" class="p-4 mb-4 rounded-xl border border-yellow-500/20 bg-yellow-500/5">
-                             <div class="flex items-start gap-2 mb-2">
-                                <i class="fas fa-info-circle text-yellow-500 mt-1"></i>
-                                <strong class="text-yellow-200 text-base">Lưu ý:</strong>
-                              </div>
-                              <ul class="space-y-1.5 text-sm text-yellow-200/80 list-disc ml-5 leading-relaxed">
-                                <li v-for="spec in item.specs">{{ spec }}</li>
-                              </ul>
-                        </div>
-
-                        <button @click="nextStep"
-                            class="w-full mt-2 py-3 border border-white/10 hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">
-                            Đã cài đặt xong, tiếp tục &rarr;
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Multiple Apps Logic (Selection) -->
-                <div v-else class="space-y-4">
-                    <h4 class="font-bold text-lg">Chọn ứng dụng</h4>
-                    <div class="grid gap-3">
-                        <button v-for="(item, idx) in currentApps" :key="idx" @click="app = item.name"
-                            class="relative flex items-center gap-4 p-4 rounded-xl border border-white/5 hover:bg-white/5 transition-all"
-                            :class="app === item.name ? (os && os.includes('android') ? 'bg-green-500/10 border-green-500/50' : 'bg-blue-500/10 border-blue-500/50') : ''">
-                            <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xl"
-                                :class="os && os.includes('android') ? 'bg-green-600' : 'bg-indigo-600'">
-                                <i :class="item.icon"></i>
-                            </div>
-                            <div class="text-left flex-1">
-                                <div class="font-semibold">{{ item.name }}</div>
-                                <div class="text-xs text-textMuted">{{ item.desc }}</div>
-                            </div>
-                            <div v-if="app === item.name" class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs">
-                                <i class="fas fa-check"></i>
-                            </div>
-                        </button>
-                    </div>
-
-                    <!-- Selected App Info/Notes -->
-                    <div v-if="app" class="pt-4 border-t border-white/5 animate-fade-in">
-                         <div v-for="item in currentApps" :key="item.name">
-                            <div v-if="app === item.name">
-                                <!-- Specs/Notes -->
-                                <div v-if="item.specs && item.specs.length > 0" class="p-4 mb-4 rounded-xl border border-yellow-500/20 bg-yellow-500/5">
-                                     <div class="flex items-start gap-2 mb-2">
-                                        <i class="fas fa-info-circle text-yellow-500 mt-1"></i>
-                                        <strong class="text-yellow-200 text-base">Lưu ý:</strong>
-                                      </div>
-                                      <ul class="space-y-1.5 text-sm text-yellow-200/80 list-disc ml-5 leading-relaxed">
-                                        <li v-for="spec in item.specs">{{ spec }}</li>
-                                      </ul>
-                                </div>
-
-                                <a v-if="item.link" :href="item.link" :target="item.link === '#platformnext' ? '_self' : '_blank'"
-                                   class="block w-full py-3 rounded-xl text-center font-bold text-white mb-2"
-                                   :class="os && os.includes('android') ? 'bg-green-600 hover:bg-green-700' : 'bg-blue-600 hover:bg-blue-700'">
-                                   <i :class="item.icon" class="mr-2"></i>Tải {{ item.name }}
-                                </a>
-
-                                <button @click="nextStep"
-                                  class="w-full py-3 border border-white/10 hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">
-                                  Tôi đã cài xong &rarr;
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PlatformNext External Downloads -->
-            <div id="platformnext" v-if="os && showPlatformNext && filteredPlatformNextApps.length > 0 && currentApps.some(app => app.use_platform_next)" class="glass-panel p-6 rounded-[2rem] animate-fade-in border-l-4 border-purple-500">
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h4 class="font-bold text-lg text-white">Ứng dụng PlatformNext</h4>
-                </div>
-                <!-- Dynamic text based on OS -->
-                <p class="text-textMuted text-xs mb-4 ml-11">Cài đặt trực tiếp cho thiết bị {{ os.toUpperCase() }} của bạn</p>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <a v-for="pnApp in filteredPlatformNextApps" :key="pnApp.id" :href="pnApp.processedLink" target="_blank"
-                       class="px-4 py-3 rounded-xl font-medium shadow-lg flex flex-col transition-all text-white border border-white/5 hover:scale-[1.02]"
-                       :class="pnApp.colorClass">
-                        <div class="flex items-center justify-between">
-                            <span class="flex items-center gap-2 text-sm"><i :class="pnApp.icon"></i> {{ pnApp.niceName }}</span>
-                            <span v-if="pnApp.size" class="text-xs bg-black/30 px-2 py-0.5 rounded text-white/80">{{ pnApp.size }}</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div v-if="currentApps?.length === 0" class="mt-4 pt-4 border-t border-white/5">
-                    <button @click="nextStep"
-                      class="w-full py-3 border border-white/10 hover:bg-white/5 rounded-xl text-sm font-medium transition-colors">
-                      Tôi đã cài xong, tiếp tục &rarr;
-                    </button>
-                </div>
-            </div>
-          </div>
-
-          <!-- Step 6: Instructions -->
-          <div v-else-if="step === 6" key="step6"
-            class="glass-panel rounded-[2rem] shadow-2xl animate-fade-in flex flex-col h-[600px] overflow-hidden">
-            <div
-              class="p-6 border-b border-border bg-surface/50 backdrop-blur-md sticky top-0 z-20 flex justify-between items-center">
-              <div>
-                <h3 class="font-bold text-lg">Hướng dẫn thiết lập</h3>
-                <p class="text-xs text-textMuted uppercase tracking-wider font-semibold">
-                  {{ os }} &bull; {{ app ? app.toUpperCase() : 'NAPSTERNETV' }}
-                </p>
-              </div>
-              <button @click="resetFlow"
-                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-white text-textMuted transition-colors"
-                title="Trang chủ">
-                <i class="fas fa-home"></i>
-              </button>
-            </div>
-
-            <!-- Scrollable Content Area -->
-            <div class="flex-1 overflow-y-auto p-6 space-y-8 custom-scrollbar">
-              <div v-for="(item, index) in currentTutorial" :key="index" class="relative pl-8 group">
-                <!-- Timeline Line -->
-                <div class="absolute left-3 top-0 bottom-0 w-0.5 bg-border group-last:bottom-auto group-last:h-6"></div>
-                <!-- Timeline Dot -->
-                <div
-                  class="absolute left-0 top-1 w-6 h-6 rounded-full bg-surface border-2 border-primary text-primary text-xs font-bold flex items-center justify-center shadow-[0_0_10px_rgba(59,130,246,0.3)]">
-                  {{ index + 1 }}
-                </div>
-
-                <div class="mb-2 font-medium text-lg text-white">{{ item.text }}</div>
-                <div v-if="item.img"
-                  class="mt-3 rounded-2xl overflow-hidden border border-white/5 shadow-2xl bg-black/50">
-                  <img :src="item.img"
-                    class="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
-                    loading="lazy">
-                </div>
-              </div>
-
-              <div class="p-8 text-center space-y-4 pt-12">
-                <div
-                  class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-2 animate-bounce">
-                  <i class="fas fa-check"></i>
-                </div>
-                <h4 class="text-xl font-bold text-white">Hoàn tất!</h4>
-                <p class="text-textMuted text-sm">Bây giờ bạn có thể truy cập mạng.</p>
-                <button @click="resetFlow"
-                  class="px-6 py-2 rounded-full border border-white/10 text-sm hover:bg-white/5 transition-colors">
-                  Thực hiện lại
-                </button>
-              </div>
-            </div>
-          </div>
-
-        </transition>
-
-        <!-- Mobile Navigation (Bottom) -->
-        <div v-if="step > 1" class="lg:hidden mt-6 flex justify-between items-center px-2">
-          <button @click="prevStep"
-            class="text-textMuted hover:text-white flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/5 transition-all">
-            <i class="fas fa-arrow-left"></i> Quay lại
+          <h2 class="text-2xl font-bold mb-4 uppercase">Kích hoạt kết nối</h2>
+          <p class="text-cyber-muted mb-8">Hệ thống tự động thiết lập cấu hình VPN theo từng loại nền gói cước.</p>
+          <button @click="nextStep" class="w-full sm:w-auto px-10 py-4 bg-cyber-accent text-cyber-bg font-bold rounded-xl hover:bg-white transition-all transform active:scale-95">
+            BẮT ĐẦU NGAY
           </button>
         </div>
 
+        <div v-if="step === 2" class="bg-cyber-card border border-cyber-border p-8 rounded-3xl animate-slide-up text-center">
+          <h2 class="text-2xl font-bold mb-6">BẠN ĐÃ CÓ GÓI CƯỚC CHƯA?</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button @click="nextStep" class="px-6 py-4 bg-cyber-accent text-cyber-bg rounded-xl font-bold hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all">ĐÃ CÓ GÓI</button>
+            <a href="https://5gsieutocdo.com" target="_blank" class="px-6 py-4 bg-slate-800 rounded-xl font-bold hover:bg-slate-700 transition-all">CHƯA CÓ GÓI</a>
+          </div>
+        </div>
+
+        <div v-if="step === 3" class="bg-cyber-card border border-cyber-border p-6 rounded-3xl animate-slide-up">
+          <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+            <i class="fas fa-box-open text-cyber-accent"></i> CHỌN LOẠI GÓI NỀN
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <button @click="selectPackageType('tiktok')" class="p-6 rounded-2xl border text-center transition-all"
+              :class="packageType === 'tiktok' ? 'border-cyber-accent bg-cyber-accent/5' : 'border-cyber-border bg-slate-900/50 hover:border-slate-500'">
+              <i class="fab fa-tiktok text-3xl mb-3 block"></i>
+              <div class="font-bold">GÓI TIKTOK</div>
+            </button>
+            <button @click="selectPackageType('tv360')" class="p-6 rounded-2xl border text-center transition-all"
+              :class="packageType === 'tv360' ? 'border-cyber-accent bg-cyber-accent/5' : 'border-cyber-border bg-slate-900/50 hover:border-slate-500'">
+              <i class="fas fa-tv text-3xl mb-3 block"></i>
+              <div class="font-bold">GÓI TV360</div>
+            </button>
+          </div>
+          <div v-if="packageType" class="animate-fade-in bg-slate-950 p-4 rounded-xl border border-yellow-500/20 text-yellow-200/80 text-sm mb-6">
+            <i class="fas fa-exclamation-triangle mr-2"></i> Lưu ý: Bạn bắt buộc phải đăng ký nền trên SIM trước khi kết nối VPN.
+          </div>
+          <button v-if="packageType" @click="nextStep" class="w-full py-4 bg-white text-black font-bold rounded-xl transition-all">TIẾP TỤC</button>
+        </div>
+
+        <div v-if="step === 4" class="bg-cyber-card border border-cyber-border p-8 rounded-3xl animate-slide-up">
+          <h3 class="text-xl font-bold mb-6">THIẾT BỊ ĐANG SỬ DỤNG?</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button v-for="d in devices" @click="selectOs(d.id)" class="p-6 rounded-2xl border border-cyber-border text-left hover:border-cyber-accent transition-all group"
+              :class="os === d.id ? 'ring-2 ring-cyber-accent bg-cyber-accent/5' : 'bg-slate-900/50'">
+              <i :class="d.icon" class="text-3xl mb-4 text-slate-400 group-hover:text-cyber-accent"></i>
+              <div class="font-bold text-lg">{{ d.name }}</div>
+            </button>
+          </div>
+        </div>
+
+        <div v-if="step === 5" class="bg-cyber-card border border-cyber-border p-8 rounded-3xl animate-slide-up">
+          <div v-if="activeApp" class="text-center">
+            <h3 class="text-2xl font-bold mb-4 uppercase">TẢI APP <span class="text-cyber-accent">{{ activeApp.name }}</span></h3>
+            <p class="text-cyber-muted mb-8 italic">{{ activeApp.desc }}</p>
+            
+            <div class="bg-slate-950 p-6 rounded-2xl mb-8 border border-cyber-border text-left">
+              <div class="text-sm font-bold text-cyber-accent mb-3 uppercase tracking-widest">Đặc điểm:</div>
+              <ul class="space-y-2 text-sm text-slate-300">
+                <li v-for="spec in activeApp.specs" class="flex items-center gap-2">
+                  <i class="fas fa-check-circle text-cyber-accent"></i> {{ spec }}
+                </li>
+              </ul>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <a :href="activeApp.link" target="_blank" class="px-8 py-4 bg-cyber-accent text-cyber-bg font-bold rounded-xl text-center shadow-lg hover:scale-105 transition-all">
+                <i class="fas fa-download mr-2"></i> TẢI XUỐNG NGAY
+              </a>
+              <button @click="nextStep" class="py-4 text-cyber-muted hover:text-white transition-all underline">Đã cài xong, xem hướng dẫn &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <div v-if="step === 6" class="bg-cyber-card border border-cyber-border rounded-3xl overflow-hidden animate-fade-in flex flex-col">
+          <div class="p-6 border-b border-cyber-border bg-slate-900/50 flex justify-between items-center">
+            <div>
+              <h3 class="font-bold text-lg uppercase">Hướng dẫn thiết lập</h3>
+              <p class="text-xs text-cyber-accent font-mono">{{ os.toUpperCase() }} | {{ activeApp.name }}</p>
+            </div>
+            <button @click="resetFlow" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-cyber-accent hover:text-cyber-bg transition-all">
+              <i class="fas fa-rotate-left"></i>
+            </button>
+          </div>
+
+          <div class="p-6 space-y-8 max-h-[500px] overflow-y-auto custom-scrollbar">
+            <div v-for="(item, index) in currentTutorial" :key="index" class="flex gap-4">
+              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-cyber-border flex items-center justify-center text-cyber-accent font-bold border border-cyber-accent/30">
+                {{ index + 1 }}
+              </div>
+              <div>
+                <p class="text-slate-200 leading-relaxed pt-1">{{ item.text }}</p>
+                <div v-if="item.img" class="mt-4 rounded-xl overflow-hidden border border-cyber-border">
+                  <img :src="item.img" class="w-full opacity-80 hover:opacity-100 transition-opacity">
+                </div>
+              </div>
+            </div>
+
+            <div class="p-8 text-center bg-cyber-accent/5 rounded-2xl border border-cyber-accent/10 border-dashed">
+              <div class="w-14 h-14 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+                <i class="fas fa-check text-2xl"></i>
+              </div>
+              <h4 class="font-bold text-xl mb-2 uppercase">Thành công!</h4>
+              <p class="text-cyber-muted text-sm mb-6">Bây giờ bạn có thể trải nghiệm mạng 4G không giới hạn.</p>
+              <button @click="resetFlow" class="px-8 py-2 border border-cyber-border rounded-lg text-xs hover:bg-white hover:text-black transition-all">THỰC HIỆN LẠI</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
-  <div class="w-full text-center py-6 text-xs text-textMuted/50 font-mono">
-    5GSIEUTOCDO.COM
+  <div class="w-full text-center py-8 text-xs text-cyber-muted font-mono tracking-widest uppercase">
+    &copy; 2026 5GSIEUTOCDO.COM | Cyber Edition
   </div>
 
-  <script src="assets/js/app.js?v=1778353248"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"5c8cfa7b37d54bfeacb68c458b15113f","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+  <script>
+    const { createApp, ref, computed } = Vue;
+
+    createApp({
+      setup() {
+        const step = ref(1);
+        const packageType = ref(null); // 'tiktok' or 'tv360'
+        const sim = ref('viettel');
+        const os = ref(null);
+        
+        const sims = [
+          { id: 'viettel', name: 'VIETTEL' },
+          { id: 'vinaphone', name: 'VINA' },
+          { id: 'mobifone', name: 'MOBI' }
+        ];
+
+        const devices = [
+          { id: 'android', name: 'Android', icon: 'fab fa-android' },
+          { id: 'ios', name: 'iPhone (iOS)', icon: 'fab fa-apple' }
+        ];
+
+        const nextStep = () => { step.value++; };
+        const prevStep = () => { if (step.value > 1) step.value--; };
+        const resetFlow = () => {
+          step.value = 1;
+          packageType.value = null;
+          os.value = null;
+        };
+
+        const selectSim = (id) => { sim.value = id; };
+        const selectPackageType = (type) => { packageType.value = type; };
+        const selectOs = (id) => { 
+          os.value = id; 
+          nextStep();
+        };
+
+        const allPackages = {
+          viettel: [
+            { name: 'Gói Tiktok', icon: 'fab fa-tiktok', price: 'Miễn phí', desc: 'Sử dụng data TikTok không giới hạn', specs: ['Soạn T30 gửi 191', 'Đăng ký 10k/tháng'] },
+            { name: 'Gói TV360', icon: 'fas fa-tv', price: 'Miễn phí', desc: 'Sử dụng data TV360 tốc độ cao', specs: ['Soạn 5GSPORT gửi 191', 'Hoặc đăng ký gói nền app TV360'] }
+          ],
+          vinaphone: [
+            { name: 'Nền Tiktok Vina', icon: 'fab fa-tiktok', price: 'Liên hệ', desc: 'Nền TikTok dành riêng cho Vina', specs: ['Hỗ trợ full tốc độ'] }
+          ],
+          mobifone: [
+            { name: 'Nền Tiktok Mobi', icon: 'fab fa-tiktok', price: 'Liên hệ', desc: 'Nền TikTok dành riêng cho Mobi', specs: ['Hỗ trợ ổn định'] }
+          ]
+        };
+
+        const getCurrentPackages = () => allPackages[sim.value] || [];
+
+        // App logic theo yêu cầu mới
+        const activeApp = computed(() => {
+          if (!os.value || !packageType.value) return null;
+          
+          if (packageType.value === 'tv360') {
+            // Cả Android và iOS TV360 dùng Platform Next
+            return {
+              name: 'Platform Next',
+              desc: 'Ứng dụng tối ưu cho nền TV360',
+              link: os.value === 'android' ? 'https://play.google.com/store/apps/details?id=dev.platformnext.vpn' : 'https://apps.apple.com/vn/app/platform-next-unlimited-vpn/id6741474000',
+              icon: 'fas fa-rocket',
+              specs: ['Kết nối 1 chạm', 'Không cần cấu hình phức tạp', 'Tối ưu pin']
+            };
+          } else {
+            // Nền Tiktok
+            if (os.value === 'android') {
+              return {
+                name: 'V2ray Tun',
+                desc: 'Ứng dụng VPN đa năng cho Android',
+                link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android',
+                icon: 'fas fa-tunnel-dot',
+                specs: ['Hỗ trợ Xray/V2ray', 'Giao diện hiện đại', 'Ping thấp']
+              };
+            } else {
+              return {
+                name: 'Shadowrocket',
+                desc: 'Ứng dụng VPN số 1 trên iOS',
+                link: 'https://apps.apple.com/us/app/shadowrocket/id932747118',
+                icon: 'fas fa-paper-plane',
+                specs: ['Ổn định tuyệt đối', 'Tiết kiệm pin', 'Hỗ trợ nhiều giao thức']
+              };
+            }
+          }
+        });
+
+        const currentTutorial = computed(() => {
+          const appName = activeApp.value?.name || 'App';
+          if (packageType.value === 'tv360') {
+            return [
+              { text: `Mở ứng dụng ${appName} vừa cài đặt.` },
+              { text: `Đăng nhập vào website và bấm vào "Đồng bộ máy chủ TV360".` },
+              { text: `Chọn "Chuyển đến ${appName}" để tự động thêm máy chủ.` },
+              { text: `Bật 4G (đã có gói nền), quay lại App và nhấn nút KẾT NỐI.` }
+            ];
+          } else {
+            return [
+              { text: `Khởi động ${appName} trên điện thoại.` },
+              { text: `Vào website bấm "Đồng bộ máy chủ" -> Chọn nền Tiktok.` },
+              { text: `Ứng dụng sẽ tự động nhập danh sách máy chủ.` },
+              { text: `Chọn một máy chủ có Ping thấp nhất và nhấn Connect.` }
+            ];
+          }
+        });
+
+        return {
+          step, packageType, sim, sims, os, devices, activeApp, currentTutorial,
+          nextStep, prevStep, resetFlow, selectSim, selectPackageType, selectOs, getCurrentPackages
+        };
+      }
+    }).mount('#app');
+  </script>
 </body>
 
 </html>
