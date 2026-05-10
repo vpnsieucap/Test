@@ -13,26 +13,15 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
           colors: {
             obsidian: {
               bg: '#050505',
               card: '#0f0f0f',
               border: '#1f1f1f',
-              accent: '#f97316', // Orange 500
+              accent: '#f97316', 
               accentDark: '#ea580c',
               text: '#e2e8f0'
-            }
-          },
-          animation: {
-            'glow': 'glow 2s ease-in-out infinite alternate',
-          },
-          keyframes: {
-            glow: {
-              '0%': { borderShadow: '0 0 5px rgba(249, 115, 22, 0.2)' },
-              '100%': { borderShadow: '0 0 20px rgba(249, 115, 22, 0.5)' }
             }
           }
         }
@@ -45,25 +34,17 @@
 
   <style type="text/tailwindcss">
     @layer utilities {
-      .card-deep {
-        @apply bg-obsidian-card border border-obsidian-border rounded-[2rem] shadow-2xl shadow-black;
-      }
-      .btn-accent {
-        @apply bg-obsidian-accent text-white font-bold rounded-2xl hover:bg-obsidian-accentDark transition-all transform active:scale-95 shadow-lg shadow-obsidian-accent/20;
-      }
+      .card-deep { @apply bg-obsidian-card border border-obsidian-border rounded-[2rem] shadow-2xl; }
+      .btn-accent { @apply bg-obsidian-accent text-white font-bold rounded-2xl hover:bg-obsidian-accentDark transition-all transform active:scale-95 shadow-lg shadow-obsidian-accent/20; }
       [v-cloak] { display: none !important; }
     }
-    body {
-      background-color: #050505;
-      color: #e2e8f0;
-      background-image: radial-gradient(circle at top right, rgba(249, 115, 22, 0.05), transparent 40%);
-    }
+    body { background-color: #050505; color: #e2e8f0; background-image: radial-gradient(circle at top right, rgba(249, 115, 22, 0.05), transparent 40%); }
     .custom-scrollbar::-webkit-scrollbar { width: 4px; }
     .custom-scrollbar::-webkit-scrollbar-thumb { @apply bg-obsidian-border rounded-full; }
   </style>
 </head>
 
-<body class="font-sans antialiased min-h-screen flex flex-col selection:bg-obsidian-accent/30 selection:text-white">
+<body class="font-sans antialiased min-h-screen flex flex-col selection:bg-obsidian-accent/30 selection:text-white uppercase tracking-tight">
 
   <div id="app" v-cloak class="flex-grow flex flex-col items-center justify-center p-4 sm:p-6">
 
@@ -74,22 +55,19 @@
           <div class="inline-flex items-center justify-center w-16 h-16 rounded-3xl bg-gradient-to-tr from-obsidian-accent to-red-600 mb-6 shadow-2xl">
             <i class="fas fa-bolt-lightning text-2xl text-white"></i>
           </div>
-          <h1 class="text-3xl sm:text-5xl font-black tracking-tighter text-white uppercase italic">
+          <h1 class="text-3xl sm:text-4xl font-black text-white italic">
             VPN<span class="text-obsidian-accent">SIÊUCẤP</span>.SHOP
           </h1>
-          <p class="text-slate-500 text-lg font-medium leading-relaxed max-w-sm mx-auto lg:mx-0">
-            Hệ thống hỗ trợ cài đặt 4G không giới hạn tốc độ cao.
-          </p>
+          <p class="text-slate-500 text-sm font-medium normal-case tracking-normal mt-2">Hệ thống kích hoạt 4G không giới hạn.</p>
         </div>
 
         <div class="flex items-center justify-center lg:justify-start gap-2 pt-2">
           <template v-for="i in 6" :key="i">
-            <div class="h-1.5 rounded-full transition-all duration-500"
-              :class="step >= i ? 'w-10 bg-obsidian-accent shadow-[0_0_10px_rgba(249,115,22,0.5)]' : 'w-4 bg-obsidian-border'"></div>
+            <div class="h-1.5 rounded-full transition-all duration-500" :class="step >= i ? 'w-10 bg-obsidian-accent shadow-[0_0_10px_rgba(249,115,22,0.5)]' : 'w-4 bg-obsidian-border'"></div>
           </template>
         </div>
 
-        <button v-if="step > 1" @click="prevStep" class="text-slate-400 hover:text-white text-xs font-bold uppercase tracking-widest flex items-center gap-2 mx-auto lg:mx-0 transition-all">
+        <button v-if="step > 1" @click="prevStep" class="text-slate-400 hover:text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 mx-auto lg:mx-0 transition-all">
           <i class="fas fa-arrow-left"></i> Quay lại
         </button>
       </div>
@@ -97,90 +75,106 @@
       <div class="w-full relative">
         <transition name="fade" mode="out-in">
 
-          <div v-if="step === 1" key="step1" class="card-deep p-8 sm:p-12 text-center flex flex-col items-center justify-center min-h-[400px]">
+          <div v-if="step === 1" key="step1" class="card-deep p-8 sm:p-12 text-center flex flex-col items-center justify-center min-h-[450px]">
             <div class="w-20 h-20 bg-obsidian-accent/10 text-obsidian-accent rounded-full flex items-center justify-center mb-8 border border-obsidian-accent/20 animate-pulse">
               <i class="fas fa-power-off text-3xl"></i>
             </div>
-            <h2 class="text-2xl font-bold mb-4 text-white uppercase tracking-tight">Trình cài đặt tự động</h2>
-            <p class="text-slate-400 mb-10 max-w-xs">Bấm nút bên dưới để bắt đầu cấu hình dịch vụ VPN trên thiết bị của bạn.</p>
-            <button @click="nextStep" class="btn-accent px-12 py-4 text-lg uppercase tracking-wider">BẮT ĐẦU NGAY</button>
+            <h2 class="text-2xl font-bold mb-4 text-white">Trình cài đặt tự động</h2>
+            <p class="text-slate-400 text-sm mb-10 normal-case tracking-normal">Bắt đầu cấu hình dịch vụ VPN trên thiết bị của bạn.</p>
+            <button @click="nextStep" class="btn-accent px-12 py-4 text-sm tracking-widest uppercase">BẮT ĐẦU NGAY</button>
           </div>
 
-          <div v-else-if="step === 2" key="step2" class="card-deep p-8 sm:p-12 text-center flex flex-col items-center justify-center min-h-[400px]">
-            <h2 class="text-2xl font-bold mb-4 text-white uppercase">Bạn đã mua gói chưa?</h2>
-            <p class="text-slate-400 mb-10">Bạn cần có tài khoản và gói cước tại website trước khi cài đặt.</p>
+          <div v-else-if="step === 2" key="step2" class="card-deep p-8 sm:p-12 text-center flex flex-col items-center justify-center min-h-[450px]">
+            <h2 class="text-2xl font-bold mb-4 text-white">Bạn đã mua gói chưa?</h2>
+            <p class="text-slate-400 text-sm mb-10 normal-case tracking-normal">Bạn cần có tài khoản và gói cước tại website trước khi cài đặt.</p>
             <div class="flex flex-col gap-4 w-full max-w-sm">
-                <button @click="nextStep" class="btn-accent py-4">TÔI ĐÃ CÓ GÓI CƯỚC</button>
-                <a :href="adminLink" target="_blank" class="py-4 bg-obsidian-border text-white rounded-2xl font-bold hover:bg-zinc-800 transition-all text-sm uppercase tracking-widest">ĐI TỚI CỬA HÀNG</a>
+                <button @click="nextStep" class="btn-accent py-4 text-sm uppercase">TÔI ĐA CÓ GÓI CƯỚC</button>
+                <a href="https://vpnsieucap.shop" target="_blank" class="py-4 bg-obsidian-border text-white rounded-2xl font-bold hover:bg-zinc-800 transition-all text-xs tracking-widest text-center">TRUY CẬP CỬA HÀNG</a>
             </div>
           </div>
 
           <div v-else-if="step === 3" key="step3" class="card-deep p-6 sm:p-8 animate-slide-up">
-            <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+            <h3 class="text-lg font-bold mb-6 flex items-center gap-3">
               <i class="fas fa-sim-card text-obsidian-accent"></i> ĐĂNG KÝ NỀN (BẮT BUỘC)
             </h3>
             
-            <div class="space-y-4">
-              <div class="p-5 rounded-2xl bg-black border border-obsidian-border hover:border-obsidian-accent/50 transition-all">
-                <div class="flex justify-between items-center mb-4">
-                  <span class="font-bold text-white text-lg">SIM VIETTEL (TV360)</span>
-                  <i class="fas fa-tv text-obsidian-accent"></i>
+            <div class="space-y-4 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
+              <div class="p-5 rounded-2xl bg-black border border-obsidian-border">
+                <div class="flex justify-between items-center mb-3">
+                  <span class="font-bold text-white">NHÀ MẠNG VIETTEL</span>
+                  <span class="text-[10px] bg-red-600/20 text-red-500 px-2 py-0.5 rounded font-black">HOT</span>
                 </div>
-                <div class="bg-obsidian-border/50 p-4 rounded-xl border border-obsidian-border">
-                  <p class="text-xs text-slate-400 mb-2 font-bold uppercase tracking-wide">Cú pháp đăng ký:</p>
-                  <code class="text-obsidian-accent font-bold text-base">5GSPORT</code> gửi <code class="text-white font-bold text-base">191</code>
-                  <p class="mt-3 text-[11px] text-slate-500 italic">* Ưu điểm: Máy chủ ổn định, tốc độ cực cao cho TV360.</p>
+                <div class="grid grid-cols-1 gap-2">
+                    <div class="bg-obsidian-border/30 p-3 rounded-xl border border-obsidian-border">
+                        <p class="text-[10px] text-obsidian-accent font-bold mb-1 italic">NỀN TV360 (Khuyên dùng):</p>
+                        <p class="text-sm">Soạn <b class="text-white">5GSPORT</b> gửi <b class="text-white">191</b></p>
+                    </div>
+                    <div class="bg-obsidian-border/30 p-3 rounded-xl border border-obsidian-border">
+                        <p class="text-[10px] text-obsidian-accent font-bold mb-1 italic">NỀN TIKTOK:</p>
+                        <p class="text-sm">Soạn <b class="text-white">T50K</b> gửi <b class="text-white">191</b></p>
+                    </div>
                 </div>
               </div>
 
-              <div class="p-5 rounded-2xl bg-black border border-obsidian-border hover:border-obsidian-accent/50 transition-all opacity-80">
-                <div class="flex justify-between items-center mb-4">
-                  <span class="font-bold text-white text-lg">SIM VIETTEL (TIKTOK)</span>
+              <div class="p-5 rounded-2xl bg-black border border-obsidian-border">
+                <div class="flex justify-between items-center mb-3">
+                  <span class="font-bold text-white">NHÀ MẠNG VINAPHONE</span>
                   <i class="fab fa-tiktok text-obsidian-accent"></i>
                 </div>
-                <div class="bg-obsidian-border/50 p-4 rounded-xl border border-obsidian-border">
-                  <p class="text-xs text-slate-400 mb-2 font-bold uppercase tracking-wide">Cú pháp đăng ký:</p>
-                  <code class="text-obsidian-accent font-bold text-base">T50K</code> gửi <code class="text-white font-bold text-base">191</code>
+                <div class="bg-obsidian-border/30 p-3 rounded-xl border border-obsidian-border text-sm">
+                   Soạn <b class="text-white">TK30</b> gửi <b class="text-white">888</b>
+                </div>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-black border border-obsidian-border">
+                <div class="flex justify-between items-center mb-3">
+                  <span class="font-bold text-white">NHÀ MẠNG MOBIFONE</span>
+                  <i class="fas fa-video text-obsidian-accent"></i>
+                </div>
+                <div class="bg-obsidian-border/30 p-3 rounded-xl border border-obsidian-border text-sm">
+                   Đăng ký gói nền <b class="text-white">YT1</b> hoặc <b class="text-white">TIKTOK</b> tùy khu vực
                 </div>
               </div>
             </div>
 
-            <button @click="nextStep" class="w-full btn-accent py-4 mt-8">TÔI ĐÃ ĐĂNG KÝ NỀN XONG</button>
+            <button @click="nextStep" class="w-full btn-accent py-4 mt-8 text-sm uppercase">TÔI ĐÃ ĐĂNG KÝ XONG</button>
           </div>
 
           <div v-else-if="step === 4" key="step4" class="card-deep p-6 sm:p-8 animate-slide-up">
-            <h3 class="text-xl font-bold mb-6 uppercase tracking-tight">Chọn nền máy chủ bạn dùng</h3>
+            <h3 class="text-lg font-bold mb-6">CHỌN NỀN MÁY CHỦ</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <button v-for="p in platforms" @click="selectPlatform(p.id)" class="p-6 rounded-3xl border text-left transition-all group" 
+              <button v-for="p in platforms" @click="platform = p.id; nextStep()" class="p-6 rounded-3xl border text-left transition-all" 
                 :class="platform === p.id ? 'border-obsidian-accent bg-obsidian-accent/5 ring-1 ring-obsidian-accent' : 'border-obsidian-border bg-black hover:border-slate-600'">
-                <i :class="p.icon" class="text-2xl mb-4 block group-hover:scale-110 transition-transform" :class="platform === p.id ? 'text-obsidian-accent' : 'text-slate-500'"></i>
-                <div class="font-bold text-white">{{ p.name }}</div>
-                <div class="text-xs text-slate-500 mt-1">{{ p.desc }}</div>
+                <i :class="p.icon" class="text-2xl mb-4 block" :class="platform === p.id ? 'text-obsidian-accent' : 'text-slate-500'"></i>
+                <div class="font-bold text-white text-base">{{ p.name }}</div>
+                <div class="text-[10px] text-slate-500 mt-1 normal-case tracking-normal">{{ p.desc }}</div>
               </button>
             </div>
           </div>
 
           <div v-else-if="step === 5" key="step5" class="card-deep p-6 sm:p-8 animate-slide-up">
-            <h3 class="text-xl font-bold mb-6">BẠN SỬ DỤNG THIẾT BỊ GÌ?</h3>
+            <h3 class="text-lg font-bold mb-6">THIẾT BỊ CỦA BẠN?</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-              <button v-for="d in devices" @click="selectOs(d.id)" class="p-6 rounded-3xl border text-left transition-all"
+              <button v-for="d in devices" @click="os = d.id" class="p-6 rounded-3xl border text-left transition-all"
                 :class="os === d.id ? 'border-obsidian-accent bg-obsidian-accent/5 ring-1 ring-obsidian-accent' : 'border-obsidian-border bg-black hover:border-slate-600'">
                 <i :class="d.icon" class="text-2xl mb-4 block" :class="os === d.id ? 'text-obsidian-accent' : 'text-slate-500'"></i>
-                <div class="font-bold text-white">{{ d.name }}</div>
+                <div class="font-bold text-white text-base">{{ d.name }}</div>
               </button>
             </div>
 
             <div v-if="os" class="animate-fade-in border-t border-obsidian-border pt-8">
                <div v-if="activeApp" class="bg-black p-6 rounded-3xl border border-obsidian-accent/20">
-                  <h4 class="font-bold text-obsidian-accent text-sm uppercase tracking-[0.2em] mb-2">Ứng dụng đề xuất</h4>
-                  <div class="text-2xl font-black text-white mb-2">{{ activeApp.name }}</div>
-                  <p class="text-slate-400 text-sm mb-6">{{ activeApp.desc }}</p>
+                  <div class="flex justify-between items-start mb-4">
+                      <div>
+                        <h4 class="font-bold text-obsidian-accent text-[10px] tracking-widest mb-1">ỨNG DỤNG TƯƠNG THÍCH</h4>
+                        <div class="text-2xl font-black text-white italic">{{ activeApp.name }}</div>
+                      </div>
+                      <i class="fas fa-cloud-download-alt text-2xl text-obsidian-border"></i>
+                  </div>
                   
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <a :href="activeApp.link" target="_blank" class="btn-accent py-4 text-center flex items-center justify-center gap-2">
-                      <i class="fas fa-download"></i> TẢI XUỐNG
-                    </a>
-                    <button @click="nextStep" class="bg-white text-black font-bold rounded-2xl hover:bg-slate-200 transition-all">XEM HƯỚNG DẪN</button>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-8">
+                    <a :href="activeApp.link" target="_blank" class="btn-accent py-4 text-center text-xs tracking-widest">TẢI XUỐNG</a>
+                    <button @click="nextStep" class="bg-white text-black font-bold rounded-2xl hover:bg-slate-200 transition-all text-xs tracking-widest">XEM HƯỚNG DẪN</button>
                   </div>
                </div>
             </div>
@@ -189,8 +183,8 @@
           <div v-else-if="step === 6" key="step6" class="card-deep rounded-[2rem] flex flex-col h-[600px] overflow-hidden">
             <div class="p-6 border-b border-obsidian-border bg-black/50 flex justify-between items-center">
               <div>
-                <h3 class="font-bold text-white uppercase">Hướng dẫn thiết lập</h3>
-                <p class="text-[10px] text-obsidian-accent font-bold uppercase tracking-widest mt-1">{{ platform }} | {{ os }}</p>
+                <h3 class="font-bold text-white uppercase text-base tracking-widest">Thiết lập cuối</h3>
+                <p class="text-[9px] text-obsidian-accent font-bold uppercase tracking-[0.3em] mt-1">{{ platform }} &bull; {{ os }}</p>
               </div>
               <button @click="resetFlow" class="w-10 h-10 rounded-full bg-obsidian-border flex items-center justify-center hover:bg-white hover:text-black transition-all">
                 <i class="fas fa-rotate-left text-sm"></i>
@@ -200,19 +194,16 @@
             <div class="flex-1 overflow-y-auto p-6 sm:p-8 space-y-10 custom-scrollbar">
               <div v-for="(item, index) in currentTutorial" :key="index" class="space-y-4">
                 <div class="flex gap-4">
-                  <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-obsidian-accent text-white font-bold flex items-center justify-center shadow-lg">{{ index + 1 }}</div>
-                  <p class="text-slate-200 font-medium leading-relaxed pt-1">{{ item.text }}</p>
-                </div>
-                <div v-if="item.img" class="ml-12 rounded-2xl border border-obsidian-border overflow-hidden bg-obsidian-border/20 aspect-video flex items-center justify-center">
-                   <img :src="item.img" class="w-full h-full object-cover">
+                  <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-obsidian-accent text-white font-bold flex items-center justify-center shadow-lg text-sm">{{ index + 1 }}</div>
+                  <p class="text-slate-200 font-medium leading-relaxed pt-1 normal-case tracking-normal text-sm">{{ item.text }}</p>
                 </div>
               </div>
 
               <div class="p-8 text-center bg-obsidian-accent/5 rounded-3xl border border-obsidian-accent/10 border-dashed mt-12">
                   <i class="fas fa-check-circle text-4xl text-green-500 mb-4"></i>
-                  <h4 class="text-xl font-bold text-white uppercase">Hoàn tất!</h4>
-                  <p class="text-slate-500 text-sm mt-2">Bật 4G (đã có gói nền) và nhấn Connect ngay.</p>
-                  <button @click="resetFlow" class="mt-6 px-10 py-3 bg-white text-black font-black rounded-xl text-xs uppercase tracking-widest">Trang chủ</button>
+                  <h4 class="text-xl font-bold text-white">HOÀN TẤT CÀI ĐẶT</h4>
+                  <p class="text-slate-500 text-xs mt-2 normal-case tracking-normal">Đảm bảo đã có gói nền và nhấn Kết nối trong ứng dụng.</p>
+                  <button @click="resetFlow" class="mt-6 px-10 py-3 bg-white text-black font-black rounded-xl text-[10px] uppercase tracking-[0.2em]">Về trang chủ</button>
               </div>
             </div>
           </div>
@@ -222,8 +213,8 @@
     </div>
   </div>
 
-  <div class="w-full text-center py-6 text-[10px] text-slate-600 font-mono tracking-widest uppercase z-10">
-    &copy; 2026 VPNSIEUCAP.SHOP | ULTIMATE EDITION
+  <div class="w-full text-center py-6 text-[10px] text-slate-700 font-mono tracking-widest z-10">
+    &copy; 2026 VPNSIEUCAP.SHOP | NO REPLICA DESIGN
   </div>
 
   <script>
@@ -232,21 +223,17 @@
     createApp({
       setup() {
         const step = ref(1);
+        const platform = ref(null);
+        const os = ref(null);
         const adminLink = ref("https://vpnsieucap.shop");
-        const platform = ref(null); // 'tiktok' or 'tv360'
-        const os = ref(null); // 'android' or 'ios'
 
         const nextStep = () => { step.value++; };
         const prevStep = () => { if (step.value > 1) step.value--; };
-        const resetFlow = () => {
-          step.value = 1;
-          platform.value = null;
-          os.value = null;
-        };
+        const resetFlow = () => { step.value = 1; platform.value = null; os.value = null; };
 
         const platforms = [
-          { id: 'tiktok', name: 'NỀN TIKTOK', desc: 'Dành cho gói nền Tiktok Viettel/Vina', icon: 'fab fa-tiktok' },
-          { id: 'tv360', name: 'NỀN TV360', desc: 'Dành cho gói nền TV360 Viettel', icon: 'fas fa-tv' }
+          { id: 'tiktok', name: 'NỀN TIKTOK', desc: 'Dành cho gói nền Tiktok (Viettel/Vina/Mobi)', icon: 'fab fa-tiktok' },
+          { id: 'tv360', name: 'NỀN TV360', desc: 'Dành cho gói nền TV360 (Viettel)', icon: 'fas fa-tv' }
         ];
 
         const devices = [
@@ -254,38 +241,26 @@
           { id: 'ios', name: 'IPHONE (IOS)', icon: 'fab fa-apple' }
         ];
 
-        const selectPlatform = (id) => { 
-          platform.value = id; 
-          setTimeout(nextStep, 150);
-        };
-        const selectOs = (id) => { os.value = id; };
-
-        // APP LOGIC THEO YÊU CẦU
         const activeApp = computed(() => {
           if (!os.value || !platform.value) return null;
-          
           if (platform.value === 'tv360') {
             return {
               name: 'Platform Next',
               desc: 'Ứng dụng tối ưu hóa riêng cho gói nền TV360.',
-              link: os.value === 'android' ? 'https://play.google.com/store/apps/details?id=dev.platformnext.vpn' : 'https://apps.apple.com/vn/app/platform-next-unlimited-vpn/id6741474000',
-              specs: ['Kết nối cực nhanh', 'Tối ưu cho TV360', 'Ổn định cao']
+              link: os.value === 'android' ? 'https://play.google.com/store/apps/details?id=dev.platformnext.vpn' : 'https://apps.apple.com/vn/app/platform-next-unlimited-vpn/id6741474000'
             };
           } else {
-            // TIKTOK
             if (os.value === 'android') {
               return {
                 name: 'V2ray Tun',
-                desc: 'Ứng dụng VPN mạnh mẽ cho Android.',
-                link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=vi',
-                specs: ['Hỗ trợ Xray/V2ray', 'Giao diện hiện đại', 'Ping thấp']
+                desc: 'Ứng dụng kết nối VPN mạnh mẽ cho Android.',
+                link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=vi'
               };
             } else {
               return {
                 name: 'Shadowrocket',
-                desc: 'Ứng dụng VPN chuyên nghiệp nhất trên iOS.',
-                link: 'https://apps.apple.com/us/app/shadowrocket/id932747118',
-                specs: ['Ổn định tuyệt đối', 'Phí mua app $2.99', 'Tiết kiệm pin']
+                desc: 'Ứng dụng VPN số 1 cho iOS.',
+                link: 'https://apps.apple.com/us/app/shadowrocket/id932747118'
               };
             }
           }
@@ -295,28 +270,24 @@
           const appName = activeApp.value?.name || 'App';
           if (platform.value === 'tv360') {
             return [
-              { text: `Mở ứng dụng ${appName} vừa tải về thiết bị.` },
-              { text: `Sử dụng trình duyệt, truy cập VPNSIEUCAP.SHOP và đăng nhập tài khoản.` },
-              { text: `Bấm chọn "Đồng bộ TV360" -> Chọn "Chuyển đến ${appName}".` },
-              { text: `Quay lại ứng dụng, bật kết nối và tận hưởng mạng tốc độ cao.` }
+              { text: `Mở ứng dụng ${appName} và cho phép các yêu cầu truy cập cấu hình VPN.` },
+              { text: `Truy cập VPNSIEUCAP.SHOP trên trình duyệt và đăng nhập vào tài khoản của bạn.` },
+              { text: `Tìm mục Máy chủ và bấm "Đồng bộ TV360" -> Chọn mở ứng dụng ${appName}.` },
+              { text: `Quay lại ứng dụng, bật công tắc Kết nối và bắt đầu sử dụng mạng.` }
             ];
           } else {
             return [
-              { text: `Khởi động ${appName} trên điện thoại của bạn.` },
-              { text: `Vào website vpnsieucap.shop bấm "Đồng bộ máy chủ" cho nền Tiktok.` },
-              { text: `Ứng dụng sẽ tự động tải danh sách server về.` },
-              { text: `Bật 4G, chọn một server bất kỳ và nhấn kết nối.` }
+              { text: `Khởi động ${appName} vừa cài đặt xong trên thiết bị của bạn.` },
+              { text: `Trên website bán gói, bấm vào "Đồng bộ máy chủ" dành cho nền Tiktok.` },
+              { text: `Hệ thống sẽ tự động chuyển hướng và nạp server vào ứng dụng ${appName}.` },
+              { text: `Bật 4G (đã đăng ký gói nền), chọn máy chủ và nhấn Kết nối.` }
             ];
           }
         });
 
-        return {
-          step, adminLink, platform, os, platforms, devices, activeApp, currentTutorial,
-          nextStep, prevStep, resetFlow, selectPlatform, selectOs
-        };
+        return { step, platform, os, adminLink, platforms, devices, activeApp, currentTutorial, nextStep, prevStep, resetFlow };
       }
     }).mount('#app');
   </script>
 </body>
-
 </html>
