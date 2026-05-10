@@ -292,20 +292,50 @@
           }
         });
 
+        // ==============================================================
+        // LOGIC CHIA BƯỚC HƯỚNG DẪN 
+        // ==============================================================
         const currentTutorial = computed(() => {
           const appName = activeApp.value?.name || 'App';
+          
           if (platform.value === 'tv360') {
-            return [
-              { text: `Mở ứng dụng ${appName} và cho phép truy cập cấu hình VPN.`, image: "LINK_ANH_1" },
-              { text: `Sử dụng trình duyệt vào vpnsieucap.shop đăng nhập và bấm "Đồng bộ TV360".`, image: "LINK_ANH_2" },
-              { text: `Chọn "Mở trong ${appName}", tìm máy chủ và nhấn KẾT NỐI.`, image: "LINK_ANH_3" }
-            ];
+            if (os.value === 'ios') {
+                // 9 BƯỚC CỤ THỂ CHO NỀN TV360 - IOS (PLATFORM NEXT)
+                return [
+                  { text: `Mở app Platform Next.`, image: "LINK_ANH_BUOC_1" },
+                  { text: `Bấm 'Cho phép' Platform Next thêm cấu hình VPN.`, image: "LINK_ANH_BUOC_2" },
+                  { text: `Bấm 'Bắt đầu' -> bấm 'Tiếp tục'.`, image: "LINK_ANH_BUOC_3" },
+                  { text: `Bấm 'Cài đặt' ở góc dưới -> Chọn 'Chọn Cách Bạn Muốn Dùng VPN'.`, image: "LINK_ANH_BUOC_4" },
+                  { text: `Bật công tắc ở mục 'Bạn Có Mã Mời?'.`, image: "LINK_ANH_BUOC_5" },
+                  { text: `Nhập mã mời là "vpn" -> bấm 'Tiếp tục'.`, image: "LINK_ANH_BUOC_6" },
+                  { text: `Dùng tài khoản web đã mua gói để Đăng nhập.`, image: "LINK_ANH_BUOC_7" },
+                  { text: `Bấm 'Tự động chọn' để chọn máy chủ sử dụng.`, image: "LINK_ANH_BUOC_8" },
+                  { text: `Bấm vào nút Nguồn tròn to ở giữa màn hình để bật app.`, image: "LINK_ANH_BUOC_9" }
+                ];
+            } else {
+                // CHO NỀN TV360 - ANDROID
+                return [
+                  { text: `Mở ứng dụng ${appName} và cho phép các quyền cần thiết.`, image: "LINK_ANH_BUOC_1" },
+                  { text: `Sử dụng trình duyệt vào vpnsieucap.shop đăng nhập và bấm "Đồng bộ TV360".`, image: "LINK_ANH_BUOC_2" },
+                  { text: `Chọn "Mở trong ${appName}", tìm máy chủ và nhấn nút KẾT NỐI to ở giữa.`, image: "LINK_ANH_BUOC_3" }
+                ];
+            }
           } else {
-            return [
-              { text: `Mở app ${appName} vừa tải lên thiết bị.`, image: "LINK_ANH_1" },
-              { text: `Đăng nhập website, bấm "Đồng bộ máy chủ" cho nền Tiktok.`, image: "LINK_ANH_2" },
-              { text: `Hệ thống sẽ nạp server tự động, chọn server và nhấn Connect.`, image: "LINK_ANH_3" }
-            ];
+            // NỀN TIKTOK
+            if (os.value === 'android') {
+                return [
+                  { text: `Mở app ${appName} vừa tải lên thiết bị.`, image: "LINK_ANH_BUOC_1" },
+                  { text: `Đăng nhập website, bấm "Đồng bộ máy chủ" cho nền Tiktok.`, image: "LINK_ANH_BUOC_2" },
+                  { text: `Vuốt màn hình từ trên xuống để làm mới danh sách máy chủ.`, image: "LINK_ANH_BUOC_3" },
+                  { text: `Chọn server và nhấn biểu tượng Connect ở góc dưới để bắt đầu.`, image: "LINK_ANH_BUOC_4" }
+                ];
+            } else {
+                return [
+                  { text: `Mở Shadowrocket, đồng bộ máy chủ qua link liên kết trên website.`, image: "LINK_ANH_BUOC_1" },
+                  { text: `Chọn một máy chủ (có vạch sóng màu xanh là ổn định).`, image: "LINK_ANH_BUOC_2" },
+                  { text: `Gạt công tắc phía trên cùng để bật kết nối VPN.`, image: "LINK_ANH_BUOC_3" }
+                ];
+            }
           }
         });
 
