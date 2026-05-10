@@ -141,7 +141,7 @@
         <transition name="fade" mode="out-in">
 
           <div v-if="step === 1" key="step1" class="glass-card p-10 sm:p-14 text-center flex flex-col items-center justify-center min-h-[500px]">
-            <div class="w-24 h-24 bg-gradient-to-br from-white/10 to-white/5 text-orange-400 rounded-full flex items-center justify-center mb-10 border border-white/10 shadow-[0_0_40px_rgba(249,115,22,0.1)]">
+            <div class="w-24 h-24 bg-gradient-to-br from-white/10 to-white/5 text-orange-400 rounded-full flex items-center justify-center mb-10 border border-white/10 shadow-[0_0_40px_rgba(249,115,22,0.1)] animate-pulse">
               <i class="fas fa-rocket text-4xl"></i>
             </div>
             <h2 class="text-3xl font-bold mb-4 text-white">Trình Cài Đặt Tự Động</h2>
@@ -194,10 +194,10 @@
               
               <div v-if="networkTab === 'viettel'" class="grid grid-cols-1 gap-4">
                   <div class="relative overflow-hidden p-6 rounded-2xl border border-orange-500/30 bg-gradient-to-br from-orange-500/10 to-transparent">
-                      <div class="absolute top-0 right-0 px-4 py-1.5 bg-orange-500 text-white text-[10px] font-bold tracking-widest rounded-bl-xl">ỔN ĐỊNH NHẤT</div>
+                      <div class="absolute top-0 right-0 px-4 py-1.5 bg-orange-500 text-white text-[10px] font-bold tracking-widest rounded-bl-xl uppercase">Ổn định nhất</div>
                       <div class="flex flex-col mb-4">
-                          <span class="text-white font-bold text-lg mb-1">NỀN TV360 (VIP)</span>
-                          <span class="text-orange-400 font-black text-2xl">KHÔNG GIỚI HẠN</span>
+                          <span class="text-white font-bold text-lg mb-1 uppercase">NỀN TV360 (VIP)</span>
+                          <span class="text-orange-400 font-black text-2xl uppercase">KHÔNG GIỚI HẠN</span>
                       </div>
                       <div class="bg-black/50 p-4 rounded-xl border border-white/5 flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">5GSPORT</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">191</b></div>
@@ -207,8 +207,8 @@
 
                   <div class="glass-button p-6 rounded-2xl">
                       <div class="flex justify-between items-center mb-4">
-                          <span class="text-white font-bold text-lg">TIKTOK THÁNG</span>
-                          <span class="text-white font-black text-xl bg-white/10 px-3 py-1 rounded-lg border border-white/5">50GB</span>
+                          <span class="text-white font-bold text-lg uppercase">TIKTOK THÁNG</span>
+                          <span class="text-white font-black text-xl bg-white/10 px-3 py-1 rounded-lg border border-white/5 uppercase">50GB</span>
                       </div>
                       <div class="bg-black/30 p-4 rounded-xl flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">T50K</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">191</b></div>
@@ -218,8 +218,8 @@
 
                   <div class="glass-button p-6 rounded-2xl">
                       <div class="flex justify-between items-center mb-4">
-                          <span class="text-white font-bold text-lg">TIKTOK TUẦN</span>
-                          <span class="text-white font-black text-xl bg-white/10 px-3 py-1 rounded-lg border border-white/5">25GB</span>
+                          <span class="text-white font-bold text-lg uppercase">TIKTOK TUẦN</span>
+                          <span class="text-white font-black text-xl bg-white/10 px-3 py-1 rounded-lg border border-white/5 uppercase">25GB</span>
                       </div>
                       <div class="bg-black/30 p-4 rounded-xl flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">T15KN</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">191</b></div>
@@ -231,8 +231,8 @@
               <div v-if="networkTab === 'vinaphone'" class="grid grid-cols-1 gap-4">
                   <div class="relative overflow-hidden p-6 rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 to-transparent">
                       <div class="flex flex-col mb-4">
-                          <span class="text-white font-bold text-lg mb-1">NỀN TIKTOK THÁNG</span>
-                          <span class="text-blue-400 font-black text-2xl">KHÔNG GIỚI HẠN</span>
+                          <span class="text-white font-bold text-lg mb-1 uppercase">NỀN TIKTOK THÁNG</span>
+                          <span class="text-blue-400 font-black text-2xl uppercase">KHÔNG GIỚI HẠN</span>
                       </div>
                       <div class="bg-black/50 p-4 rounded-xl border border-white/5 flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">TK30</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">888</b></div>
@@ -244,8 +244,8 @@
               <div v-if="networkTab === 'mobifone'" class="grid grid-cols-1 gap-4">
                   <div class="glass-button p-6 rounded-2xl border-l-4 border-l-yellow-500">
                       <div class="flex justify-between items-center mb-4">
-                          <span class="text-white font-bold text-lg">GÓI TIK30</span>
-                          <span class="text-yellow-500 font-black text-xl">50GB</span>
+                          <span class="text-white font-bold text-lg uppercase">GÓI TIK30</span>
+                          <span class="text-yellow-500 font-black text-xl uppercase">50GB</span>
                       </div>
                       <div class="bg-black/30 p-4 rounded-xl flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">DK TIK30</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">9199</b></div>
@@ -255,8 +255,8 @@
                   
                   <div class="glass-button p-6 rounded-2xl border-l-4 border-l-yellow-500">
                       <div class="flex justify-between items-center mb-4">
-                          <span class="text-white font-bold text-lg">GÓI TT80</span>
-                          <span class="text-yellow-500 font-black text-xl">UNLIMITED</span>
+                          <span class="text-white font-bold text-lg uppercase">GÓI TT80</span>
+                          <span class="text-yellow-500 font-black text-xl uppercase">UNLIMITED</span>
                       </div>
                       <div class="bg-black/30 p-4 rounded-xl flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">TT80</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">9199</b></div>
@@ -278,7 +278,7 @@
               <button v-for="p in platforms" @click="platform = p.id; nextStep()" class="p-8 rounded-3xl border text-left transition-all duration-300 group" 
                 :class="platform === p.id ? 'border-orange-500 bg-orange-500/10 ring-1 ring-orange-500 shadow-[0_0_20px_rgba(249,115,22,0.15)]' : 'glass-button hover:border-white/30'">
                 <i :class="p.icon" class="text-3xl mb-5 block transition-transform group-hover:scale-110" :class="platform === p.id ? 'text-orange-500' : 'text-slate-400'"></i>
-                <div class="font-bold text-white text-xl mb-1">{{ p.name }}</div>
+                <div class="font-bold text-white text-xl mb-1 uppercase">{{ p.name }}</div>
                 <p class="text-xs text-slate-400 leading-relaxed">{{ p.desc }}</p>
               </button>
             </div>
@@ -292,7 +292,7 @@
                 <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-5 group-hover:bg-white/10 transition-colors">
                   <i :class="d.icon" class="text-3xl" :class="os === d.id ? 'text-orange-500' : 'text-slate-300'"></i>
                 </div>
-                <div class="font-bold text-white text-xl">{{ d.name }}</div>
+                <div class="font-bold text-white text-xl uppercase">{{ d.name }}</div>
               </button>
             </div>
           </div>
@@ -306,7 +306,7 @@
                       <i class="fas fa-cloud-download-alt text-4xl text-white"></i>
                     </div>
                     <div>
-                      <h4 class="text-3xl sm:text-4xl font-black text-white mb-2 tracking-tight">{{ activeApp.name }}</h4>
+                      <h4 class="text-3xl sm:text-4xl font-black text-white mb-2 tracking-tight uppercase">{{ activeApp.name }}</h4>
                       <p class="text-slate-400 text-sm leading-relaxed">{{ activeApp.desc }}</p>
                     </div>
                   </div>
@@ -325,7 +325,7 @@
           <div v-else-if="step === 7" key="step7" class="glass-card rounded-[2rem] flex flex-col h-[700px] overflow-hidden border-t-4 border-t-orange-500 animate-fade-in">
             <div class="p-6 sm:p-8 border-b border-white/10 bg-black/40 backdrop-blur-xl sticky top-0 z-20 flex justify-between items-center">
               <div>
-                <h3 class="font-bold text-white text-lg tracking-tight">Hướng Dẫn Thiết Lập</h3>
+                <h3 class="font-bold text-white text-lg tracking-tight uppercase">Hướng Dẫn Thiết Lập</h3>
                 <div class="flex items-center gap-2 mt-1.5">
                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                    <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-widest">{{ platform }} &bull; {{ os }}</p>
@@ -346,10 +346,10 @@
                   
                   <p class="text-slate-100 font-medium leading-relaxed pt-1 text-base mb-4">{{ item.text }}</p>
                   
-                  <div class="relative group inline-block w-full max-w-sm">
+                  <div v-if="item.image" class="relative group inline-block w-full max-w-[280px] sm:max-w-sm">
                      <div class="absolute -inset-1 bg-gradient-to-r from-orange-500 to-rose-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-                     <div class="relative rounded-2xl border border-white/10 overflow-hidden bg-black/50 aspect-[4/3] sm:aspect-auto flex justify-center items-center">
-                        <img :src="item.image" class="w-full h-auto object-cover relative z-10" loading="lazy" alt="Hướng dẫn">
+                     <div class="relative rounded-2xl border border-white/10 overflow-hidden bg-black/50 flex justify-center items-center p-1">
+                        <img :src="item.image" class="w-full h-auto relative z-10 rounded-xl" loading="lazy" alt="Hướng dẫn">
                      </div>
                   </div>
                 </div>
@@ -360,7 +360,7 @@
                   <div class="w-16 h-16 bg-gradient-to-tr from-green-400 to-emerald-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-[0_0_20px_rgba(16,185,129,0.4)]">
                     <i class="fas fa-check text-2xl"></i>
                   </div>
-                  <h4 class="text-xl font-bold text-white mb-2 tracking-tight">Hoàn tất cài đặt!</h4>
+                  <h4 class="text-xl font-bold text-white mb-2 tracking-tight uppercase">Hoàn tất cài đặt!</h4>
                   <p class="text-slate-400 text-sm max-w-xs mx-auto">Đảm bảo bạn đã bật 4G trước khi nhấn nút Kết nối trong ứng dụng nhé.</p>
                   <button @click="resetFlow" class="mt-8 px-10 py-3 bg-white text-black font-bold rounded-xl text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-xl shadow-white/10">Trang chủ</button>
               </div>
@@ -418,10 +418,6 @@
           }
         });
 
-        // ==============================================================
-        // LOGIC CHIA BƯỚC HƯỚNG DẪN 
-        // BÁC THAY LINK ẢNH CỦA BÁC VÀO PHẦN "image" NHÉ
-        // ==============================================================
         const currentTutorial = computed(() => {
           const appName = activeApp.value?.name || 'App';
           
