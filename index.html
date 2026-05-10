@@ -190,25 +190,33 @@
                <button @click="networkTab = 'mobifone'" class="flex-1 py-3.5 rounded-[0.85rem] text-xs sm:text-sm font-bold transition-all tracking-widest uppercase" :class="networkTab === 'mobifone' ? 'bg-yellow-500 text-white shadow-lg' : 'text-slate-400 hover:text-white'">Mobi</button>
             </div>
             
-            <div class="space-y-4 max-h-[400px] overflow-y-auto custom-scrollbar pr-2 animate-fade-in">
+            <div class="space-y-4 max-h-[450px] overflow-y-auto custom-scrollbar pr-2 animate-fade-in">
               
               <div v-if="networkTab === 'viettel'" class="grid grid-cols-1 gap-4">
                   <div class="relative overflow-hidden p-6 rounded-2xl border border-orange-500/30 bg-gradient-to-br from-orange-500/10 to-transparent">
                       <div class="absolute top-0 right-0 px-4 py-1.5 bg-orange-500 text-white text-[10px] font-bold tracking-widest rounded-bl-xl uppercase">Ổn định nhất</div>
-                      <div class="flex flex-col mb-4">
-                          <span class="text-white font-bold text-lg mb-1">NỀN TV360 (VIP)</span>
-                          <span class="text-orange-400 font-black text-2xl uppercase">Không giới hạn</span>
+                      <div class="flex flex-col mb-3">
+                          <span class="text-white font-bold text-lg uppercase">NỀN TV360 (VIP)</span>
                       </div>
-                      <div class="bg-black/50 p-4 rounded-xl border border-white/5 flex items-center justify-between">
+                      <div class="flex items-center gap-2 mb-4">
+                        <span class="text-orange-400 font-black text-2xl uppercase tracking-tight">KHÔNG GIỚI HẠN</span>
+                      </div>
+                      <div class="bg-black/50 p-4 rounded-xl border border-white/5 flex items-center justify-between mt-2">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">5GSPORT</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">191</b></div>
                          <span class="text-slate-400 font-medium text-sm">15k/tháng</span>
                       </div>
                   </div>
 
                   <div class="glass-button p-6 rounded-2xl">
-                      <div class="flex justify-between items-center mb-4">
-                          <span class="text-white font-bold text-lg uppercase">TIKTOK THÁNG</span>
-                          <span class="text-white font-black text-xl bg-white/10 px-3 py-1 rounded-lg border border-white/5">50GB</span>
+                      <div class="flex justify-between items-start mb-2">
+                          <div>
+                            <span class="text-white font-bold text-lg uppercase block">TIKTOK THÁNG</span>
+                            <span class="text-slate-400 text-xs italic mt-0.5 block">Gói nền rẻ nhất, tối ưu ngân sách</span>
+                          </div>
+                          <span class="text-white font-black text-xl bg-white/10 px-3 py-1 rounded-lg border border-white/5 uppercase">50GB</span>
+                      </div>
+                      <div class="text-xs text-slate-300 mb-4 leading-relaxed opacity-80">
+                         Gói này gia hạn theo tháng, nạp đủ 50K tự gia hạn.
                       </div>
                       <div class="bg-black/30 p-4 rounded-xl flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">T50K</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">191</b></div>
@@ -216,10 +224,17 @@
                       </div>
                   </div>
 
-                  <div class="glass-button p-6 rounded-2xl">
-                      <div class="flex justify-between items-center mb-4">
-                          <span class="text-white font-bold text-lg uppercase">TIKTOK TUẦN</span>
-                          <span class="text-white font-black text-xl bg-white/10 px-3 py-1 rounded-lg border border-white/5">25GB</span>
+                  <div class="relative overflow-hidden p-6 rounded-2xl border border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-transparent">
+                      <div class="absolute top-0 right-0 px-4 py-1.5 bg-orange-500 text-white text-[10px] font-bold tracking-widest rounded-bl-xl uppercase shadow-lg">Khuyên dùng</div>
+                      <div class="flex justify-between items-start mb-2 mt-2">
+                          <div class="pr-16">
+                              <span class="text-white font-bold text-lg uppercase block">TIKTOK TUẦN</span>
+                              <span class="text-orange-300/80 text-xs italic mt-0.5 block">Chênh 10K so với T50K, tổng 100GB/tháng</span>
+                          </div>
+                          <span class="text-white font-black text-xl bg-white/10 px-3 py-1 rounded-lg border border-white/5 uppercase">25GB</span>
+                      </div>
+                      <div class="text-xs text-slate-300 mb-4 leading-relaxed opacity-80">
+                         Sử dụng trong 7 ngày. Nạp đủ 60K, mỗi tuần sẽ tự gia hạn không cần thao tác gì thêm. Tổng 100GB/tháng (25GB/tuần).
                       </div>
                       <div class="bg-black/30 p-4 rounded-xl flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">T15KN</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">191</b></div>
@@ -230,11 +245,17 @@
 
               <div v-if="networkTab === 'vinaphone'" class="grid grid-cols-1 gap-4">
                   <div class="relative overflow-hidden p-6 rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 to-transparent">
-                      <div class="flex flex-col mb-4">
-                          <span class="text-white font-bold text-lg mb-1 uppercase">NỀN TIKTOK THÁNG</span>
-                          <span class="text-blue-400 font-black text-2xl uppercase">KHÔNG GIỚI HẠN</span>
+                      <div class="flex flex-col mb-3">
+                          <span class="text-white font-bold text-lg uppercase">NỀN TIKTOK THÁNG</span>
+                          <span class="text-slate-300/80 text-xs italic mt-1 block">Gói cước tối ưu, giá rẻ, tốc độ ổn định</span>
                       </div>
-                      <div class="bg-black/50 p-4 rounded-xl border border-white/5 flex items-center justify-between">
+                      <div class="flex items-center gap-2 mb-4">
+                        <span class="text-blue-400 font-black text-2xl uppercase tracking-tight">KHÔNG GIỚI HẠN</span>
+                      </div>
+                      <div class="text-xs text-slate-300 mb-4 leading-relaxed">
+                          <span class="text-yellow-400 font-semibold"><i class="fas fa-exclamation-triangle"></i> Lưu ý:</span> Để sim 0đ hoặc mua data nền tránh trừ tiền khi dùng.
+                      </div>
+                      <div class="bg-black/50 p-4 rounded-xl border border-white/5 flex items-center justify-between mt-2">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">TK30</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">888</b></div>
                          <span class="text-slate-400 font-medium text-sm">30k/tháng</span>
                       </div>
@@ -243,9 +264,16 @@
 
               <div v-if="networkTab === 'mobifone'" class="grid grid-cols-1 gap-4">
                   <div class="glass-button p-6 rounded-2xl border-l-4 border-l-yellow-500">
-                      <div class="flex justify-between items-center mb-4">
-                          <span class="text-white font-bold text-lg uppercase">GÓI TIK30</span>
-                          <span class="text-yellow-500 font-black text-xl">50GB</span>
+                      <div class="flex justify-between items-start mb-2">
+                          <div>
+                            <span class="text-white font-bold text-lg uppercase block">GÓI TIK30</span>
+                            <span class="text-slate-300/80 text-xs italic mt-1 block">Phù hợp nhu cầu cơ bản, tối ưu ngân sách</span>
+                          </div>
+                          <span class="text-yellow-500 font-black text-xl uppercase">50GB</span>
+                      </div>
+                      <div class="text-xs text-slate-300 mb-4 leading-relaxed">
+                          Hạn sử dụng 30 ngày. Có thể gia hạn.<br>
+                          <span class="text-yellow-400 font-semibold mt-1 inline-block"><i class="fas fa-exclamation-triangle"></i> Lưu ý:</span> Để sim 0đ tránh trừ tiền trong tài khoản gốc.
                       </div>
                       <div class="bg-black/30 p-4 rounded-xl flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">DK TIK30</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">9199</b></div>
@@ -255,10 +283,10 @@
                   
                   <div class="glass-button p-6 rounded-2xl border-l-4 border-l-yellow-500">
                       <div class="flex justify-between items-center mb-4">
-                          <span class="text-white font-bold text-lg uppercase">GÓI TT80</span>
-                          <span class="text-yellow-500 font-black text-xl uppercase">Unlimited</span>
+                          <span class="text-white font-bold text-lg uppercase block">GÓI TT80</span>
+                          <span class="text-yellow-500 font-black text-xl uppercase">UNLIMITED</span>
                       </div>
-                      <div class="bg-black/30 p-4 rounded-xl flex items-center justify-between">
+                      <div class="bg-black/30 p-4 rounded-xl flex items-center justify-between mt-2">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">TT80</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">9199</b></div>
                          <span class="text-slate-400 font-medium text-sm">80k/tháng</span>
                       </div>
