@@ -81,7 +81,7 @@
             <button @click="nextStep" class="w-full sm:w-auto px-12 py-4 bg-app-accent text-white font-black rounded-2xl hover:bg-orange-600 transition-all uppercase tracking-widest">BẮT ĐẦU NGAY</button>
           </div>
 
-          <div v-else-if="step === 2" key="step2" class="solid-card p-8 sm:p-12 text-center flex flex-col items-center justify-center min-h-[450px]">
+          <div v-else-if="step === 2" key="step2" class="solid-card p-10 text-center flex flex-col items-center justify-center min-h-[450px]">
             <div class="w-16 h-16 bg-blue-500/10 text-blue-500 rounded-full flex items-center justify-center mb-6">
                <i class="fas fa-shopping-cart text-2xl"></i>
             </div>
@@ -126,7 +126,6 @@
                       <div class="text-app-accent font-black text-xl mb-3">KHÔNG GIỚI HẠN</div>
                       <p class="text-sm normal-case tracking-normal text-slate-300">Soạn <b class="text-white font-mono bg-app-accent px-2 rounded">5GSPORT</b> gửi <b class="text-white">191</b> (15k/tháng)</p>
                   </div>
-
                   <div class="bg-app-border/20 p-5 rounded-2xl border border-app-border">
                       <div class="flex justify-between items-start mb-1">
                           <span class="text-white font-bold">TIKTOK THÁNG</span>
@@ -134,7 +133,6 @@
                       </div>
                       <p class="text-sm normal-case tracking-normal text-slate-400">Soạn <b class="text-white font-mono bg-slate-700 px-2 rounded">T50K</b> gửi <b class="text-white">191</b> (50k/tháng)</p>
                   </div>
-
                   <div class="bg-app-border/20 p-5 rounded-2xl border border-app-border">
                       <div class="flex justify-between items-start mb-1">
                           <span class="text-white font-bold">TIKTOK TUẦN</span>
@@ -226,7 +224,7 @@
             <div class="flex-1 overflow-y-auto p-6 sm:p-10 space-y-12 custom-scrollbar">
               <div v-for="(item, index) in currentTutorial" :key="index" class="space-y-6">
                 <div class="flex gap-5">
-                  <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-app-accent text-white font-black flex items-center justify-center shadow-xl text-sm italic">{{ index + 1 }}</div>
+                  <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-app-accent text-white font-black flex items-center justify-center shadow-xl shadow-orange-900/20 text-sm italic">{{ index + 1 }}</div>
                   <p class="text-slate-200 font-bold leading-relaxed pt-1.5 text-base normal-case tracking-normal">{{ item.text }}</p>
                 </div>
                 <div class="ml-14 group">
@@ -240,8 +238,8 @@
               </div>
 
               <div class="p-10 text-center bg-app-accent/5 rounded-3xl border-2 border-app-accent/10 border-dashed mt-16">
-                  <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-check text-2xl animate-bounce"></i>
+                  <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
+                    <i class="fas fa-check text-2xl"></i>
                   </div>
                   <h4 class="text-xl font-bold text-white uppercase tracking-widest italic">Hoàn tất rồi!</h4>
                   <p class="text-slate-500 text-xs mt-3 normal-case tracking-normal">Bật 4G (phải có gói nền) và nhấn Kết nối ngay.</p>
@@ -267,7 +265,7 @@
         const step = ref(1);
         const platform = ref(null);
         const os = ref(null);
-        const networkTab = ref('viettel'); // Thêm biến tab mạng
+        const networkTab = ref('viettel');
         const adminLink = ref("https://vpnsieucap.shop");
 
         const nextStep = () => { step.value++; };
@@ -322,9 +320,12 @@
                 ];
             } else {
                 return [
-                  { text: `Mở ứng dụng ${appName} và cho phép các quyền cần thiết.`, image: "LINK_ANH_BUOC_1" },
-                  { text: `Sử dụng trình duyệt vào vpnsieucap.shop đăng nhập và bấm "Đồng bộ TV360".`, image: "LINK_ANH_BUOC_2" },
-                  { text: `Chọn "Mở trong ${appName}", tìm máy chủ và nhấn nút KẾT NỐI to ở giữa.`, image: "LINK_ANH_BUOC_3" }
+                  { text: `Mở app Platform Next.`, image: "LINK_ANH_BUOC_1" },
+                  { text: `Bấm 'Bắt đầu' -> Bật công tắc ở mục 'Bạn có Mã Mời?'.`, image: "LINK_ANH_BUOC_2" },
+                  { text: `Nhập mã mời là "vpn" rồi bấm tiếp tục.`, image: "LINK_ANH_BUOC_3" },
+                  { text: `Dùng tài khoản web đã mua gói để Đăng nhập.`, image: "LINK_ANH_BUOC_4" },
+                  { text: `Bấm 'Tự động chọn' để chọn máy chủ sử dụng.`, image: "LINK_ANH_BUOC_5" },
+                  { text: `Bấm vào nút Nguồn tròn to ở giữa màn hình để khởi động app.`, image: "LINK_ANH_BUOC_6" }
                 ];
             }
           } else {
