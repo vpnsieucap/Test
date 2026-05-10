@@ -142,23 +142,23 @@
 
           <div v-if="step === 1" key="step1" class="glass-card p-10 sm:p-14 text-center flex flex-col items-center justify-center min-h-[500px]">
             <div class="w-24 h-24 bg-gradient-to-br from-white/10 to-white/5 text-orange-400 rounded-full flex items-center justify-center mb-10 border border-white/10 shadow-[0_0_40px_rgba(249,115,22,0.1)] animate-pulse">
-              <i class="fas fa-rocket text-4xl"></i>
+              <i class="fas fa-book-open text-4xl"></i>
             </div>
-            <h2 class="text-3xl font-bold mb-4 text-white">Trình Cài Đặt Tự Động</h2>
-            <p class="text-slate-400 mb-12 max-w-sm text-base leading-relaxed">Hệ thống sẽ hướng dẫn bạn cấu hình dịch vụ VPN trên mọi thiết bị một cách nhanh chóng nhất.</p>
+            <h2 class="text-3xl font-bold mb-4 text-white uppercase tracking-tight">Hướng Dẫn Sử Dụng</h2>
+            <p class="text-slate-400 mb-12 max-w-sm text-base leading-relaxed">Hệ thống sẽ hướng dẫn chi tiết cách cài đặt và kết nối mạng 4G/5G tốc độ cao trên thiết bị của bạn.</p>
             <button @click="nextStep" class="btn-gradient w-full sm:w-auto px-14 py-4 text-sm tracking-[0.2em] uppercase">BẮT ĐẦU NGAY</button>
           </div>
 
           <div v-else-if="step === 2" key="step2" class="glass-card p-10 sm:p-14 text-center flex flex-col items-center justify-center min-h-[500px]">
             <div class="w-20 h-20 bg-blue-500/10 text-blue-400 rounded-full flex items-center justify-center mb-8 border border-blue-500/20">
-               <i class="fas fa-fingerprint text-3xl"></i>
+               <i class="fas fa-shopping-cart text-3xl"></i>
             </div>
-            <h2 class="text-3xl font-bold text-white mb-4">Xác thực tài khoản</h2>
-            <p class="text-slate-400 text-base mb-10 max-w-sm leading-relaxed">Hệ thống yêu cầu bạn phải có gói cước đang hoạt động tại website để thực hiện đồng bộ.</p>
+            <h2 class="text-3xl font-bold text-white mb-4 uppercase tracking-tight">BẠN ĐÃ MUA GÓI CHƯA?</h2>
+            <p class="text-slate-400 text-base mb-10 max-w-sm leading-relaxed">Để có thể sử dụng dịch vụ VPN, bạn cần phải đăng ký và sở hữu một gói cước tại website của chúng tôi trước.</p>
             
             <div class="flex flex-col gap-4 w-full max-w-sm">
                 <button @click="nextStep" class="btn-gradient py-4 flex items-center justify-center gap-3 text-sm tracking-[0.1em] uppercase">
-                  <i class="fas fa-check-circle text-lg"></i> TÔI ĐÃ CÓ GÓI CƯỚC
+                  <i class="fas fa-check-circle text-lg"></i> TÔI ĐÃ MUA GÓI
                 </button>
                 
                 <div class="flex items-center justify-center gap-4 my-2">
@@ -168,7 +168,7 @@
                 </div>
 
                 <a :href="adminLink" target="_blank" class="glass-button py-4 text-white rounded-2xl font-bold text-sm tracking-[0.1em] text-center flex items-center justify-center gap-2 uppercase">
-                  Đi tới cửa hàng <i class="fas fa-external-link-alt text-xs opacity-50"></i>
+                  Chưa, đi tới cửa hàng <i class="fas fa-external-link-alt text-xs opacity-50"></i>
                 </a>
             </div>
           </div>
@@ -196,8 +196,8 @@
                   <div class="relative overflow-hidden p-6 rounded-2xl border border-orange-500/30 bg-gradient-to-br from-orange-500/10 to-transparent">
                       <div class="absolute top-0 right-0 px-4 py-1.5 bg-orange-500 text-white text-[10px] font-bold tracking-widest rounded-bl-xl uppercase">Ổn định nhất</div>
                       <div class="flex flex-col mb-4">
-                          <span class="text-white font-bold text-lg mb-1 uppercase">NỀN TV360 (VIP)</span>
-                          <span class="text-orange-400 font-black text-2xl uppercase">KHÔNG GIỚI HẠN</span>
+                          <span class="text-white font-bold text-lg mb-1">NỀN TV360 (VIP)</span>
+                          <span class="text-orange-400 font-black text-2xl uppercase">Không giới hạn</span>
                       </div>
                       <div class="bg-black/50 p-4 rounded-xl border border-white/5 flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">5GSPORT</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">191</b></div>
@@ -208,7 +208,7 @@
                   <div class="glass-button p-6 rounded-2xl">
                       <div class="flex justify-between items-center mb-4">
                           <span class="text-white font-bold text-lg uppercase">TIKTOK THÁNG</span>
-                          <span class="text-white font-black text-xl bg-white/10 px-3 py-1 rounded-lg border border-white/5 uppercase">50GB</span>
+                          <span class="text-white font-black text-xl bg-white/10 px-3 py-1 rounded-lg border border-white/5">50GB</span>
                       </div>
                       <div class="bg-black/30 p-4 rounded-xl flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">T50K</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">191</b></div>
@@ -219,7 +219,7 @@
                   <div class="glass-button p-6 rounded-2xl">
                       <div class="flex justify-between items-center mb-4">
                           <span class="text-white font-bold text-lg uppercase">TIKTOK TUẦN</span>
-                          <span class="text-white font-black text-xl bg-white/10 px-3 py-1 rounded-lg border border-white/5 uppercase">25GB</span>
+                          <span class="text-white font-black text-xl bg-white/10 px-3 py-1 rounded-lg border border-white/5">25GB</span>
                       </div>
                       <div class="bg-black/30 p-4 rounded-xl flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">T15KN</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">191</b></div>
@@ -245,7 +245,7 @@
                   <div class="glass-button p-6 rounded-2xl border-l-4 border-l-yellow-500">
                       <div class="flex justify-between items-center mb-4">
                           <span class="text-white font-bold text-lg uppercase">GÓI TIK30</span>
-                          <span class="text-yellow-500 font-black text-xl uppercase">50GB</span>
+                          <span class="text-yellow-500 font-black text-xl">50GB</span>
                       </div>
                       <div class="bg-black/30 p-4 rounded-xl flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">DK TIK30</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">9199</b></div>
@@ -256,7 +256,7 @@
                   <div class="glass-button p-6 rounded-2xl border-l-4 border-l-yellow-500">
                       <div class="flex justify-between items-center mb-4">
                           <span class="text-white font-bold text-lg uppercase">GÓI TT80</span>
-                          <span class="text-yellow-500 font-black text-xl uppercase">UNLIMITED</span>
+                          <span class="text-yellow-500 font-black text-xl uppercase">Unlimited</span>
                       </div>
                       <div class="bg-black/30 p-4 rounded-xl flex items-center justify-between">
                          <div class="text-sm text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">TT80</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-0.5 rounded">9199</b></div>
@@ -418,6 +418,9 @@
           }
         });
 
+        // ==============================================================
+        // LOGIC CHIA BƯỚC HƯỚNG DẪN 
+        // ==============================================================
         const currentTutorial = computed(() => {
           const appName = activeApp.value?.name || 'App';
           
