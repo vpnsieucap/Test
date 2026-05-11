@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hướng Dẫn Sử Dụng - VSC</title>
+  <title>Hướng Dẫn Sử Dụng</title>
   
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -190,8 +190,33 @@
                <button @click="networkTab = 'mobifone'" class="flex-1 py-2.5 rounded-lg text-[11px] sm:text-xs font-bold transition-all tracking-widest uppercase" :class="networkTab === 'mobifone' ? 'bg-yellow-500 text-white shadow-md' : 'text-slate-400 hover:text-white'">Mobi</button>
             </div>
             
-            <div class="space-y-4 max-h-[360px] overflow-y-auto custom-scrollbar pr-2 animate-fade-in">
+            <div class="space-y-3 max-h-[350px] overflow-y-auto custom-scrollbar pr-2 animate-fade-in">
               <div v-if="networkTab === 'viettel'" class="grid grid-cols-1 gap-4">
+                  <div class="relative overflow-hidden p-4 rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-transparent">
+                      <div class="absolute top-0 right-0 px-3 py-1 bg-orange-500 text-white text-[9px] font-bold tracking-widest rounded-bl-lg uppercase shadow-lg">Khuyên dùng</div>
+                      <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3 mt-1">
+                          <span class="text-white font-bold text-sm uppercase block">TIKTOK TUẦN</span>
+                          <span class="text-white font-black text-[10px] bg-white/10 px-2 py-1 rounded border border-white/5 uppercase tracking-widest mt-4 sm:mt-0">15.000đ/Tuần</span>
+                      </div>
+                      <ul class="space-y-2 mb-4">
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300 leading-relaxed">
+                             <i class="fas fa-check text-orange-400 mt-0.5"></i>
+                             <span>Khuyên dùng, chênh 10K gói T50K, được tổng <b class="text-white">100Gb/tháng</b>.</span>
+                          </li>
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300 leading-relaxed">
+                             <i class="fas fa-check text-orange-400 mt-0.5"></i>
+                             <span><b class="text-white">25GB</b> Data tốc độ cao, sử dụng trong 7 ngày.</span>
+                          </li>
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300 leading-relaxed">
+                             <i class="fas fa-check text-orange-400 mt-0.5"></i>
+                             <span>Nạp đủ 60K, mỗi tuần sẽ tự gia hạn không cần thao tác gì thêm. Tổng 100gb/tháng, 25Gb/tuần.</span>
+                          </li>
+                      </ul>
+                      <div class="bg-black/30 p-2.5 rounded-lg flex items-center justify-between">
+                         <div class="text-[11px] text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">T15KN</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">191</b></div>
+                      </div>
+                  </div>
+
                   <div class="glass-button p-4 rounded-xl">
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
                           <span class="text-white font-bold text-sm uppercase block">TIKTOK 50K</span>
@@ -237,31 +262,6 @@
                       </ul>
                       <div class="bg-black/30 p-2.5 rounded-lg flex items-center justify-between">
                          <div class="text-[11px] text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">MXH100</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">191</b></div>
-                      </div>
-                  </div>
-
-                  <div class="relative overflow-hidden p-4 rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-transparent">
-                      <div class="absolute top-0 right-0 px-3 py-1 bg-orange-500 text-white text-[9px] font-bold tracking-widest rounded-bl-lg uppercase shadow-lg">Khuyên dùng</div>
-                      <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3 mt-1">
-                          <span class="text-white font-bold text-sm uppercase block">TIKTOK TUẦN</span>
-                          <span class="text-white font-black text-[10px] bg-white/10 px-2 py-1 rounded border border-white/5 uppercase tracking-widest mt-4 sm:mt-0">15.000đ/Tuần</span>
-                      </div>
-                      <ul class="space-y-2 mb-4">
-                          <li class="flex items-start gap-2 text-[11px] text-slate-300 leading-relaxed">
-                             <i class="fas fa-check text-orange-400 mt-0.5"></i>
-                             <span>Khuyên dùng, chênh 10K gói T50K, được tổng <b class="text-white">100Gb/tháng</b>.</span>
-                          </li>
-                          <li class="flex items-start gap-2 text-[11px] text-slate-300 leading-relaxed">
-                             <i class="fas fa-check text-orange-400 mt-0.5"></i>
-                             <span><b class="text-white">25GB</b> Data tốc độ cao, sử dụng trong 7 ngày.</span>
-                          </li>
-                          <li class="flex items-start gap-2 text-[11px] text-slate-300 leading-relaxed">
-                             <i class="fas fa-check text-orange-400 mt-0.5"></i>
-                             <span>Nạp đủ 60K, mỗi tuần sẽ tự gia hạn không cần thao tác gì thêm. Tổng 100gb/tháng, 25Gb/tuần.</span>
-                          </li>
-                      </ul>
-                      <div class="bg-black/30 p-2.5 rounded-lg flex items-center justify-between">
-                         <div class="text-[11px] text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">T15KN</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">191</b></div>
                       </div>
                   </div>
               </div>
