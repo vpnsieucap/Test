@@ -459,7 +459,7 @@
                   { text: `Bấm "Cho phép" để thêm cấu hình VPN vào iPhone.`, image: "https://i.ibb.co/jv5Jr8Dp/IMG-2022.png" }
               ];
           } 
-          else if (appId === 'happ') {
+          else (appId === 'happ') {
             if (os.value === 'ios') {
               return [
                 { text: `Mở ứng dụng Happ vừa cài đặt.`, image: "LINK_ANH_HAPP_1" },
@@ -467,7 +467,7 @@
                 { text: `Chờ danh sách máy chủ tải về xong, bật mạng 4G và bấm nút kết nối để sử dụng.`, image: "LINK_ANH_HAPP_3" }
               ];
           }
-          
+          else if (appId === 'Happ') {
           return [
             { text: `Mở ứng dụng Happ Androidd vừa cài đặt.`, image: "LINK_ANH_HAPP_1" },
             { text: `Đăng nhập vào website, tìm gói cước và bấm "Đồng bộ máy chủ" -> Chọn chuyển đến Happ.`, image: "LINK_ANH_HAPP_2" },
