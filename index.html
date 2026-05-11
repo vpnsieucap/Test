@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trình Cài Đặt VPN Siêu Cấp</title>
+  <title>Hướng Dẫn Sử Dụng</title>
   
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -435,10 +435,16 @@
 
           if (appId === 'v2ray') {
               return [
-                { text: `Mở app V2ray Tun vừa tải lên thiết bị.`, image: "LINK_ANH_BUOC_1" },
-                { text: `Đăng nhập website vpnsieucap.shop, bấm "Đồng bộ máy chủ" cho nền Tiktok.`, image: "LINK_ANH_BUOC_2" },
-                { text: `Vuốt màn hình điện thoại từ trên xuống để làm mới danh sách máy chủ.`, image: "LINK_ANH_BUOC_3" },
-                { text: `Chọn một server bất kỳ và nhấn biểu tượng Connect ở góc dưới để bắt đầu sử dụng mạng.`, image: "LINK_ANH_BUOC_4" }
+                { text: `Mở app ${appName} vừa tải lên thiết bị.` },
+                  { text: `Bấm cài đặt app`, image: "https://i.ibb.co/psSNRpJ/IMG-2031.png" },
+                  { text: `Bấm cài đặt lưu lượng`, image: "https://i.ibb.co/mF2bk9PH/IMG-2032.png" },
+                  { text: `Tắt "Bật Sniffing" và bật "Bật Local DNS"`, image: "https://i.ibb.co/DfCky1vr/IMG-2033.png" },
+                  { text: `Bật "Cho phép kết nối từ mạng LAN" và bật "Bỏ qua xác minh chứng chỉ"`, image: "https://i.ibb.co/chwST52K/IMG-2034.png" },
+                  { text: `Bấm "Nhập đăng ký" ở trang chủ web.`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
+                  { text: `Bấm "Sao chép địa chỉ liên kết"` },
+                  { text: `Mở App V2ray Tun -> Bấm dấu cộng phía trên góc phải` },
+                  { text: `Chọn "Nhập cấu hình từ Clipboard"`, image: "https://i.ibb.co/XHJWLQS/IMG-2035.png" },
+                  { text: `Chọn một trong các server và bật app lên để sử dụng` }
               ];
           } 
           else if (appId === 'shadowrocket') {
@@ -449,11 +455,12 @@
                   { text: `Bấm Proxy.`, image: "https://i.ibb.co/WSTp0Km/IMG-2019.png" },
                   { text: `Chọn một trong các server hiện ra.`, image: "https://i.ibb.co/PGTZjMFs/IMG-2023.png" },
                   { text: `Gạt công tắc góc trên bên phải để khởi động app.`, image: "https://i.ibb.co/nsN7v8T1/IMG-2020.png" },
-                  { text: `Bấm "OK" để cài đặt hồ sơ VPN (nếu thiết bị hỏi).`, image: "https://i.ibb.co/zhJHsYK3/IMG-2021.png" },
-                  { text: `Bấm "Cho phép" để xác nhận thêm cấu hình VPN vào iPhone.`, image: "https://i.ibb.co/jv5Jr8Dp/IMG-2022.png" }
+                  { text: `Bấm "OK" để cài đặt hồ sơ VPN (nếu hỏi).`, image: "https://i.ibb.co/zhJHsYK3/IMG-2021.png" },
+                  { text: `Bấm "Cho phép" để thêm cấu hình VPN vào iPhone.`, image: "https://i.ibb.co/jv5Jr8Dp/IMG-2022.png" }
               ];
           } 
           else if (appId === 'happ') {
+            if (os.value === 'ios') {
               return [
                 { text: `Mở ứng dụng Happ vừa cài đặt.`, image: "LINK_ANH_HAPP_1" },
                 { text: `Đăng nhập vào website, tìm gói cước và bấm "Đồng bộ máy chủ" -> Chọn chuyển đến Happ.`, image: "LINK_ANH_HAPP_2" },
@@ -461,7 +468,11 @@
               ];
           }
           
-          return [];
+          return [
+            { text: `Mở ứng dụng Happ Androidd vừa cài đặt.`, image: "LINK_ANH_HAPP_1" },
+            { text: `Đăng nhập vào website, tìm gói cước và bấm "Đồng bộ máy chủ" -> Chọn chuyển đến Happ.`, image: "LINK_ANH_HAPP_2" },
+            { text: `Chờ danh sách máy chủ tải về xong, bật mạng 4G và bấm nút kết nối để sử dụng.`, image: "LINK_ANH_HAPP_3" }
+          ];
         });
 
         return { step, networkTab, os, selectedApp, adminLink, devices, availableApps, currentTutorial, nextStep, prevStep, resetFlow };
