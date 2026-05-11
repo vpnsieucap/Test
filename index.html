@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hướng Dẫn Sử Dụng</title>
+  <title>Trình Cài Đặt VPN Siêu Cấp</title>
   
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -123,7 +123,7 @@
         </div>
 
         <div class="flex items-center justify-center lg:justify-start gap-2">
-          <template v-for="i in 7" :key="i">
+          <template v-for="i in 6" :key="i">
             <div class="h-1 rounded-full transition-all duration-700 ease-out" 
                  :class="step >= i ? 'w-8 bg-gradient-to-r from-orange-500 to-rose-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]' : 'w-2 bg-white/10'"></div>
           </template>
@@ -190,7 +190,7 @@
                <button @click="networkTab = 'mobifone'" class="flex-1 py-2.5 rounded-lg text-[11px] sm:text-xs font-bold transition-all tracking-widest uppercase" :class="networkTab === 'mobifone' ? 'bg-yellow-500 text-white shadow-md' : 'text-slate-400 hover:text-white'">Mobi</button>
             </div>
             
-            <div class="space-y-3 max-h-[320px] overflow-y-auto custom-scrollbar pr-2 animate-fade-in">
+            <div class="space-y-3 max-h-[350px] overflow-y-auto custom-scrollbar pr-2 animate-fade-in">
               <div v-if="networkTab === 'viettel'" class="grid grid-cols-1 gap-3">
                   <div class="glass-button p-4 rounded-xl">
                       <div class="flex justify-between items-start mb-1">
@@ -435,16 +435,16 @@
 
           if (appId === 'v2ray') {
               return [
-                { text: `Mở app ${appName} vừa tải lên thiết bị.` },
-                  { text: `Bấm cài đặt app`, image: "https://i.ibb.co/psSNRpJ/IMG-2031.png" },
-                  { text: `Bấm cài đặt lưu lượng`, image: "https://i.ibb.co/mF2bk9PH/IMG-2032.png" },
-                  { text: `Tắt "Bật Sniffing" và bật "Bật Local DNS"`, image: "https://i.ibb.co/DfCky1vr/IMG-2033.png" },
-                  { text: `Bật "Cho phép kết nối từ mạng LAN" và bật "Bỏ qua xác minh chứng chỉ"`, image: "https://i.ibb.co/chwST52K/IMG-2034.png" },
-                  { text: `Bấm "Nhập đăng ký" ở trang chủ web.`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
-                  { text: `Bấm "Sao chép địa chỉ liên kết"` },
-                  { text: `Mở App V2ray Tun -> Bấm dấu cộng phía trên góc phải` },
-                  { text: `Chọn "Nhập cấu hình từ Clipboard"`, image: "https://i.ibb.co/XHJWLQS/IMG-2035.png" },
-                  { text: `Chọn một trong các server và bật app lên để sử dụng` }
+                { text: `Mở app V2ray Tun vừa tải lên thiết bị.` },
+                { text: `Bấm cài đặt app`, image: "https://i.ibb.co/psSNRpJ/IMG-2031.png" },
+                { text: `Bấm cài đặt lưu lượng`, image: "https://i.ibb.co/mF2bk9PH/IMG-2032.png" },
+                { text: `Tắt "Bật Sniffing" và bật "Bật Local DNS"`, image: "https://i.ibb.co/DfCky1vr/IMG-2033.png" },
+                { text: `Bật "Cho phép kết nối từ mạng LAN" và bật "Bỏ qua xác minh chứng chỉ"`, image: "https://i.ibb.co/chwST52K/IMG-2034.png" },
+                { text: `Bấm "Nhập đăng ký" ở trang chủ web.`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
+                { text: `Bấm "Sao chép địa chỉ liên kết"` },
+                { text: `Mở App V2ray Tun -> Bấm dấu cộng phía trên góc phải` },
+                { text: `Chọn "Nhập cấu hình từ Clipboard"`, image: "https://i.ibb.co/XHJWLQS/IMG-2035.png" },
+                { text: `Chọn một trong các server và bật app lên để sử dụng` }
               ];
           } 
           else if (appId === 'shadowrocket') {
@@ -455,24 +455,27 @@
                   { text: `Bấm Proxy.`, image: "https://i.ibb.co/WSTp0Km/IMG-2019.png" },
                   { text: `Chọn một trong các server hiện ra.`, image: "https://i.ibb.co/PGTZjMFs/IMG-2023.png" },
                   { text: `Gạt công tắc góc trên bên phải để khởi động app.`, image: "https://i.ibb.co/nsN7v8T1/IMG-2020.png" },
-                  { text: `Bấm "OK" để cài đặt hồ sơ VPN (nếu hỏi).`, image: "https://i.ibb.co/zhJHsYK3/IMG-2021.png" },
-                  { text: `Bấm "Cho phép" để thêm cấu hình VPN vào iPhone.`, image: "https://i.ibb.co/jv5Jr8Dp/IMG-2022.png" }
+                  { text: `Bấm "OK" để cài đặt hồ sơ VPN (nếu thiết bị hỏi).`, image: "https://i.ibb.co/zhJHsYK3/IMG-2021.png" },
+                  { text: `Bấm "Cho phép" để xác nhận thêm cấu hình VPN vào iPhone.`, image: "https://i.ibb.co/jv5Jr8Dp/IMG-2022.png" }
               ];
           } 
-          else (appId === 'happ') {
-            if (os.value === 'ios') {
-              return [
-                { text: `Mở ứng dụng Happ vừa cài đặt.`, image: "LINK_ANH_HAPP_1" },
-                { text: `Đăng nhập vào website, tìm gói cước và bấm "Đồng bộ máy chủ" -> Chọn chuyển đến Happ.`, image: "LINK_ANH_HAPP_2" },
-                { text: `Chờ danh sách máy chủ tải về xong, bật mạng 4G và bấm nút kết nối để sử dụng.`, image: "LINK_ANH_HAPP_3" }
-              ];
+          else if (appId === 'happ') {
+              if (os.value === 'ios') {
+                  return [
+                    { text: `Mở ứng dụng Happ trên iPhone của bạn.`, image: "LINK_ANH_HAPP_IOS_1" },
+                    { text: `Đăng nhập vào website, tìm gói cước và bấm "Đồng bộ máy chủ" -> Chọn chuyển đến Happ.`, image: "LINK_ANH_HAPP_IOS_2" },
+                    { text: `Chờ danh sách máy chủ tải về xong, bật mạng 4G và bấm nút kết nối để sử dụng.`, image: "LINK_ANH_HAPP_IOS_3" }
+                  ];
+              } else {
+                  return [
+                    { text: `Mở ứng dụng Happ trên điện thoại Android của bạn.`, image: "LINK_ANH_HAPP_ADR_1" },
+                    { text: `Đăng nhập vào website, tìm gói cước và bấm "Đồng bộ máy chủ" -> Chọn chuyển đến Happ.`, image: "LINK_ANH_HAPP_ADR_2" },
+                    { text: `Chờ danh sách máy chủ tải về xong, bật mạng 4G và bấm nút kết nối để sử dụng.`, image: "LINK_ANH_HAPP_ADR_3" }
+                  ];
+              }
           }
-          else if (appId === 'Happ') {
-          return [
-            { text: `Mở ứng dụng Happ Androidd vừa cài đặt.`, image: "LINK_ANH_HAPP_1" },
-            { text: `Đăng nhập vào website, tìm gói cước và bấm "Đồng bộ máy chủ" -> Chọn chuyển đến Happ.`, image: "LINK_ANH_HAPP_2" },
-            { text: `Chờ danh sách máy chủ tải về xong, bật mạng 4G và bấm nút kết nối để sử dụng.`, image: "LINK_ANH_HAPP_3" }
-          ];
+          
+          return [];
         });
 
         return { step, networkTab, os, selectedApp, adminLink, devices, availableApps, currentTutorial, nextStep, prevStep, resetFlow };
