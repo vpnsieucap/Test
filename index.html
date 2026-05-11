@@ -179,7 +179,7 @@
                 <i class="fas fa-sim-card text-lg"></i>
               </div>
               <div>
-                <h3 class="text-xl font-bold text-white">Đăng ký nền</h3>
+                <h3 class="text-xl font-bold text-white">Đăng ký nền Tiktok</h3>
                 <p class="text-slate-400 text-xs mt-0.5">Bắt buộc để sử dụng dịch vụ VPN</p>
               </div>
             </div>
@@ -190,20 +190,8 @@
                <button @click="networkTab = 'mobifone'" class="flex-1 py-2.5 rounded-lg text-[11px] sm:text-xs font-bold transition-all tracking-widest uppercase" :class="networkTab === 'mobifone' ? 'bg-yellow-500 text-white shadow-md' : 'text-slate-400 hover:text-white'">Mobi</button>
             </div>
             
-            <div class="space-y-3 max-h-[350px] overflow-y-auto custom-scrollbar pr-2 animate-fade-in">
+            <div class="space-y-3 max-h-[320px] overflow-y-auto custom-scrollbar pr-2 animate-fade-in">
               <div v-if="networkTab === 'viettel'" class="grid grid-cols-1 gap-3">
-                  <div class="relative overflow-hidden p-4 rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-500/10 to-transparent">
-                      <div class="absolute top-0 right-0 px-3 py-1 bg-orange-500 text-white text-[9px] font-bold tracking-widest rounded-bl-lg uppercase">Tiết Kiệm</div>
-                      <div class="flex flex-col mb-3">
-                          <span class="text-white font-bold text-base mb-1 uppercase">NỀN TV360</span>
-                          <span class="text-orange-400 font-black text-xl uppercase">Không giới hạn</span>
-                      </div>
-                      <div class="bg-black/50 p-3 rounded-lg border border-white/5 flex items-center justify-between">
-                         <div class="text-xs text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">5GSPORT</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">191</b></div>
-                         <span class="text-slate-400 font-medium text-xs">15k/tháng</span>
-                      </div>
-                  </div>
-
                   <div class="glass-button p-4 rounded-xl">
                       <div class="flex justify-between items-start mb-1">
                           <div>
@@ -222,7 +210,7 @@
                   </div>
 
                   <div class="relative overflow-hidden p-4 rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-transparent">
-                      <div class="absolute top-0 right-0 px-3 py-1 bg-orange-500 text-white text-[9px] font-bold tracking-widest rounded-bl-lg uppercase shadow-lg">Ổn định</div>
+                      <div class="absolute top-0 right-0 px-3 py-1 bg-orange-500 text-white text-[9px] font-bold tracking-widest rounded-bl-lg uppercase shadow-lg">Khuyên dùng</div>
                       <div class="flex justify-between items-start mb-1 mt-1">
                           <div class="pr-16">
                             <span class="text-white font-bold text-sm uppercase block">TIKTOK TUẦN</span>
@@ -297,18 +285,6 @@
           </div>
 
           <div v-else-if="step === 4" key="step4" class="glass-card p-5 sm:p-8 animate-slide-up">
-            <h3 class="text-xl font-bold mb-6 text-white text-center sm:text-left">Nền máy chủ</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <button v-for="p in platforms" @click="platform = p.id; nextStep()" class="p-5 rounded-xl border text-left transition-all duration-300 group" 
-                :class="platform === p.id ? 'border-orange-500 bg-orange-500/10 ring-1 ring-orange-500 shadow-[0_0_15px_rgba(249,115,22,0.15)]' : 'glass-button hover:border-white/30'">
-                <i :class="p.icon" class="text-2xl mb-3 block transition-transform group-hover:scale-110" :class="platform === p.id ? 'text-orange-500' : 'text-slate-400'"></i>
-                <div class="font-bold text-white text-base mb-1 uppercase">{{ p.name }}</div>
-                <p class="text-[11px] text-slate-400 leading-relaxed">{{ p.desc }}</p>
-              </button>
-            </div>
-          </div>
-
-          <div v-else-if="step === 5" key="step5" class="glass-card p-5 sm:p-8 animate-slide-up">
             <h3 class="text-xl font-bold mb-6 text-white text-center sm:text-left">Thiết bị sử dụng</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <button v-for="d in devices" @click="os = d.id; nextStep()" class="p-5 rounded-xl border text-left transition-all duration-300 group"
@@ -321,22 +297,37 @@
             </div>
           </div>
 
+          <div v-else-if="step === 5" key="step5" class="glass-card p-5 sm:p-8 animate-slide-up">
+            <h3 class="text-xl font-bold mb-6 text-white text-center sm:text-left">Chọn Ứng Dụng VPN</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button v-for="app in availableApps" :key="app.id" @click="selectedApp = app; nextStep()" class="p-5 rounded-xl border text-left transition-all duration-300 group glass-button hover:border-white/30">
+                <div class="flex items-center gap-4 mb-3">
+                  <div class="w-10 h-10 rounded-lg bg-orange-500/20 text-orange-500 flex items-center justify-center border border-orange-500/30">
+                    <i :class="app.icon" class="text-lg"></i>
+                  </div>
+                  <div class="font-bold text-white text-lg">{{ app.name }}</div>
+                </div>
+                <p class="text-[11px] text-slate-400 leading-relaxed normal-case tracking-normal">{{ app.desc }}</p>
+              </button>
+            </div>
+          </div>
+
           <div v-else-if="step === 6" key="step6" class="glass-card p-6 sm:p-10 animate-slide-up border-t-4 border-t-orange-500">
-               <div v-if="activeApp" class="flex flex-col items-center sm:items-start text-center sm:text-left">
-                  <div class="inline-flex px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 text-[9px] font-bold tracking-[0.2em] uppercase mb-5 border border-orange-500/20">Ứng dụng đề xuất</div>
+               <div v-if="selectedApp" class="flex flex-col items-center sm:items-start text-center sm:text-left">
+                  <div class="inline-flex px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 text-[9px] font-bold tracking-[0.2em] uppercase mb-5 border border-orange-500/20">Thông tin ứng dụng</div>
                   
                   <div class="flex flex-col sm:flex-row items-center gap-5 mb-8 w-full">
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center shadow-lg shrink-0">
                       <i class="fas fa-cloud-download-alt text-2xl text-white"></i>
                     </div>
                     <div>
-                      <h4 class="text-2xl sm:text-3xl font-black text-white mb-1 tracking-tight uppercase">{{ activeApp.name }}</h4>
-                      <p class="text-slate-400 text-xs leading-relaxed">{{ activeApp.desc }}</p>
+                      <h4 class="text-2xl sm:text-3xl font-black text-white mb-1 tracking-tight uppercase">{{ selectedApp.name }}</h4>
+                      <p class="text-slate-400 text-xs leading-relaxed normal-case tracking-normal">{{ selectedApp.desc }}</p>
                     </div>
                   </div>
                   
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
-                    <a :href="activeApp.link" target="_blank" class="btn-gradient py-3 text-center text-xs tracking-[0.1em] uppercase flex items-center justify-center gap-2">
+                    <a :href="selectedApp.link" target="_blank" class="btn-gradient py-3 text-center text-xs tracking-[0.1em] uppercase flex items-center justify-center gap-2">
                       <i class="fab fa-app-store-ios text-base" v-if="os==='ios'"></i>
                       <i class="fab fa-google-play text-base" v-if="os==='android'"></i>
                       Tải App Ngay
@@ -352,7 +343,7 @@
                 <h3 class="font-bold text-white text-base tracking-tight uppercase">Hướng Dẫn Thiết Lập</h3>
                 <div class="flex items-center gap-1.5 mt-1">
                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                   <p class="text-[9px] text-slate-400 font-semibold uppercase tracking-widest">{{ platform }} &bull; {{ os }}</p>
+                   <p class="text-[9px] text-slate-400 font-semibold uppercase tracking-widest">{{ os }} &bull; {{ selectedApp?.name }}</p>
                 </div>
               </div>
               <button @click="resetFlow" class="w-8 h-8 rounded-lg glass-button flex items-center justify-center hover:text-white transition-all text-slate-400">
@@ -368,7 +359,7 @@
                     {{ index + 1 }}
                   </div>
                   
-                  <p class="text-slate-100 font-medium leading-relaxed pt-0.5 text-sm mb-3">{{ item.text }}</p>
+                  <p class="text-slate-100 font-medium leading-relaxed pt-0.5 text-sm mb-3 normal-case tracking-normal">{{ item.text }}</p>
                   
                   <div v-if="item.image" class="relative group inline-block w-full max-w-[220px] sm:max-w-[260px]">
                      <div class="absolute -inset-1 bg-gradient-to-r from-orange-500 to-rose-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
@@ -385,7 +376,7 @@
                     <i class="fas fa-check text-xl"></i>
                   </div>
                   <h4 class="text-lg font-bold text-white mb-2 tracking-tight uppercase">Hoàn tất cài đặt!</h4>
-                  <p class="text-slate-400 text-xs max-w-[250px] mx-auto leading-relaxed">Đảm bảo bạn đã bật 4G trước khi nhấn nút Kết nối trong ứng dụng nhé.</p>
+                  <p class="text-slate-400 text-xs max-w-[250px] mx-auto leading-relaxed normal-case tracking-normal">Đảm bảo bạn đã bật 4G trước khi nhấn nút Kết nối trong ứng dụng nhé.</p>
                   <button @click="resetFlow" class="mt-6 px-8 py-2.5 bg-white text-black font-bold rounded-lg text-[10px] uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-white/10">Trang chủ</button>
               </div>
             </div>
@@ -406,92 +397,74 @@
     createApp({
       setup() {
         const step = ref(1);
-        const platform = ref(null);
         const os = ref(null);
+        const selectedApp = ref(null);
         const networkTab = ref('viettel');
         const adminLink = ref("https://vpnsieucap.shop");
 
         const nextStep = () => { step.value++; };
         const prevStep = () => { if (step.value > 1) step.value--; };
-        const resetFlow = () => { step.value = 1; platform.value = null; os.value = null; };
-
-        const platforms = [
-          { id: 'tv360', name: 'NỀN TV360 (VIP)', desc: 'Gói siêu tốc không giới hạn dung lượng', icon: 'fas fa-tv' },
-          { id: 'tiktok', name: 'NỀN TIKTOK', desc: 'Sử dụng data nền Tiktok tốc độ cao', icon: 'fab fa-tiktok' }
-        ];
+        const resetFlow = () => { step.value = 1; os.value = null; selectedApp.value = null; };
 
         const devices = [
           { id: 'android', name: 'ANDROID', icon: 'fab fa-android' },
           { id: 'ios', name: 'IPHONE (IOS)', icon: 'fab fa-apple' }
         ];
 
-        const activeApp = computed(() => {
-          if (!os.value || !platform.value) return null;
-          if (platform.value === 'tv360') {
-            return {
-              name: 'Platform Next',
-              desc: 'Tối ưu tuyệt đối cho TV360 Viettel. Kết nối 1 chạm không cần cấu hình phức tạp.',
-              link: os.value === 'android' ? 'https://play.google.com/store/apps/details?id=dev.platformnext.vpn' : 'https://apps.apple.com/vn/app/platform-next-unlimited-vpn/id6741474000'
-            };
-          } else {
-            if (os.value === 'android') {
-              return { name: 'V2ray Tun', desc: 'Ứng dụng VPN mạnh mẽ, kết nối đa giao thức mượt mà trên Android.', link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=vi' };
-            } else {
-              return { name: 'Shadowrocket', desc: 'Dễ dùng, ổn định và bảo mật cao nhất trên nền tảng iOS (Phí 2.99$).', link: 'https://apps.apple.com/us/app/shadowrocket/id932747118' };
-            }
+        const availableApps = computed(() => {
+          if (os.value === 'android') {
+            return [
+              { id: 'v2ray', name: 'V2ray Tun', desc: 'Ứng dụng VPN đa giao thức, hoạt động ổn định và mượt mà trên hệ điều hành Android.', link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=vi', icon: 'fas fa-rocket' },
+              { id: 'happ', name: 'Happ', desc: 'Ứng dụng VPN mới với khả năng kết nối siêu tốc và giao diện cực kỳ dễ sử dụng.', link: 'https://play.google.com/store/search?q=happ+vpn', icon: 'fas fa-bolt' }
+            ];
+          } else if (os.value === 'ios') {
+            return [
+              { id: 'shadowrocket', name: 'Shadowrocket', desc: 'App VPN quốc dân, ổn định và bảo mật cao nhất dành cho iPhone (Phí tải 2.99$).', link: 'https://apps.apple.com/us/app/shadowrocket/id932747118', icon: 'fas fa-paper-plane' },
+              { id: 'happ', name: 'Happ', desc: 'Ứng dụng VPN mới với khả năng kết nối siêu tốc và giao diện cực kỳ dễ sử dụng.', link: 'https://apps.apple.com/us/search?term=happ+vpn', icon: 'fas fa-bolt' }
+            ];
           }
+          return [];
         });
 
+        // ==============================================================
+        // LOGIC CHIA BƯỚC HƯỚNG DẪN DỰA VÀO APP
+        // ==============================================================
         const currentTutorial = computed(() => {
-          const appName = activeApp.value?.name || 'App';
-          
-          if (platform.value === 'tv360') {
-            if (os.value === 'ios') {
-                return [
-                  { text: `Mở app Platform Next.` },
-                  { text: `Bấm 'Cho phép' Platform Next thêm cấu hình VPN.`, image: "https://i.ibb.co/Y4rq7nKw/IMG-1995.png" },
-                  { text: `Bấm 'Bắt đầu' -> bấm 'Tiếp tục'.`, image: "https://i.ibb.co/3YL895DT/IMG-1996.png" },
-                  { text: `Bấm 'Cài đặt' ở góc dưới -> Chọn 'Chọn Cách Bạn Muốn Dùng VPN'.`, image: "https://i.ibb.co/gbqFqY56/10789032-C035-498-B-8639-EFA47687-F772.png" },
-                  { text: `Bật công tắc ở mục 'Bạn Có Mã Mời?'.`, image: "https://i.ibb.co/cc1XtxfQ/IMG-2001.png" },
-                  { text: `Nhập mã mời là "vpn" -> bấm 'Tiếp tục'.`, image: "https://i.ibb.co/VYV5YjfM/IMG-2002.png" },
-                  { text: `Dùng tài khoản web đã mua gói để Đăng nhập.`, image: "https://i.ibb.co/bjS85rrj/IMG-2003.png" },
-                  { text: `Bấm 'Tự động chọn' để chọn máy chủ sử dụng.`, image: "https://i.ibb.co/MyC6xFjM/IMG-2004.png" },
-                  { text: `Bấm vào nút Nguồn tròn to ở giữa màn hình để bật app.`, image: "https://i.ibb.co/whnQjCQg/IMG-2005.png" }
-                ];
-            } else {
-                return [
-                  { text: `Mở app Platform Next.` },
-                  { text: `Bấm 'Bắt đầu' -> Bật công tắc ở mục 'Bạn có Mã Mời?'.`, image: "https://i.ibb.co/m569hpGV/EEFF28-AE-BEDF-403-B-8-F22-22-E9593-C13-C2.png" },
-                  { text: `Nhập mã mời là "vpn" rồi bấm tiếp tục.`, image: "https://i.ibb.co/VYV5YjfM/IMG-2002.png" },
-                  { text: `Dùng tài khoản web đã mua gói để Đăng nhập.`, image: "https://i.ibb.co/bjS85rrj/IMG-2003.png" },
-                  { text: `Bấm 'Tự động chọn' để chọn máy chủ sử dụng.`, image: "https://i.ibb.co/MyC6xFjM/IMG-2004.png" },
-                  { text: `Bấm vào nút Nguồn tròn to ở giữa màn hình để khởi động app.`, image: "https://i.ibb.co/whnQjCQg/IMG-2005.png" }
-                ];
-            }
-          } else {
-            if (os.value === 'android') {
-                return [
-                  { text: `Mở app ${appName} vừa tải lên thiết bị.`, image: "LINK_ANH_BUOC_1" },
-                  { text: `Đăng nhập website, bấm "Đồng bộ máy chủ" cho nền Tiktok.`, image: "LINK_ANH_BUOC_2" },
-                  { text: `Vuốt màn hình từ trên xuống để làm mới danh sách máy chủ.`, image: "LINK_ANH_BUOC_3" },
-                  { text: `Chọn server và nhấn biểu tượng Connect ở góc dưới để bắt đầu.`, image: "LINK_ANH_BUOC_4" }
-                ];
-            } else {
-                return [
+          if (!selectedApp.value) return [];
+          const appId = selectedApp.value.id;
+
+          if (appId === 'v2ray') {
+              return [
+                { text: `Mở app V2ray Tun vừa tải lên thiết bị.`, image: "LINK_ANH_BUOC_1" },
+                { text: `Đăng nhập website vpnsieucap.shop, bấm "Đồng bộ máy chủ" cho nền Tiktok.`, image: "LINK_ANH_BUOC_2" },
+                { text: `Vuốt màn hình điện thoại từ trên xuống để làm mới danh sách máy chủ.`, image: "LINK_ANH_BUOC_3" },
+                { text: `Chọn một server bất kỳ và nhấn biểu tượng Connect ở góc dưới để bắt đầu sử dụng mạng.`, image: "LINK_ANH_BUOC_4" }
+              ];
+          } 
+          else if (appId === 'shadowrocket') {
+              return [
                   { text: `Bấm "Nhập đăng ký" ở trang chủ web.`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
                   { text: `Chọn App Shadowrocket.`, image: "https://i.ibb.co/wbkNh9t/IMG-2017.png" },
                   { text: `Bấm Kiểu kết nối.`, image: "https://i.ibb.co/nstGgqzn/IMG-2018.png" },
                   { text: `Bấm Proxy.`, image: "https://i.ibb.co/WSTp0Km/IMG-2019.png" },
                   { text: `Chọn một trong các server hiện ra.`, image: "https://i.ibb.co/PGTZjMFs/IMG-2023.png" },
                   { text: `Gạt công tắc góc trên bên phải để khởi động app.`, image: "https://i.ibb.co/nsN7v8T1/IMG-2020.png" },
-                  { text: `Bấm "OK" để cài đặt hồ sơ VPN (nếu hỏi).`, image: "https://i.ibb.co/zhJHsYK3/IMG-2021.png" },
-                  { text: `Bấm "Cho phép" để thêm cấu hình VPN vào iPhone.`, image: "https://i.ibb.co/jv5Jr8Dp/IMG-2022.png" }
-                ];
-            }
+                  { text: `Bấm "OK" để cài đặt hồ sơ VPN (nếu thiết bị hỏi).`, image: "https://i.ibb.co/zhJHsYK3/IMG-2021.png" },
+                  { text: `Bấm "Cho phép" để xác nhận thêm cấu hình VPN vào iPhone.`, image: "https://i.ibb.co/jv5Jr8Dp/IMG-2022.png" }
+              ];
+          } 
+          else if (appId === 'happ') {
+              return [
+                { text: `Mở ứng dụng Happ vừa cài đặt.`, image: "LINK_ANH_HAPP_1" },
+                { text: `Đăng nhập vào website, tìm gói cước và bấm "Đồng bộ máy chủ" -> Chọn chuyển đến Happ.`, image: "LINK_ANH_HAPP_2" },
+                { text: `Chờ danh sách máy chủ tải về xong, bật mạng 4G và bấm nút kết nối để sử dụng.`, image: "LINK_ANH_HAPP_3" }
+              ];
           }
+          
+          return [];
         });
 
-        return { step, networkTab, platform, os, adminLink, platforms, devices, activeApp, currentTutorial, nextStep, prevStep, resetFlow };
+        return { step, networkTab, os, selectedApp, adminLink, devices, availableApps, currentTutorial, nextStep, prevStep, resetFlow };
       }
     }).mount('#app');
   </script>
