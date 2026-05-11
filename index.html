@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hướng Dẫn Sử Dụng</title>
+  <title>Hướng Dẫn Sử Dụng - VSC</title>
   
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -179,8 +179,8 @@
                 <i class="fas fa-sim-card text-lg"></i>
               </div>
               <div>
-                <h3 class="text-xl font-bold text-white">Đăng ký nền Tiktok</h3>
-                <p class="text-slate-400 text-xs mt-0.5">Bắt buộc để sử dụng dịch vụ VPN</p>
+                <h3 class="text-xl font-bold text-white uppercase tracking-tight">Đăng ký nền</h3>
+                <p class="text-slate-400 text-xs mt-0.5">Yêu cầu bắt buộc để sử dụng VPN</p>
               </div>
             </div>
             
@@ -190,90 +190,139 @@
                <button @click="networkTab = 'mobifone'" class="flex-1 py-2.5 rounded-lg text-[11px] sm:text-xs font-bold transition-all tracking-widest uppercase" :class="networkTab === 'mobifone' ? 'bg-yellow-500 text-white shadow-md' : 'text-slate-400 hover:text-white'">Mobi</button>
             </div>
             
-            <div class="space-y-3 max-h-[350px] overflow-y-auto custom-scrollbar pr-2 animate-fade-in">
-              <div v-if="networkTab === 'viettel'" class="grid grid-cols-1 gap-3">
-                  <div class="glass-button p-4 rounded-xl">
-                      <div class="flex justify-between items-start mb-1">
-                          <div>
-                            <span class="text-white font-bold text-sm uppercase block">TIKTOK 50K</span>
-                            <span class="text-slate-400 text-[10px] italic mt-0.5 block normal-case tracking-normal">Gói nền rẻ nhất, tối ưu ngân sách</span>
-                          </div>
-                          <span class="text-white font-black text-sm bg-white/10 px-2 py-0.5 rounded border border-white/5 uppercase">50GB</span>
+            <div class="space-y-4 max-h-[380px] overflow-y-auto custom-scrollbar pr-2 animate-fade-in">
+              <div v-if="networkTab === 'viettel'" class="grid grid-cols-1 gap-4">
+                  <div class="relative overflow-hidden p-5 rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-500/10 to-transparent">
+                      <div class="absolute top-0 right-0 px-3 py-1 bg-orange-500 text-white text-[9px] font-bold tracking-widest rounded-bl-lg uppercase">Ổn định nhất</div>
+                      <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
+                          <span class="text-white font-bold text-base uppercase">NỀN TV360 (VIP)</span>
+                          <span class="text-orange-400 font-black text-sm bg-orange-400/10 px-2 py-0.5 rounded border border-orange-500/20 uppercase">Không giới hạn</span>
                       </div>
-                      <div class="text-[11px] text-slate-300 mb-3 leading-relaxed opacity-80 normal-case tracking-normal">
-                         Gói này gia hạn theo tháng, nạp đủ 50K tự gia hạn.
-                      </div>
-                      <div class="bg-black/30 p-2.5 rounded-lg flex items-center justify-between">
-                         <div class="text-xs text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">T50K</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">191</b></div>
-                         <span class="text-slate-400 font-medium text-xs">50k/tháng</span>
-                      </div>
-                  </div>
-
-                  <div class="relative overflow-hidden p-4 rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-transparent">
-                      <div class="absolute top-0 right-0 px-3 py-1 bg-orange-500 text-white text-[9px] font-bold tracking-widest rounded-bl-lg uppercase shadow-lg">Khuyên dùng</div>
-                      <div class="flex justify-between items-start mb-1 mt-1">
-                          <div class="pr-16">
-                            <span class="text-white font-bold text-sm uppercase block">TIKTOK TUẦN</span>
-                            <span class="text-orange-300/80 text-[10px] italic mt-0.5 block normal-case tracking-normal">Chênh 10K gói T50K, được tổng 100Gb/tháng</span>
-                          </div>
-                          <span class="text-white font-black text-sm bg-white/10 px-2 py-0.5 rounded border border-white/5 uppercase">25GB</span>
-                      </div>
-                      <div class="text-[11px] text-slate-300 mb-3 leading-relaxed opacity-80 normal-case tracking-normal">
-                         Sử dụng trong 7 ngày. Nạp đủ 60K, mỗi tuần sẽ tự gia hạn không cần thao tác gì thêm. Tổng 100Gb/tháng, 25Gb/tuần.
-                      </div>
-                      <div class="bg-black/30 p-2.5 rounded-lg flex items-center justify-between">
-                         <div class="text-xs text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">T15KN</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">191</b></div>
-                         <span class="text-slate-400 font-medium text-xs">15k/tuần</span>
-                      </div>
-                  </div>
-              </div>
-
-              <div v-if="networkTab === 'vinaphone'" class="grid grid-cols-1 gap-3">
-                  <div class="relative overflow-hidden p-4 rounded-xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 to-transparent">
-                      <div class="flex flex-col mb-2">
-                          <span class="text-white font-bold text-sm mb-0.5 uppercase">NỀN TIKTOK THÁNG</span>
-                          <span class="text-slate-300/80 text-[10px] italic block normal-case tracking-normal">Gói cước tối ưu, giá rẻ. Truy cập không giới hạn, tốc độ ổn định.</span>
-                      </div>
-                      <div class="flex items-center gap-2 mb-3">
-                        <span class="text-blue-400 font-black text-lg uppercase tracking-tight">KHÔNG GIỚI HẠN</span>
-                      </div>
-                      <div class="text-[11px] text-slate-300 mb-3 leading-relaxed normal-case tracking-normal">
-                          <span class="text-yellow-400 font-semibold"><i class="fas fa-exclamation-triangle"></i> Lưu ý:</span> Để sim 0đ hoặc mua data tránh trừ tiền khi dùng.
-                      </div>
+                      <ul class="space-y-2 mb-4">
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300">
+                             <i class="fas fa-clock text-orange-400 mt-0.5"></i>
+                             <span>Hạn sử dụng: <b class="text-white">30 ngày</b></span>
+                          </li>
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300">
+                             <i class="fas fa-coins text-orange-400 mt-0.5"></i>
+                             <span>Cước phí: <b class="text-white">15.000đ</b></span>
+                          </li>
+                      </ul>
                       <div class="bg-black/50 p-2.5 rounded-lg border border-white/5 flex items-center justify-between">
-                         <div class="text-xs text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">TK30</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">888</b></div>
-                         <span class="text-slate-400 font-medium text-xs">30k/tháng</span>
+                         <div class="text-[11px] text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">5GSPORT</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">191</b></div>
+                      </div>
+                  </div>
+
+                  <div class="glass-button p-5 rounded-xl">
+                      <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
+                          <span class="text-white font-bold text-sm uppercase block">TIKTOK 50K</span>
+                          <span class="text-white font-black text-xs bg-white/10 px-2 py-0.5 rounded border border-white/5 uppercase">50GB / Tháng</span>
+                      </div>
+                      <ul class="space-y-2 mb-4">
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300">
+                             <i class="fas fa-star text-orange-400 mt-0.5"></i>
+                             <span>Gói nền rẻ nhất, tối ưu ngân sách.</span>
+                          </li>
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300">
+                             <i class="fas fa-sync-alt text-orange-400 mt-0.5"></i>
+                             <span>Tự động gia hạn khi có đủ <b class="text-white">50.000đ</b> trong tài khoản.</span>
+                          </li>
+                      </ul>
+                      <div class="bg-black/30 p-2.5 rounded-lg flex items-center justify-between">
+                         <div class="text-[11px] text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">T50K</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">191</b></div>
+                      </div>
+                  </div>
+
+                  <div class="relative overflow-hidden p-5 rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-transparent">
+                      <div class="absolute top-0 right-0 px-3 py-1 bg-orange-500 text-white text-[9px] font-bold tracking-widest rounded-bl-lg uppercase shadow-lg">Khuyên dùng</div>
+                      <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
+                          <span class="text-white font-bold text-sm uppercase block">TIKTOK TUẦN</span>
+                          <span class="text-white font-black text-xs bg-white/10 px-2 py-0.5 rounded border border-white/5 uppercase mt-3">25GB / Tuần</span>
+                      </div>
+                      <ul class="space-y-2 mb-4">
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300">
+                             <i class="fas fa-chart-line text-orange-400 mt-0.5"></i>
+                             <span>Chênh 10K so với gói T50K, nhưng được <b class="text-white">tổng 100GB/tháng</b>.</span>
+                          </li>
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300">
+                             <i class="fas fa-sync-alt text-orange-400 mt-0.5"></i>
+                             <span>Sử dụng 7 ngày. Nạp đủ <b class="text-white">60K/tháng</b>, hệ thống tự động gia hạn hàng tuần không cần thao tác thêm.</span>
+                          </li>
+                      </ul>
+                      <div class="bg-black/30 p-2.5 rounded-lg flex items-center justify-between">
+                         <div class="text-[11px] text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">T15KN</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">191</b></div>
                       </div>
                   </div>
               </div>
 
-              <div v-if="networkTab === 'mobifone'" class="grid grid-cols-1 gap-3">
-                  <div class="glass-button p-4 rounded-xl border-l-4 border-l-yellow-500">
-                      <div class="flex justify-between items-start mb-2">
-                          <div>
-                            <span class="text-white font-bold text-sm uppercase block">GÓI DK TIK30</span>
-                            <span class="text-slate-300/80 text-[10px] italic mt-0.5 block normal-case tracking-normal">Phù hợp nhu cầu cơ bản, tối ưu ngân sách</span>
-                          </div>
+              <div v-if="networkTab === 'vinaphone'" class="grid grid-cols-1 gap-4">
+                  <div class="relative overflow-hidden p-5 rounded-xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 to-transparent">
+                      <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
+                          <span class="text-white font-bold text-sm uppercase block">NỀN TIKTOK THÁNG</span>
+                          <span class="text-blue-400 font-black text-sm uppercase">KHÔNG GIỚI HẠN</span>
+                      </div>
+                      <ul class="space-y-2 mb-4">
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300">
+                             <i class="fas fa-rocket text-blue-400 mt-0.5"></i>
+                             <span>Gói cước tối ưu, giá rẻ. Truy cập không giới hạn, tốc độ ổn định.</span>
+                          </li>
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300">
+                             <i class="fas fa-coins text-blue-400 mt-0.5"></i>
+                             <span>Cước phí: <b class="text-white">30.000đ/tháng</b>.</span>
+                          </li>
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300 bg-yellow-500/10 p-2 rounded border border-yellow-500/20">
+                             <i class="fas fa-exclamation-triangle text-yellow-500 mt-0.5"></i>
+                             <span><b class="text-yellow-500">Lưu ý:</b> Để sim 0đ hoặc mua data nền tránh trừ tiền khi dùng.</span>
+                          </li>
+                      </ul>
+                      <div class="bg-black/50 p-2.5 rounded-lg border border-white/5 flex items-center justify-between">
+                         <div class="text-[11px] text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">TK30</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">888</b></div>
+                      </div>
+                  </div>
+              </div>
+
+              <div v-if="networkTab === 'mobifone'" class="grid grid-cols-1 gap-4">
+                  <div class="glass-button p-5 rounded-xl border-l-4 border-l-yellow-500">
+                      <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
+                          <span class="text-white font-bold text-sm uppercase block">GÓI DK TIK30</span>
                           <span class="text-yellow-500 font-black text-sm uppercase">50GB</span>
                       </div>
-                      <div class="text-[11px] text-slate-300 mb-3 leading-relaxed normal-case tracking-normal">
-                          Hạn sử dụng 30 ngày. Có gia hạn được.<br>
-                          <span class="text-yellow-400 font-semibold mt-1 inline-block"><i class="fas fa-exclamation-triangle"></i> Lưu ý:</span> Để sim 0đ tránh trừ tiền trong tài khoản gốc.
-                      </div>
+                      <ul class="space-y-2 mb-4">
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300">
+                             <i class="fas fa-bullseye text-yellow-500 mt-0.5"></i>
+                             <span>Phù hợp nhu cầu cơ bản, tối ưu ngân sách (<b class="text-white">50.000đ/tháng</b>).</span>
+                          </li>
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300">
+                             <i class="fas fa-sync-alt text-yellow-500 mt-0.5"></i>
+                             <span>Hạn sử dụng 30 ngày. Có thể tự gia hạn.</span>
+                          </li>
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300 bg-yellow-500/10 p-2 rounded border border-yellow-500/20">
+                             <i class="fas fa-exclamation-triangle text-yellow-500 mt-0.5"></i>
+                             <span><b class="text-yellow-500">Lưu ý:</b> Để sim 0đ tránh trừ tiền trong tài khoản gốc.</span>
+                          </li>
+                      </ul>
                       <div class="bg-black/30 p-2.5 rounded-lg flex items-center justify-between">
-                         <div class="text-xs text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">DK TIK30</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">9199</b></div>
-                         <span class="text-slate-400 font-medium text-xs">50k/tháng</span>
+                         <div class="text-[11px] text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">DK TIK30</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">9199</b></div>
                       </div>
                   </div>
                   
-                  <div class="glass-button p-4 rounded-xl border-l-4 border-l-yellow-500">
-                      <div class="flex justify-between items-center mb-3">
-                          <span class="text-white font-bold text-sm uppercase">GÓI TT80</span>
+                  <div class="glass-button p-5 rounded-xl border-l-4 border-l-yellow-500">
+                      <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
+                          <span class="text-white font-bold text-sm uppercase block">GÓI TT80</span>
                           <span class="text-yellow-500 font-black text-sm uppercase">UNLIMITED</span>
                       </div>
+                      <ul class="space-y-2 mb-4">
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300">
+                             <i class="fas fa-rocket text-yellow-500 mt-0.5"></i>
+                             <span>Không giới hạn dung lượng truy cập.</span>
+                          </li>
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300">
+                             <i class="fas fa-coins text-yellow-500 mt-0.5"></i>
+                             <span>Cước phí: <b class="text-white">80.000đ/tháng</b>.</span>
+                          </li>
+                      </ul>
                       <div class="bg-black/30 p-2.5 rounded-lg flex items-center justify-between mt-2">
-                         <div class="text-xs text-slate-300">Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">TT80</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">9199</b></div>
-                         <span class="text-slate-400 font-medium text-xs">80k/tháng</span>
+                         <div class="text-[11px] text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">TT80</b> gửi <b class="text-white font-mono bg-white/10 px-1.5 py-0.5 rounded">9199</b></div>
                       </div>
                   </div>
               </div>
@@ -285,7 +334,7 @@
           </div>
 
           <div v-else-if="step === 4" key="step4" class="glass-card p-5 sm:p-8 animate-slide-up">
-            <h3 class="text-xl font-bold mb-6 text-white text-center sm:text-left">Thiết bị sử dụng</h3>
+            <h3 class="text-xl font-bold mb-6 text-white text-center sm:text-left uppercase tracking-tight">Thiết bị sử dụng</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <button v-for="d in devices" @click="os = d.id; nextStep()" class="p-5 rounded-xl border text-left transition-all duration-300 group"
                 :class="os === d.id ? 'border-orange-500 bg-orange-500/10 ring-1 ring-orange-500 shadow-[0_0_15px_rgba(249,115,22,0.15)]' : 'glass-button hover:border-white/30'">
@@ -298,7 +347,7 @@
           </div>
 
           <div v-else-if="step === 5" key="step5" class="glass-card p-5 sm:p-8 animate-slide-up">
-            <h3 class="text-xl font-bold mb-6 text-white text-center sm:text-left">Chọn Ứng Dụng VPN</h3>
+            <h3 class="text-xl font-bold mb-6 text-white text-center sm:text-left uppercase tracking-tight">Chọn Ứng Dụng VPN</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <button v-for="app in availableApps" :key="app.id" @click="selectedApp = app; nextStep()" class="p-5 rounded-xl border text-left transition-all duration-300 group glass-button hover:border-white/30">
                 <div class="flex items-center gap-4 mb-3">
@@ -340,7 +389,7 @@
           <div v-else-if="step === 7" key="step7" class="glass-card rounded-[1.5rem] flex flex-col h-[520px] overflow-hidden border-t-4 border-t-orange-500 animate-fade-in">
             <div class="p-5 border-b border-white/10 bg-black/40 backdrop-blur-xl sticky top-0 z-20 flex justify-between items-center">
               <div>
-                <h3 class="font-bold text-white text-base tracking-tight uppercase">Hướng Dẫn Thiết Lập</h3>
+                <h3 class="font-bold text-white text-base tracking-tight uppercase">Hướng Dẫn Cấu Hình</h3>
                 <div class="flex items-center gap-1.5 mt-1">
                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
                    <p class="text-[9px] text-slate-400 font-semibold uppercase tracking-widest">{{ os }} &bull; {{ selectedApp?.name }}</p>
@@ -463,7 +512,7 @@
               if (os.value === 'ios') {
                   return [
                     { text: `Bấm "Nhập đăng ký" ở trang chủ web.`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
-                    { text: `Bấm "Sao chép địa chỉ liên kết`, image: "https://i.ibb.co/7hy4HWj/IMG-2040.png" },
+                    { text: `Bấm "Sao chép địa chỉ liên kết"`, image: "https://i.ibb.co/7hy4HWj/IMG-2040.png" },
                     { text: `Mở App Happ -> Bấm clipboard ở góc dưới`, image: "https://i.ibb.co/Gjbckbj/IMG-2044.png" },
                     { text: `Chọn một trong các server để sử dụng`, image: "https://i.ibb.co/pvXsjTc4/IMG-2042.png" },
                     { text: `Bấm như ảnh để khởi động app`, image: "https://i.ibb.co/YTWcj1dr/IMG-2045.png" }
@@ -471,7 +520,7 @@
               } else {
                   return [
                     { text: `Bấm "Nhập đăng ký" ở trang chủ web.`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
-                    { text: `Bấm "Sao chép địa chỉ liên kết`, image: "https://i.ibb.co/7hy4HWj/IMG-2040.png" },
+                    { text: `Bấm "Sao chép địa chỉ liên kết"`, image: "https://i.ibb.co/7hy4HWj/IMG-2040.png" },
                     { text: `Mở App Happ -> Bấm clipboard ở góc dưới`, image: "https://i.ibb.co/Gjbckbj/IMG-2044.png" },
                     { text: `Bấm vào cài đặt (bánh răng) góc trên -> Chọn VPN Settings -> Tắt "Enable Sniffing" (để dùng zalo)` },
                     { text: `Chọn một trong các server để sử dụng`, image: "https://i.ibb.co/pvXsjTc4/IMG-2042.png" },
