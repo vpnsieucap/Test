@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hướng Dẫn Sử Dụng</title>
+  <title>Hướng Dẫn Sử Dụng - VSC</title>
   
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -124,8 +124,9 @@
 
         <div class="flex items-center justify-center lg:justify-start gap-2">
           <template v-for="i in 6" :key="i">
+            <!-- Ẩn thanh tiến trình nếu đang ở bước 8 (Hướng dẫn fix lỗi) -->
             <div class="h-1 rounded-full transition-all duration-700 ease-out" 
-                 :class="step >= i ? 'w-8 bg-gradient-to-r from-orange-500 to-rose-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]' : 'w-2 bg-white/10'"></div>
+                 :class="(step >= i && step !== 8) ? 'w-8 bg-gradient-to-r from-orange-500 to-rose-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]' : 'w-2 bg-white/10'"></div>
           </template>
         </div>
 
@@ -146,7 +147,13 @@
             </div>
             <h2 class="text-2xl font-bold mb-3 text-white uppercase tracking-tight">Hướng Dẫn Sử Dụng</h2>
             <p class="text-slate-400 mb-8 max-w-sm text-sm leading-relaxed">Hệ thống sẽ hướng dẫn chi tiết cách cài đặt và kết nối mạng tốc độ cao trên thiết bị của bạn.</p>
-            <button @click="nextStep" class="btn-gradient w-full sm:w-auto px-10 py-3 text-xs tracking-[0.2em] uppercase">BẮT ĐẦU NGAY</button>
+            
+            <div class="flex flex-col sm:flex-row gap-3 w-full justify-center max-w-sm mx-auto">
+                <button @click="nextStep" class="btn-gradient w-full px-8 py-3.5 text-xs tracking-[0.2em] uppercase">BẮT ĐẦU CÀI ĐẶT</button>
+                <button @click="step = 8" class="glass-button w-full text-white font-bold px-8 py-3.5 rounded-xl text-xs tracking-[0.1em] uppercase hover:bg-white/10 flex items-center justify-center gap-2">
+                    <i class="fas fa-tools text-orange-400"></i> HƯỚNG DẪN FIX LỖI
+                </button>
+            </div>
           </div>
 
           <div v-else-if="step === 2" key="step2" class="glass-card p-6 sm:p-10 text-center flex flex-col items-center justify-center min-h-[380px]">
@@ -343,6 +350,7 @@
             </button>
           </div>
 
+          <!-- Step 4: OS Selection -->
           <div v-else-if="step === 4" key="step4" class="glass-card p-5 sm:p-8 animate-slide-up">
             <h3 class="text-xl font-bold mb-6 text-white text-center sm:text-left uppercase tracking-tight">Thiết bị sử dụng</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -356,6 +364,7 @@
             </div>
           </div>
 
+          <!-- Step 5: APP Selection -->
           <div v-else-if="step === 5" key="step5" class="glass-card p-5 sm:p-8 animate-slide-up">
             <h3 class="text-xl font-bold mb-6 text-white text-center sm:text-left uppercase tracking-tight">Chọn Ứng Dụng VPN</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -371,6 +380,7 @@
             </div>
           </div>
 
+          <!-- Step 6: App Info & Download -->
           <div v-else-if="step === 6" key="step6" class="glass-card p-6 sm:p-10 animate-slide-up border-t-4 border-t-orange-500">
                <div v-if="selectedApp" class="flex flex-col items-center sm:items-start text-center sm:text-left">
                   <div class="inline-flex px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 text-[9px] font-bold tracking-[0.2em] uppercase mb-5 border border-orange-500/20">Thông tin ứng dụng</div>
@@ -396,6 +406,7 @@
                </div>
           </div>
 
+          <!-- Step 7: Final Tutorial -->
           <div v-else-if="step === 7" key="step7" class="glass-card rounded-[1.5rem] flex flex-col h-[520px] overflow-hidden border-t-4 border-t-orange-500 animate-fade-in">
             <div class="p-5 border-b border-white/10 bg-black/40 backdrop-blur-xl sticky top-0 z-20 flex justify-between items-center">
               <div>
@@ -441,6 +452,29 @@
             </div>
           </div>
 
+          <!-- Step 8: Hướng dẫn Fix Lỗi -->
+          <div v-else-if="step === 8" key="step8" class="glass-card p-6 sm:p-10 animate-slide-up border-t-4 border-t-rose-500">
+            <div class="p-5 border-b border-white/10 bg-black/40 backdrop-blur-xl sticky top-0 z-20 flex justify-between items-center mb-6 rounded-t-[1.5rem] -mt-6 -mx-6 px-6 sm:px-10 pt-8 pb-5">
+              <div>
+                <h3 class="font-bold text-white text-base tracking-tight uppercase">Hướng Dẫn Fix Lỗi</h3>
+                <p class="text-[9px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Khắc phục sự cố kết nối</p>
+              </div>
+              <button @click="resetFlow" class="w-8 h-8 rounded-lg glass-button flex items-center justify-center hover:text-white transition-all text-slate-400">
+                <i class="fas fa-home text-[10px]"></i>
+              </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto custom-scrollbar">
+              <div class="p-8 text-center bg-white/5 rounded-2xl border border-white/10 border-dashed mt-4">
+                  <div class="w-16 h-16 bg-rose-500/20 text-rose-400 rounded-full flex items-center justify-center mx-auto mb-4 shadow-[0_0_15px_rgba(244,63,94,0.3)]">
+                      <i class="fas fa-tools text-2xl"></i>
+                  </div>
+                  <h4 class="text-lg font-bold text-white mb-2 tracking-tight uppercase">Đang cập nhật nội dung</h4>
+                  <p class="text-slate-400 text-xs leading-relaxed normal-case tracking-normal max-w-[250px] mx-auto">Nội dung hướng dẫn chi tiết cách fix lỗi sẽ được quản trị viên thêm vào khu vực này sớm nhất.</p>
+              </div>
+            </div>
+          </div>
+
         </transition>
       </div>
     </div>
@@ -462,7 +496,13 @@
         const adminLink = ref("https://vpnsieucap.shop");
 
         const nextStep = () => { step.value++; };
-        const prevStep = () => { if (step.value > 1) step.value--; };
+        const prevStep = () => { 
+            if (step.value === 8) {
+                step.value = 1;
+            } else if (step.value > 1) {
+                step.value--; 
+            }
+        };
         const resetFlow = () => { step.value = 1; os.value = null; selectedApp.value = null; };
 
         const devices = [
