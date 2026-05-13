@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hướng Dẫn Sử Dụng - VSC</title>
+  <title>Hướng Dẫn Sử Dụng</title>
   
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -355,7 +355,7 @@
                   <div class="glass-button p-5 rounded-xl border-l-4 border-l-yellow-500">
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
                           <span class="text-white font-bold text-sm uppercase block">GÓI DK TIK30</span>
-                          <span class="text-yellow-500 font-black text-[10px] bg-yellow-500/10 px-2 py-1 rounded border border-yellow-500/20 uppercase tracking-widest shrink-0">50.000đ / Tháng</span>
+                          <span class="text-white font-black text-[10px] bg-white/10 px-2 py-1 rounded border border-white/5 uppercase tracking-widest shrink-0">50.000đ / Tháng</span>
                       </div>
                       <ul class="space-y-2 mb-4">
                           <li class="flex items-start gap-2 text-[11px] text-slate-300">
@@ -379,7 +379,7 @@
                   <div class="glass-button p-5 rounded-xl border-l-4 border-l-yellow-500">
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
                           <span class="text-white font-bold text-sm uppercase block">GÓI TT80</span>
-                          <span class="text-yellow-500 font-black text-[10px] bg-yellow-500/10 px-2 py-1 rounded border border-yellow-500/20 uppercase tracking-widest shrink-0">80.000đ / Tháng</span>
+                          <span class="text-white font-black text-[10px] bg-white/10 px-2 py-1 rounded border border-white/5 uppercase tracking-widest shrink-0">80.000đ / Tháng</span>
                       </div>
                       <ul class="space-y-2 mb-4">
                           <li class="flex items-start gap-2 text-[11px] text-slate-300">
@@ -426,9 +426,9 @@
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed normal-case tracking-normal relative z-10 flex-grow">{{ app.desc }}</p>
                 
-                <!-- Lưu ý đính kèm cho Shadowrocket (Bỏ nhấp nháy) -->
-                <div v-if="app.id === 'shadowrocket'" class="mt-4 p-2.5 bg-rose-500/10 border border-rose-500/30 rounded-lg text-[11px] text-slate-300 normal-case tracking-normal relative z-10">
-                    <span class="text-rose-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Khi sử dụng server Việt Nam ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server Singapore hoặc đổi App.
+                <!-- Lưu ý đính kèm cho Shadowrocket (Đã đổi background) -->
+                <div v-if="app.id === 'shadowrocket'" class="mt-4 p-2.5 bg-red-900/40 border border-red-500/40 rounded-lg text-[11px] text-slate-300 normal-case tracking-normal relative z-10">
+                    <span class="text-red-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Khi sử dụng server Việt Nam ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server Singapore hoặc đổi App.
                 </div>
               </button>
             </div>
@@ -449,9 +449,9 @@
                     </div>
                   </div>
 
-                  <!-- Lưu ý đính kèm cho Shadowrocket (Bỏ nhấp nháy) -->
-                  <div v-if="selectedApp.id === 'shadowrocket'" class="mb-8 w-full p-3.5 bg-rose-500/10 border border-rose-500/30 rounded-xl text-xs text-slate-300 normal-case tracking-normal">
-                      <span class="text-rose-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Khi sử dụng server Việt Nam ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server Singapore hoặc đổi App.
+                  <!-- Lưu ý đính kèm cho Shadowrocket (Đã đổi background) -->
+                  <div v-if="selectedApp.id === 'shadowrocket'" class="mb-8 w-full p-3.5 bg-red-900/40 border border-red-500/40 rounded-xl text-xs text-slate-300 normal-case tracking-normal relative z-10">
+                      <span class="text-red-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Khi sử dụng server Việt Nam ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server Singapore hoặc đổi App.
                   </div>
                   <div v-else class="mb-8"></div>
                   
