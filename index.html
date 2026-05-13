@@ -205,7 +205,7 @@
                       <div class="absolute top-0 right-0 px-3 py-1 bg-orange-500 text-white text-[9px] font-bold tracking-widest rounded-bl-lg uppercase shadow-lg">Khuyên dùng</div>
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
                           <span class="text-white font-bold text-sm uppercase block mt-1">TIKTOK TUẦN</span>
-                          <span class="text-white font-black text-xs bg-white/10 px-2 py-0.5 rounded border border-white/5 uppercase mt-3 sm:mt-0 shrink-0">15.000đ / Tuần</span>
+                          <span class="text-white font-black text-[10px] bg-white/10 px-2 py-1 rounded border border-white/5 uppercase tracking-widest mt-3 sm:mt-0 shrink-0">15.000đ / Tuần</span>
                       </div>
                       <ul class="space-y-2 mb-4">
                           <li class="flex items-start gap-2 text-[11px] text-slate-300">
@@ -230,7 +230,7 @@
                   <div class="glass-button p-5 rounded-xl">
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
                           <span class="text-white font-bold text-sm uppercase block">TIKTOK 50K</span>
-                          <span class="text-white font-black text-xs bg-white/10 px-2 py-0.5 rounded border border-white/5 uppercase shrink-0">50.000đ / Tháng</span>
+                          <span class="text-white font-black text-[10px] bg-white/10 px-2 py-1 rounded border border-white/5 uppercase tracking-widest shrink-0">50.000đ / Tháng</span>
                       </div>
                       <ul class="space-y-2 mb-4">
                           <li class="flex items-start gap-2 text-[11px] text-slate-300">
@@ -255,7 +255,7 @@
                   <div class="glass-button p-5 rounded-xl">
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
                           <span class="text-white font-bold text-sm uppercase block">GÓI MXH100</span>
-                          <span class="text-white font-black text-xs bg-white/10 px-2 py-0.5 rounded border border-white/5 uppercase shrink-0">100.000đ / Tháng</span>
+                          <span class="text-white font-black text-[10px] bg-white/10 px-2 py-1 rounded border border-white/5 uppercase tracking-widest shrink-0">100.000đ / Tháng</span>
                       </div>
                       <ul class="space-y-2 mb-4">
                           <li class="flex items-start gap-2 text-[11px] text-slate-300">
@@ -293,7 +293,7 @@
                              <i class="fas fa-wifi text-blue-400 mt-0.5"></i>
                              <span>Truy cập <b class="text-white">không giới hạn</b> gb, tốc độ ổn định.</span>
                           </li>
-                          <li class="flex items-start gap-2 text-[11px] text-slate-300 bg-yellow-500/10 p-2 rounded border border-yellow-500/20">
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300 bg-yellow-500/10 p-1.5 rounded border border-yellow-500/20">
                              <i class="fas fa-exclamation-triangle text-yellow-500 mt-0.5"></i>
                              <span><b class="text-yellow-500">Lưu ý:</b> Để sim 0đ hoặc mua data nền tránh trừ tiền khi dùng.</span>
                           </li>
@@ -309,7 +309,7 @@
                   <div class="glass-button p-5 rounded-xl border-l-4 border-l-yellow-500">
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
                           <span class="text-white font-bold text-sm uppercase block">GÓI DK TIK30</span>
-                          <span class="text-yellow-500 font-black text-xs bg-yellow-500/10 px-2 py-0.5 rounded border border-yellow-500/20 uppercase tracking-widest shrink-0">50.000đ / Tháng</span>
+                          <span class="text-yellow-500 font-black text-[10px] bg-yellow-500/10 px-2 py-1 rounded border border-yellow-500/20 uppercase tracking-widest shrink-0">50.000đ / Tháng</span>
                       </div>
                       <ul class="space-y-2 mb-4">
                           <li class="flex items-start gap-2 text-[11px] text-slate-300">
@@ -320,7 +320,7 @@
                              <i class="fas fa-sync-alt text-yellow-500 mt-0.5"></i>
                              <span><b class="text-white">50GB Data</b> tốc độ cao, hạn sử dụng 30 ngày (có gia hạn được).</span>
                           </li>
-                          <li class="flex items-start gap-2 text-[11px] text-slate-300 bg-yellow-500/10 p-2 rounded border border-yellow-500/20">
+                          <li class="flex items-start gap-2 text-[11px] text-slate-300 bg-yellow-500/10 p-1.5 rounded border border-yellow-500/20">
                              <i class="fas fa-exclamation-triangle text-yellow-500 mt-0.5"></i>
                              <span><b class="text-yellow-500">Lưu ý:</b> Để sim 0đ tránh trừ tiền trong tài khoản gốc.</span>
                           </li>
@@ -380,9 +380,9 @@
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed normal-case tracking-normal relative z-10 flex-grow">{{ app.desc }}</p>
                 
-                <!-- Lưu ý đính kèm cho Shadowrocket (Màu đỏ/hồng cho nổi bật) -->
-                <div v-if="app.id === 'shadowrocket'" class="mt-4 p-2.5 bg-rose-500/10 border border-rose-500/20 rounded-lg text-[11px] text-slate-300 normal-case tracking-normal relative z-10">
-                    <span class="text-rose-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Dùng server Việt Nam sẽ lỗi không sử dụng được Facebook, vui lòng chọn server Singapore hoặc đổi app.
+                <!-- Lưu ý đính kèm cho Shadowrocket (Có hiệu ứng động) -->
+                <div v-if="app.id === 'shadowrocket'" class="mt-4 p-2.5 bg-rose-500/10 border border-rose-500/50 rounded-lg text-[11px] text-slate-300 normal-case tracking-normal relative z-10 shadow-[0_0_15px_rgba(244,63,94,0.4)] animate-pulse">
+                    <span class="text-rose-400 font-bold"><i class="fas fa-exclamation-circle"></i> Lưu ý:</span> Khi sử dụng server Việt Nam ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server Singapore hoặc đổi App.
                 </div>
               </button>
             </div>
@@ -403,9 +403,9 @@
                     </div>
                   </div>
 
-                  <!-- Lưu ý đính kèm cho Shadowrocket (hiển thị lại cho rõ) -->
-                  <div v-if="selectedApp.id === 'shadowrocket'" class="mb-8 w-full p-3.5 bg-rose-500/10 border border-rose-500/20 rounded-xl text-xs text-slate-300 normal-case tracking-normal">
-                      <span class="text-rose-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Dùng server Việt Nam sẽ lỗi không sử dụng được Facebook, vui lòng chọn server Singapore hoặc đổi app.
+                  <!-- Lưu ý đính kèm cho Shadowrocket (Có hiệu ứng động) -->
+                  <div v-if="selectedApp.id === 'shadowrocket'" class="mb-8 w-full p-3.5 bg-rose-500/10 border border-rose-500/50 rounded-xl text-xs text-slate-300 normal-case tracking-normal shadow-[0_0_15px_rgba(244,63,94,0.4)] animate-pulse">
+                      <span class="text-rose-400 font-bold"><i class="fas fa-exclamation-circle"></i> Lưu ý:</span> Khi sử dụng server Việt Nam ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server Singapore hoặc đổi App.
                   </div>
                   <div v-else class="mb-8"></div>
                   
