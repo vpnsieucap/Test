@@ -100,11 +100,57 @@
       background: radial-gradient(circle, rgba(225, 29, 72, 0.08) 0%, rgba(0,0,0,0) 60%);
       animation: float 10s ease-in-out infinite alternate-reverse;
     }
+
+    /* Starry Night Animation */
+    .stars-bg1, .stars-bg2, .stars-bg3 {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: -2;
+      pointer-events: none;
+    }
+    .stars-bg1 {
+      background-image: 
+        radial-gradient(1.5px 1.5px at 25px 30px, #ffffff, transparent),
+        radial-gradient(1px 1px at 75px 150px, #ffffff, transparent),
+        radial-gradient(2px 2px at 150px 80px, #ffffff, transparent),
+        radial-gradient(1.5px 1.5px at 220px 210px, #ffffff, transparent),
+        radial-gradient(1px 1px at 290px 45px, #ffffff, transparent),
+        radial-gradient(2px 2px at 360px 170px, #ffffff, transparent);
+      background-size: 400px 400px;
+      animation: starDrift1 40s linear infinite;
+    }
+    .stars-bg2 {
+      background-image: 
+        radial-gradient(1px 1px at 40px 70px, #ffffff, transparent),
+        radial-gradient(2px 2px at 120px 240px, #ffffff, transparent),
+        radial-gradient(1.5px 1.5px at 200px 110px, #ffffff, transparent),
+        radial-gradient(1px 1px at 280px 290px, #ffffff, transparent),
+        radial-gradient(2px 2px at 350px 60px, #ffffff, transparent);
+      background-size: 500px 500px;
+      animation: starDrift2 60s linear infinite;
+      opacity: 0.7;
+    }
+    .stars-bg3 {
+      background-image: 
+        radial-gradient(2px 2px at 80px 180px, #ffffff, transparent),
+        radial-gradient(1px 1px at 190px 50px, #ffffff, transparent),
+        radial-gradient(1.5px 1.5px at 310px 220px, #ffffff, transparent);
+      background-size: 600px 600px;
+      animation: starDrift3 90s linear infinite;
+      opacity: 0.4;
+    }
+    @keyframes starDrift1 { 0% { background-position: 0 0; } 100% { background-position: 400px -400px; } }
+    @keyframes starDrift2 { 0% { background-position: 0 0; } 100% { background-position: -500px -500px; } }
+    @keyframes starDrift3 { 0% { background-position: 0 0; } 100% { background-position: 600px 600px; } }
   </style>
 </head>
 
 <body class="antialiased min-h-screen flex flex-col selection:bg-orange-500/30 selection:text-white">
 
+  <!-- Background Layer -->
+  <div class="stars-bg1"></div>
+  <div class="stars-bg2"></div>
+  <div class="stars-bg3"></div>
   <div class="aura-bg"></div>
 
   <div id="app" v-cloak class="flex-grow flex flex-col items-center justify-center p-3 sm:p-5 relative z-10">
@@ -205,7 +251,7 @@
                       <div class="absolute top-0 right-0 px-3 py-1 bg-orange-500 text-white text-[9px] font-bold tracking-widest rounded-bl-lg uppercase shadow-lg">Khuyên dùng</div>
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
                           <span class="text-white font-bold text-sm uppercase block mt-1">TIKTOK TUẦN</span>
-                          <span class="text-white font-black text-[10px] bg-white/10 px-2 py-1 rounded border border-white/5 uppercase tracking-widest mt-3 sm:mt-0 shrink-0">15.000đ / Tuần</span>
+                          <span class="text-white font-black text-xs bg-white/10 px-2 py-0.5 rounded border border-white/5 uppercase mt-3 sm:mt-0 shrink-0">15.000đ / Tuần</span>
                       </div>
                       <ul class="space-y-2 mb-4">
                           <li class="flex items-start gap-2 text-[11px] text-slate-300">
@@ -230,7 +276,7 @@
                   <div class="glass-button p-5 rounded-xl">
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
                           <span class="text-white font-bold text-sm uppercase block">TIKTOK 50K</span>
-                          <span class="text-white font-black text-[10px] bg-white/10 px-2 py-1 rounded border border-white/5 uppercase tracking-widest shrink-0">50.000đ / Tháng</span>
+                          <span class="text-white font-black text-xs bg-white/10 px-2 py-0.5 rounded border border-white/5 uppercase shrink-0">50.000đ / Tháng</span>
                       </div>
                       <ul class="space-y-2 mb-4">
                           <li class="flex items-start gap-2 text-[11px] text-slate-300">
@@ -255,7 +301,7 @@
                   <div class="glass-button p-5 rounded-xl">
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
                           <span class="text-white font-bold text-sm uppercase block">GÓI MXH100</span>
-                          <span class="text-white font-black text-[10px] bg-white/10 px-2 py-1 rounded border border-white/5 uppercase tracking-widest shrink-0">100.000đ / Tháng</span>
+                          <span class="text-white font-black text-xs bg-white/10 px-2 py-0.5 rounded border border-white/5 uppercase shrink-0">100.000đ / Tháng</span>
                       </div>
                       <ul class="space-y-2 mb-4">
                           <li class="flex items-start gap-2 text-[11px] text-slate-300">
@@ -380,9 +426,9 @@
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed normal-case tracking-normal relative z-10 flex-grow">{{ app.desc }}</p>
                 
-                <!-- Lưu ý đính kèm cho Shadowrocket (Có hiệu ứng động) -->
-                <div v-if="app.id === 'shadowrocket'" class="mt-4 p-2.5 bg-rose-500/10 border border-rose-500/50 rounded-lg text-[11px] text-slate-300 normal-case tracking-normal relative z-10 shadow-[0_0_15px_rgba(244,63,94,0.4)] animate-pulse">
-                    <span class="text-rose-400 font-bold"><i class="fas fa-exclamation-circle"></i> Lưu ý:</span> Khi sử dụng server Việt Nam ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server Singapore hoặc đổi App.
+                <!-- Lưu ý đính kèm cho Shadowrocket (Bỏ nhấp nháy) -->
+                <div v-if="app.id === 'shadowrocket'" class="mt-4 p-2.5 bg-rose-500/10 border border-rose-500/30 rounded-lg text-[11px] text-slate-300 normal-case tracking-normal relative z-10">
+                    <span class="text-rose-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Khi sử dụng server Việt Nam ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server Singapore hoặc đổi App.
                 </div>
               </button>
             </div>
@@ -403,9 +449,9 @@
                     </div>
                   </div>
 
-                  <!-- Lưu ý đính kèm cho Shadowrocket (Có hiệu ứng động) -->
-                  <div v-if="selectedApp.id === 'shadowrocket'" class="mb-8 w-full p-3.5 bg-rose-500/10 border border-rose-500/50 rounded-xl text-xs text-slate-300 normal-case tracking-normal shadow-[0_0_15px_rgba(244,63,94,0.4)] animate-pulse">
-                      <span class="text-rose-400 font-bold"><i class="fas fa-exclamation-circle"></i> Lưu ý:</span> Khi sử dụng server Việt Nam ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server Singapore hoặc đổi App.
+                  <!-- Lưu ý đính kèm cho Shadowrocket (Bỏ nhấp nháy) -->
+                  <div v-if="selectedApp.id === 'shadowrocket'" class="mb-8 w-full p-3.5 bg-rose-500/10 border border-rose-500/30 rounded-xl text-xs text-slate-300 normal-case tracking-normal">
+                      <span class="text-rose-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Khi sử dụng server Việt Nam ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server Singapore hoặc đổi App.
                   </div>
                   <div v-else class="mb-8"></div>
                   
