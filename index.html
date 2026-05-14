@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hướng Dẫn Sử Dụng</title>
+  <title>Hướng Dẫn Sử Dụng & Sửa Lỗi</title>
   
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -428,7 +428,7 @@
                 
                 <!-- Lưu ý đính kèm cho Shadowrocket (Đã đổi background) -->
                 <div v-if="app.id === 'shadowrocket'" class="mt-4 p-2.5 bg-red-900/40 border border-red-500/40 rounded-lg text-[11px] text-slate-300 normal-case tracking-normal relative z-10">
-                    <span class="text-red-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Khi sử dụng server Việt Nam ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server Singapore hoặc đổi App.
+                    <span class="text-red-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Khi sử dụng server Game ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server MXH hoặc đổi App.
                 </div>
               </button>
             </div>
@@ -451,7 +451,7 @@
 
                   <!-- Lưu ý đính kèm cho Shadowrocket (Đã đổi background) -->
                   <div v-if="selectedApp.id === 'shadowrocket'" class="mb-8 w-full p-3.5 bg-red-900/40 border border-red-500/40 rounded-xl text-xs text-slate-300 normal-case tracking-normal relative z-10">
-                      <span class="text-red-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Khi sử dụng server Việt Nam ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server Singapore hoặc đổi App.
+                      <span class="text-red-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Khi sử dụng server Game ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server MXH hoặc đổi App. 
                   </div>
                   <div v-else class="mb-8"></div>
                   
@@ -578,7 +578,7 @@
             ];
           } else if (os.value === 'ios') {
             return [
-              { id: 'shadowrocket', name: 'Shadowrocket', desc: 'App VPN quốc dân, ổn định và bảo mật cao nhất dành cho iPhone (Phí tải 2.99$).', link: 'https://apps.apple.com/us/app/shadowrocket/id932747118', icon: 'fas fa-paper-plane' },
+              { id: 'shadowrocket', name: 'Shadowrocket', desc: 'App VPN quốc dân cho iPhone. Hỗ trợ tải miễn phí', link: 'https://apps.apple.com/us/app/shadowrocket/id932747118', icon: 'fas fa-paper-plane' },
               { id: 'happ', name: 'Happ', desc: 'Ứng dụng VPN mới với khả năng kết nối siêu tốc và giao diện cực kỳ dễ sử dụng.', link: 'https://apps.apple.com/vn/app/happ-proxy-utility/id6504287215?l=vi', icon: 'fas fa-bolt' }
             ];
           }
