@@ -147,7 +147,6 @@
 
 <body class="antialiased min-h-screen flex flex-col selection:bg-orange-500/30 selection:text-white">
 
-  <!-- Background Layer -->
   <div class="stars-bg1"></div>
   <div class="stars-bg2"></div>
   <div class="stars-bg3"></div>
@@ -170,7 +169,6 @@
 
         <div class="flex items-center justify-center lg:justify-start gap-2">
           <template v-for="i in 6" :key="i">
-            <!-- Ẩn thanh tiến trình nếu đang ở bước 8 (Hướng dẫn fix lỗi) -->
             <div class="h-1 rounded-full transition-all duration-700 ease-out" 
                  :class="(step >= i && step !== 8) ? 'w-8 bg-gradient-to-r from-orange-500 to-rose-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]' : 'w-2 bg-white/10'"></div>
           </template>
@@ -244,9 +242,7 @@
             </div>
             
             <div class="space-y-4 max-h-[380px] overflow-y-auto custom-scrollbar pr-2 animate-fade-in">
-              <!-- VIETTEL -->
               <div v-if="networkTab === 'viettel'" class="grid grid-cols-1 gap-4">
-                  <!-- GÓI TIKTOK TUẦN -->
                   <div class="relative overflow-hidden p-5 rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-transparent">
                       <div class="absolute top-0 right-0 px-3 py-1 bg-orange-500 text-white text-[9px] font-bold tracking-widest rounded-bl-lg uppercase shadow-lg">Khuyên dùng</div>
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
@@ -272,7 +268,6 @@
                       </div>
                   </div>
                   
-                  <!-- GÓI TIKTOK 50K -->
                   <div class="glass-button p-5 rounded-xl">
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
                           <span class="text-white font-bold text-sm uppercase block">TIKTOK 50K</span>
@@ -297,7 +292,6 @@
                       </div>
                   </div>
 
-                  <!-- GÓI MXH100 -->
                   <div class="glass-button p-5 rounded-xl">
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
                           <span class="text-white font-bold text-sm uppercase block">GÓI MXH100</span>
@@ -323,7 +317,6 @@
                   </div>
               </div>
 
-              <!-- VINAPHONE -->
               <div v-if="networkTab === 'vinaphone'" class="grid grid-cols-1 gap-4">
                   <div class="relative overflow-hidden p-5 rounded-xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 to-transparent">
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
@@ -350,7 +343,6 @@
                   </div>
               </div>
 
-              <!-- MOBIFONE -->
               <div v-if="networkTab === 'mobifone'" class="grid grid-cols-1 gap-4">
                   <div class="glass-button p-5 rounded-xl border-l-4 border-l-yellow-500">
                       <div class="flex justify-between items-center mb-3 border-b border-white/5 pb-3">
@@ -399,7 +391,6 @@
             </button>
           </div>
 
-          <!-- Step 4: OS Selection -->
           <div v-else-if="step === 4" key="step4" class="glass-card p-5 sm:p-8 animate-slide-up">
             <h3 class="text-xl font-bold mb-6 text-white text-center sm:text-left uppercase tracking-tight">Thiết bị sử dụng</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -413,7 +404,6 @@
             </div>
           </div>
 
-          <!-- Step 5: APP Selection -->
           <div v-else-if="step === 5" key="step5" class="glass-card p-5 sm:p-8 animate-slide-up">
             <h3 class="text-xl font-bold mb-6 text-white text-center sm:text-left uppercase tracking-tight">Chọn Ứng Dụng VPN</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -425,16 +415,10 @@
                   <div class="font-bold text-white text-lg">{{ app.name }}</div>
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed normal-case tracking-normal relative z-10 flex-grow">{{ app.desc }}</p>
-                
-                <!-- Lưu ý đính kèm cho Shadowrocket (Đã đổi background) -->
-                <div v-if="app.id === 'shadowrocket'" class="mt-4 p-2.5 bg-red-900/40 border border-red-500/40 rounded-lg text-[11px] text-slate-300 normal-case tracking-normal relative z-10">
-                    <span class="text-red-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Khi sử dụng server Game ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server MXH hoặc đổi App.
-                </div>
               </button>
             </div>
           </div>
 
-          <!-- Step 6: App Info & Download -->
           <div v-else-if="step === 6" key="step6" class="glass-card p-6 sm:p-10 animate-slide-up border-t-4 border-t-orange-500">
                <div v-if="selectedApp" class="flex flex-col items-center sm:items-start text-center sm:text-left">
                   <div class="inline-flex px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 text-[9px] font-bold tracking-[0.2em] uppercase mb-5 border border-orange-500/20">Thông tin ứng dụng</div>
@@ -449,11 +433,7 @@
                     </div>
                   </div>
 
-                  <!-- Lưu ý đính kèm cho Shadowrocket (Đã đổi background) -->
-                  <div v-if="selectedApp.id === 'shadowrocket'" class="mb-8 w-full p-3.5 bg-red-900/40 border border-red-500/40 rounded-xl text-xs text-slate-300 normal-case tracking-normal relative z-10">
-                      <span class="text-red-400 font-bold"><i class="fas fa-exclamation-circle"></i> Quan trọng:</span> Khi sử dụng server Game ở shadowrocket sẽ không dùng được ứng dụng Facebook vui lòng đổi server MXH hoặc đổi App. 
-                  </div>
-                  <div v-else class="mb-8"></div>
+                  <div class="mb-8"></div>
                   
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
                     <a :href="selectedApp.link" target="_blank" class="btn-gradient py-3 text-center text-xs tracking-[0.1em] uppercase flex items-center justify-center gap-2">
@@ -466,7 +446,6 @@
                </div>
           </div>
 
-          <!-- Step 7: Final Tutorial -->
           <div v-else-if="step === 7" key="step7" class="glass-card rounded-[1.5rem] flex flex-col h-[520px] overflow-hidden border-t-4 border-t-orange-500 animate-fade-in">
             <div class="p-5 border-b border-white/10 bg-black/40 backdrop-blur-xl sticky top-0 z-20 flex justify-between items-center">
               <div>
@@ -497,7 +476,28 @@
                         <img :src="item.image" class="w-full h-auto relative z-10 rounded-lg" loading="lazy" alt="Hướng dẫn">
                      </div>
                   </div>
-                </div>
+
+                  <div v-if="item.video" class="relative group inline-block w-full max-w-[260px] sm:max-w-[300px]">
+                     <div class="absolute -inset-1 bg-gradient-to-r from-orange-500 to-rose-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                     
+                     <div class="relative rounded-2xl border border-white/10 overflow-hidden bg-black/50 p-1 flex flex-col items-center">
+                        <div class="relative w-full aspect-[9/16] rounded-xl overflow-hidden shadow-inner">
+                            <iframe 
+                                :src="item.video" 
+                                class="absolute top-0 left-0 w-full h-full" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                     </div>
+
+                     <a v-if="item.youtubeLink" :href="item.youtubeLink" target="_blank" 
+                        class="mt-4 flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl glass-button text-white text-[13px] font-medium transition-all hover:-translate-y-0.5 shadow-lg">
+                        <i class="fab fa-youtube text-white text-lg"></i> Mở video trên YouTube
+                     </a>
+                  </div>
+                  </div>
 
               </div>
 
@@ -512,7 +512,6 @@
             </div>
           </div>
 
-          <!-- Step 8: Hướng dẫn Fix Lỗi -->
           <div v-else-if="step === 8" key="step8" class="glass-card p-6 sm:p-10 animate-slide-up border-t-4 border-t-rose-500">
             <div class="p-5 border-b border-white/10 bg-black/40 backdrop-blur-xl sticky top-0 z-20 flex justify-between items-center mb-6 rounded-t-[1.5rem] -mt-6 -mx-6 px-6 sm:px-10 pt-8 pb-5">
               <div>
@@ -608,17 +607,11 @@
           } 
           else if (appId === 'shadowrocket') {
               return [
-                  { text: `Bấm "Nhập đăng ký" ở trang chủ web.`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
-                  { text: `Chọn App Shadowrocket.`, image: "https://i.ibb.co/wbkNh9t/IMG-2017.png" },
-                  { text: `Bấm Kiểu kết nối.`, image: "https://i.ibb.co/nstGgqzn/IMG-2018.png" },
-                  { text: `Bấm Proxy.`, image: "https://i.ibb.co/WSTp0Km/IMG-2019.png" },
-                  { text: `Chọn một trong các server hiện ra.`, image: "https://i.ibb.co/PGTZjMFs/IMG-2023.png" },
-                  { text: `Gạt công tắc góc trên bên phải để khởi động app.`, image: "https://i.ibb.co/nsN7v8T1/IMG-2020.png" },
-                  { text: `Bấm "OK" để cài đặt hồ sơ VPN (nếu thiết bị hỏi).`, image: "https://i.ibb.co/zhJHsYK3/IMG-2021.png" },
-                  { text: `Bấm "Cho phép" để xác nhận thêm cấu hình VPN vào iPhone.`, image: "https://i.ibb.co/jv5Jr8Dp/IMG-2022.png" }
+                  { text: `Xem video hướng dẫn setting chi tiết bên dưới:`, video: "https://youtube-nocookie.com/embed/e9yszuqRIcw", youtubeLink: "https://youtube.com/shorts/e9yszuqRIcw" }
+                
               ];
           } 
-          else if (appId === 'happ') {
+           else if (appId === 'happ') {
               if (os.value === 'ios') {
                   return [
                     { text: `Bấm "Nhập đăng ký" ở trang chủ web.`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
