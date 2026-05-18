@@ -606,11 +606,15 @@
               ];
           } 
           else if (appId === 'shadowrocket') {
-              return [
-                  { text: `Xem video hướng dẫn setting chi tiết bên dưới:`, video: "https://youtube.com/shorts/e9yszuqRIcw?si=0KYCz7xNsLjmbw3z", youtubeLink: "https://youtube.com/shorts/e9yszuqRIcw?si=0KYCz7xNsLjmbw3z" }
-                
-              ];
-          } 
+    return [
+        { 
+          text: `Xem video hướng dẫn setting chi tiết bên dưới:`, 
+          video: "https://www.youtube.com/embed/e9yszuqRIcw", 
+          youtubeLink: "https://youtube.com/shorts/e9yszuqRIcw" 
+        }
+    ];
+} 
+ 
            else if (appId === 'happ') {
               if (os.value === 'ios') {
                   return [
