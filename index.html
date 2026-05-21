@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VPNSIEUCAP - Premium Glassmorphic Edition</title>
+  <title>Hướng Dẫn Sử Dụng & Sửa Lỗi</title>
   
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -17,37 +17,22 @@
             sans: ['"Plus Jakarta Sans"', 'sans-serif'] 
           },
           colors: {
-            obsidian: {
-              deep: '#030307',
-              card: 'rgba(5, 5, 10, 0.25)',
-              glow: 'rgba(249, 115, 22, 0.15)'
+            premium: {
+              bg: '#050507',
+              card: 'rgba(20, 20, 23, 0.65)',
+              border: 'rgba(255, 255, 255, 0.06)',
+              accent: '#f97316', 
             }
           },
           animation: {
-            'float': 'float 5s ease-in-out infinite',
-            'pulse-soft': 'pulseSoft 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'mesh-slow': 'meshFlow 25s ease infinite alternate',
-            'mesh-reverse': 'meshFlowReverse 30s ease infinite alternate',
-            'glow-line': 'glowLine 8s linear infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'float-delayed': 'float 6s ease-in-out 3s infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
           },
           keyframes: {
             float: {
               '0%, 100%': { transform: 'translateY(0) scale(1)' },
-              '50%': { transform: 'translateY(-8px) scale(1.01)' },
-            },
-            pulseSoft: {
-              '0%, 100%': { opacity: '0.4' },
-              '50%': { opacity: '0.8' }
-            },
-            meshFlow: {
-              '0%': { transform: 'translate(0px, 0px) rotate(0deg) scale(1)' },
-              '50%': { transform: 'translate(8%, 12%) rotate(120deg) scale(1.2)' },
-              '100%': { transform: 'translate(-5%, -8%) rotate(240deg) scale(0.95)' }
-            },
-            meshFlowReverse: {
-              '0%': { transform: 'translate(0px, 0px) rotate(0deg) scale(1.1)' },
-              '50%': { transform: 'translate(-10%, 5%) rotate(-180deg) scale(0.85)' },
-              '100%': { transform: 'translate(5%, -12%) rotate(-360deg) scale(1.05)' }
+              '50%': { transform: 'translateY(-10px) scale(1.02)' },
             }
           }
         }
@@ -56,433 +41,534 @@
   </script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style type="text/tailwindcss">
     @layer utilities {
-      /* ĐỈNH CAO KÍNH LỎNG SIÊU THỰC */
-      .liquid-glass { 
-        background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
-        backdrop-filter: blur(28px) saturate(180%); 
-        -webkit-backdrop-filter: blur(28px) saturate(180%);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: 
-          0 40px 80px -25px rgba(0, 0, 0, 0.85),
-          0 10px 30px -10px rgba(0, 0, 0, 0.5),
-          inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
-          inset 0 -1px 0 0 rgba(255, 255, 255, 0.02),
-          inset 0 15px 35px -5px rgba(255, 255, 255, 0.03);
+      .glass-card { 
+        @apply bg-premium-card backdrop-blur-2xl border border-premium-border rounded-[1.75rem] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_15px_40px_rgba(0,0,0,0.4)] transition-all duration-300; 
       }
-      
-      /* Nút bấm thủy tinh */
       .glass-button {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
-        @apply backdrop-blur-md transition-all duration-300 rounded-xl font-semibold text-slate-300 hover:text-white hover:border-white/15 hover:bg-white/5;
+        @apply bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_4px_20px_rgba(255,255,255,0.05)] backdrop-blur-md transition-all duration-300;
       }
-      
-      /* Nút bấm kịch tính cao cấp */
       .btn-gradient { 
-        background: linear-gradient(102deg, #ff5722 0%, #ff9800 50%, #e91e63 100%);
-        background-size: 200% auto;
-        box-shadow: 
-          0 4px 25px -5px rgba(233, 30, 99, 0.35),
-          0 8px 15px -10px rgba(255, 87, 34, 0.4),
-          inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
-        @apply text-white font-bold rounded-xl transition-all duration-500 hover:bg-[right_center] active:scale-[0.98] tracking-wider;
+        @apply relative overflow-hidden bg-gradient-to-r from-orange-500 to-rose-500 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-[0_8px_25px_-5px_rgba(249,115,22,0.5)]; 
       }
-      
-      .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+      .btn-gradient::after {
+        content: '';
+        @apply absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-all duration-700;
+      }
+      .btn-gradient:hover::after {
+        @apply translate-x-full;
+      }
+      .custom-scrollbar::-webkit-scrollbar { width: 4px; }
       .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-      .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.06); border-radius: 99px; }
-      .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.15); }
+      .custom-scrollbar::-webkit-scrollbar-thumb { @apply bg-white/20 hover:bg-white/30 rounded-full transition-colors; }
       [v-cloak] { display: none !important; }
     }
     
     body { 
-      background-color: #020205; 
+      background-color: #050507; 
       color: #f8fafc; 
       position: relative;
       overflow-x: hidden;
     }
 
-    /* HỆ THỐNG MESH GRADIENT ĐỘNG CHẠY NGẦM */
-    .mesh-blur {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -2; pointer-events: none;
-      filter: blur(140px); opacity: 0.65; mix-blend-mode: plus-lighter;
+    /* Vue Transition Animations */
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .mesh-orb-1 {
-      position: absolute; top: 10%; left: 15%; width: 55vw; height: 55vw; rounded-full;
-      background: radial-gradient(circle, rgba(249, 115, 22, 0.14) 0%, rgba(233, 30, 99, 0.02) 60%, transparent 100%);
-      animation: mesh-slow 22s ease infinite alternate;
+    .fade-enter-from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.98);
     }
-    .mesh-orb-2 {
-      position: absolute; bottom: 5%; right: 10%; width: 50vw; height: 50vw; rounded-full;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(233, 30, 99, 0.03) 50%, transparent 100%);
-      animation: mesh-reverse 28s ease infinite alternate-reverse;
+    .fade-leave-to {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.98);
     }
 
-    /* HẠT BỤI SAO SIÊU MỊN & NHẤP NHÁY SÂU */
-    .cosmic-dust {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -3; pointer-events: none;
+    /* Aura Background Gradients */
+    .aura-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .aura-bg::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: -10%;
+      width: 60vw; height: 60vw;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.05) 0%, rgba(0,0,0,0) 70%);
+      animation: float 12s ease-in-out infinite alternate;
+    }
+    .aura-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -20%; right: -10%;
+      width: 70vw; height: 70vw;
+      background: radial-gradient(circle, rgba(225, 29, 72, 0.05) 0%, rgba(0,0,0,0) 70%);
+      animation: float 15s ease-in-out infinite alternate-reverse;
+    }
+
+    /* Starry Night Animation */
+    .stars-bg1, .stars-bg2, .stars-bg3 {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+    }
+    .stars-bg1 {
       background-image: 
-        radial-gradient(0.75px 0.75px at 15% 25%, rgba(255,255,255,0.4), transparent),
-        radial-gradient(1.2px 1.2px at 65% 15%, rgba(255,255,255,0.65), transparent),
-        radial-gradient(0.5px 0.5px at 35% 75%, rgba(255,255,255,0.3), transparent),
-        radial-gradient(1.5px 1.5px at 85% 60%, rgba(249,115,22,0.5), transparent),
-        radial-gradient(0.8px 0.8px at 45% 40%, rgba(255,255,255,0.5), transparent);
-      background-size: 350px 350px;
-      animation: spaceDrift 90s linear infinite;
+        radial-gradient(1.5px 1.5px at 25px 30px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 75px 150px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 150px 80px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1.5px 1.5px at 220px 210px, rgba(255,255,255,0.7), transparent);
+      background-size: 400px 400px;
+      animation: starDrift1 50s linear infinite;
     }
-
-    .cosmic-sparkle {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; pointer-events: none;
+    .stars-bg2 {
       background-image: 
-        radial-gradient(2px 2px at 20% 45%, rgba(255,255,255,0.85), transparent),
-        radial-gradient(1.5px 1.5px at 75% 80%, rgba(244,63,94,0.7), transparent),
-        radial-gradient(2.5px 2.5px at 50% 20%, rgba(255,255,255,0.9), transparent),
-        radial-gradient(1.8px 1.8px at 90% 35%, rgba(253,186,116,0.6), transparent);
-      background-size: 260px 260px;
-      animation: spaceDriftFast 40s linear infinite, crystalTwinkle 3.5s ease-in-out infinite alternate;
+        radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.5), transparent),
+        radial-gradient(2px 2px at 120px 240px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1.5px 1.5px at 200px 110px, rgba(255,255,255,0.4), transparent);
+      background-size: 500px 500px;
+      animation: starDrift2 70s linear infinite;
     }
-
-    @keyframes spaceDrift { 0% { background-position: 0 0; } 100% { background-position: 350px -350px; } }
-    @keyframes spaceDriftFast { 0% { background-position: 0 0; } 100% { background-position: -260px -260px; } }
-    
-    @keyframes crystalTwinkle {
-      0%, 100% { opacity: 0.2; filter: brightness(0.8) drop-shadow(0 0 0px transparent); }
-      50% { opacity: 1; filter: brightness(1.8) drop-shadow(0 0 8px rgba(255,255,255,0.9)); }
-    }
+    @keyframes starDrift1 { 0% { background-position: 0 0; } 100% { background-position: 400px -400px; } }
+    @keyframes starDrift2 { 0% { background-position: 0 0; } 100% { background-position: -500px -500px; } }
   </style>
 </head>
 
-<body class="antialiased min-h-screen flex flex-col selection:bg-orange-500/20 selection:text-orange-200">
+<body class="antialiased min-h-screen flex flex-col selection:bg-orange-500/30 selection:text-white">
 
-  <!-- Các tầng nền xử lý hiệu ứng độc lập -->
-  <div class="cosmic-dust"></div>
-  <div class="cosmic-sparkle"></div>
-  <div class="mesh-blur">
-    <div class="mesh-orb-1"></div>
-    <div class="mesh-orb-2"></div>
-  </div>
+  <div class="stars-bg1"></div>
+  <div class="stars-bg2"></div>
+  <div class="aura-bg"></div>
 
-  <div id="app" v-cloak class="flex-grow flex flex-col items-center justify-center p-5 sm:p-8 md:p-12 relative z-10">
+  <div id="app" v-cloak class="flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-10 relative z-10">
 
-    <div class="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-10 lg:gap-14 items-start py-4">
+    <div class="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.8fr] gap-8 lg:gap-16 items-center lg:items-start">
 
-      <!-- CỘT TRÁI - BRANDING & PROGRESS (TINH GỌN & SANG TRỌNG) -->
-      <div class="lg:sticky lg:top-24 space-y-8 text-center lg:text-left transition-all">
-        <div>
-          <!-- Logo Glass Container -->
-          <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-white/[0.02] border border-white/15 mb-6 shadow-2xl relative group overflow-hidden animate-float">
-            <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-rose-500 opacity-20 blur-md group-hover:opacity-40 transition-opacity"></div>
-            <i class="fas fa-shield-halved text-2xl text-transparent bg-clip-text bg-gradient-to-br from-orange-400 via-amber-300 to-rose-400 relative z-10"></i>
+      <!-- Cột Trái: Thông tin chung & Điều hướng -->
+      <div class="lg:sticky lg:top-20 space-y-8 text-center lg:text-left pt-4">
+        <div class="animate-float">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-400 to-rose-600 mb-6 shadow-[0_0_30px_rgba(249,115,22,0.4)] border border-white/20 backdrop-blur-md">
+            <i class="fas fa-shield-halved text-2xl text-white drop-shadow-md"></i>
           </div>
-          
-          <h1 class="text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-200 to-slate-400 tracking-tight leading-none uppercase">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-400 tracking-tight leading-tight">
             VPNSIEUCAP
           </h1>
-          <p class="text-slate-400 mt-4 text-sm font-medium max-w-xs mx-auto lg:mx-0 leading-relaxed tracking-wide">
-            Hạ tầng cấu hình VPN tự động cao cấp của <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300 font-semibold">vpnsieucap.shop</span>
-          </p>
+          <p class="text-slate-400 mt-3 text-sm sm:text-base font-medium max-w-sm mx-auto lg:mx-0 leading-relaxed">Hướng dẫn sử dụng tự động của website vpnsieucap.shop</p>
         </div>
 
-        <!-- Thanh trạng thái dạng kén tinh xảo -->
-        <div class="flex items-center justify-center lg:justify-start gap-3 bg-black/20 backdrop-blur-md p-2 rounded-full inline-flex mx-auto border border-white/[0.03]">
+        <div class="flex items-center justify-center lg:justify-start gap-2.5">
           <template v-for="i in 6" :key="i">
-            <div class="h-1.5 rounded-full transition-all duration-500 ease-out" 
-                 :class="(step >= i && step !== 8) ? 'w-8 bg-gradient-to-r from-orange-500 to-rose-500 shadow-[0_0_15px_rgba(249,115,22,0.5)]' : 'w-1.5 bg-white/10'"></div>
+            <div class="h-1.5 rounded-full transition-all duration-500 ease-in-out" 
+                 :class="(step >= i && step !== 8) ? 'w-10 bg-gradient-to-r from-orange-500 to-rose-500 shadow-[0_0_12px_rgba(249,115,22,0.6)]' : 'w-3 bg-white/10'"></div>
           </template>
         </div>
 
-        <!-- Back Button -->
-        <div class="pt-2">
-          <button v-if="step > 1" @click="prevStep" class="inline-flex items-center gap-2.5 text-slate-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-all mx-auto lg:mx-0 bg-white/[0.03] border border-white/5 pl-3 pr-4 py-2 rounded-full hover:bg-white/10">
-            <i class="fas fa-chevron-left text-[10px] opacity-70"></i> Quay lại
-          </button>
-        </div>
+        <button v-if="step > 1" @click="prevStep" class="inline-flex items-center gap-3 text-slate-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-all mx-auto lg:mx-0 group mt-4">
+          <div class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 group-hover:scale-110 transition-all shadow-sm">
+            <i class="fas fa-arrow-left text-[11px] group-hover:-translate-x-0.5 transition-transform"></i>
+          </div>
+          <span class="group-hover:tracking-[0.25em] transition-all">Quay lại</span>
+        </button>
       </div>
 
-      <!-- CỘT PHẢI - NỘI DUNG CHÍNH (TẤM KÍNH LỎNG CAO CẤP) -->
-      <div class="w-full relative">
+      <!-- Cột Phải: Nội dung từng bước -->
+      <div class="w-full relative min-h-[450px]">
         <transition name="fade" mode="out-in">
 
-          <!-- BƯỚC 1: WELCOME -->
-          <div v-if="step === 1" key="step1" class="liquid-glass p-8 sm:p-12 text-center flex flex-col items-center justify-center min-h-[440px] rounded-[2.5rem]">
-            <div class="w-14 h-14 bg-white/[0.02] text-orange-400 rounded-2xl flex items-center justify-center mb-6 border border-white/10 shadow-inner animate-pulse-soft">
-              <i class="fas fa-compass text-xl text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300"></i>
+          <!-- Bước 1 -->
+          <div v-if="step === 1" key="step1" class="glass-card p-8 sm:p-12 text-center flex flex-col items-center justify-center h-full min-h-[450px]">
+            <div class="relative mb-8">
+              <div class="absolute inset-0 bg-orange-500/20 rounded-full blur-xl animate-pulse-slow"></div>
+              <div class="relative w-20 h-20 bg-gradient-to-br from-white/10 to-white/5 text-orange-400 rounded-full flex items-center justify-center border border-white/10 shadow-2xl">
+                <i class="fas fa-book-open text-3xl"></i>
+              </div>
             </div>
-            <h2 class="text-2xl sm:text-3xl font-bold mb-3 text-white tracking-tight uppercase">Khởi Tạo Thiết Lập</h2>
-            <p class="text-slate-400 mb-10 max-w-sm text-xs sm:text-sm leading-relaxed font-medium">Chỉ cần cấu hình một lần duy nhất để truy cập Internet tốc độ cao, không giới hạn băng thông.</p>
+            <h2 class="text-3xl font-extrabold mb-4 text-white uppercase tracking-tight drop-shadow-sm">Hướng Dẫn Sử Dụng</h2>
+            <p class="text-slate-400 mb-10 max-w-sm text-sm leading-relaxed">Hệ thống sẽ hướng dẫn chi tiết cách cài đặt và kết nối mạng tốc độ cao trên thiết bị của bạn.</p>
             
-            <div class="flex flex-col sm:flex-row gap-4 w-full justify-center max-w-sm mx-auto">
-                <button @click="nextStep" class="btn-gradient flex-1 py-4 text-xs tracking-widest uppercase">BẮT ĐẦU</button>
-                <button @click="step = 8" class="glass-button flex-1 text-xs tracking-widest uppercase flex items-center justify-center gap-2">
-                    <i class="fas fa-circle-exclamation text-rose-400 text-xs"></i> KHẮC PHỤC LỖI
+            <div class="flex flex-col sm:flex-row gap-4 w-full justify-center max-w-md mx-auto">
+                <button @click="nextStep" class="btn-gradient w-full px-8 py-4 text-xs font-bold tracking-[0.2em] uppercase">BẮT ĐẦU CÀI ĐẶT</button>
+                <button @click="step = 8" class="glass-button w-full text-white font-bold px-8 py-4 rounded-xl text-xs tracking-[0.1em] uppercase flex items-center justify-center gap-2">
+                    <i class="fas fa-tools text-orange-400"></i> HƯỚNG DẪN FIX LỖI
                 </button>
             </div>
           </div>
 
-          <!-- BƯỚC 2: CHECK MUA GÓI -->
-          <div v-else-if="step === 2" key="step2" class="liquid-glass p-8 sm:p-12 text-center flex flex-col items-center justify-center min-h-[440px] rounded-[2.5rem]">
-            <div class="w-14 h-14 bg-white/[0.02] text-blue-400 rounded-2xl flex items-center justify-center mb-6 border border-white/10 shadow-inner">
-               <i class="fas fa-ticket text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400"></i>
+          <!-- Bước 2 -->
+          <div v-else-if="step === 2" key="step2" class="glass-card p-8 sm:p-12 text-center flex flex-col items-center justify-center h-full min-h-[450px]">
+            <div class="relative mb-8">
+              <div class="absolute inset-0 bg-blue-500/20 rounded-full blur-xl animate-pulse-slow"></div>
+              <div class="relative w-20 h-20 bg-gradient-to-br from-blue-500/20 to-blue-500/5 text-blue-400 rounded-full flex items-center justify-center border border-blue-500/20 shadow-2xl">
+                 <i class="fas fa-shopping-cart text-3xl"></i>
+              </div>
             </div>
-            <h2 class="text-2xl font-bold text-white mb-3 tracking-tight uppercase">Đăng Ký Dịch Vụ</h2>
-            <p class="text-slate-400 text-xs sm:text-sm mb-10 max-w-sm mx-auto leading-relaxed font-medium">Đảm bảo tài khoản của bạn trên hệ thống đang có một gói cước hoạt động để lấy mã cấu hình.</p>
+            <h2 class="text-3xl font-extrabold text-white mb-4 uppercase tracking-tight">BẠN ĐÃ MUA GÓI CHƯA?</h2>
+            <p class="text-slate-400 text-sm mb-10 max-w-sm mx-auto leading-relaxed">Để có thể sử dụng dịch vụ VPN, bạn cần phải đăng ký gói cước tại website của chúng tôi trước.</p>
             
-            <div class="flex flex-col gap-4 w-full max-w-xs mx-auto">
-                <button @click="nextStep" class="btn-gradient py-4 flex items-center justify-center gap-2 text-xs tracking-widest uppercase">
-                   TÔI ĐÃ CÓ GÓI CƯỚC
+            <div class="flex flex-col gap-4 w-full max-w-sm mx-auto">
+                <button @click="nextStep" class="btn-gradient py-4 flex items-center justify-center gap-2 text-xs font-bold tracking-[0.15em] uppercase shadow-[0_8px_25px_-5px_rgba(249,115,22,0.4)]">
+                  <i class="fas fa-check-circle text-base"></i> TÔI ĐÃ MUA GÓI
                 </button>
-                <a :href="adminLink" target="_blank" class="glass-button py-4 text-xs tracking-widest text-center flex items-center justify-center gap-2 uppercase">
-                  MUA GÓI MỚI <i class="fas fa-arrow-up-right-from-square text-[9px] opacity-60"></i>
+                
+                <div class="flex items-center justify-center gap-4 my-2 opacity-60">
+                  <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-white/30"></div>
+                  <span class="text-[10px] text-white font-bold tracking-widest">HOẶC</span>
+                  <div class="h-[1px] flex-1 bg-gradient-to-l from-transparent to-white/30"></div>
+                </div>
+
+                <a :href="adminLink" target="_blank" class="glass-button py-4 text-white rounded-xl font-bold text-xs tracking-[0.1em] text-center flex items-center justify-center gap-2 uppercase hover:bg-white/10">
+                  Chưa, đi tới cửa hàng <i class="fas fa-external-link-alt text-[10px] opacity-60 ml-1"></i>
                 </a>
             </div>
           </div>
 
-          <!-- BƯỚC 3: ĐĂNG KÝ NỀN -->
-          <div v-else-if="step === 3" key="step3" class="liquid-glass p-6 sm:p-10 rounded-[2.5rem]">
-            <div class="flex items-center gap-4 mb-8">
-              <div class="w-12 h-12 rounded-xl bg-white/[0.02] flex items-center justify-center border border-white/10 shadow-inner">
-                <i class="fas fa-bolt-lightning text-lg text-amber-400"></i>
+          <!-- Bước 3 -->
+          <div v-else-if="step === 3" key="step3" class="glass-card p-6 sm:p-8 min-h-[450px] flex flex-col">
+            <div class="flex items-center gap-4 mb-6 pb-6 border-b border-white/5">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-rose-500/10 flex items-center justify-center text-orange-400 border border-orange-500/30 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
+                <i class="fas fa-sim-card text-xl"></i>
               </div>
               <div>
-                <h3 class="text-lg font-bold text-white uppercase tracking-wide">Đăng Ký Gói Cước Nền</h3>
-                <p class="text-slate-400 text-xs mt-0.5 font-medium">Bắt buộc để nhà mạng mở luồng truyền tải dữ liệu miễn phí</p>
+                <h3 class="text-2xl font-extrabold text-white uppercase tracking-tight drop-shadow-sm">Đăng ký nền</h3>
+                <p class="text-slate-400 text-xs mt-1 font-medium tracking-wide">Yêu cầu bắt buộc để sử dụng VPN</p>
               </div>
             </div>
             
-            <!-- Tabs Capsule Premium -->
-            <div class="flex bg-black/30 p-1 rounded-xl border border-white/[0.04] mb-6 backdrop-blur-md">
-               <button @click="networkTab = 'viettel'" class="flex-1 py-2.5 rounded-lg text-xs font-bold transition-all duration-300 tracking-wider uppercase" :class="networkTab === 'viettel' ? 'bg-gradient-to-r from-orange-500 to-rose-500 text-white shadow-md' : 'text-slate-400 hover:text-white'">Viettel</button>
-               <button @click="networkTab = 'vinaphone'" class="flex-1 py-2.5 rounded-lg text-xs font-bold transition-all duration-300 tracking-wider uppercase" :class="networkTab === 'vinaphone' ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-white'">Vina</button>
-               <button @click="networkTab = 'mobifone'" class="flex-1 py-2.5 rounded-lg text-xs font-bold transition-all duration-300 tracking-wider uppercase" :class="networkTab === 'mobifone' ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md' : 'text-slate-400 hover:text-white'">Mobi</button>
+            <!-- Styled Segmented Control -->
+            <div class="flex bg-black/50 p-1.5 rounded-xl border border-white/10 mb-6 backdrop-blur-md shadow-inner">
+               <button @click="networkTab = 'viettel'" class="flex-1 py-3 rounded-lg text-xs font-bold transition-all tracking-widest uppercase relative overflow-hidden" 
+                       :class="networkTab === 'viettel' ? 'text-white shadow-lg bg-gradient-to-r from-red-600/80 to-orange-500/80 border border-white/10' : 'text-slate-400 hover:text-white hover:bg-white/5'">Viettel</button>
+               <button @click="networkTab = 'vinaphone'" class="flex-1 py-3 rounded-lg text-xs font-bold transition-all tracking-widest uppercase relative overflow-hidden" 
+                       :class="networkTab === 'vinaphone' ? 'text-white shadow-lg bg-gradient-to-r from-blue-600/80 to-blue-400/80 border border-white/10' : 'text-slate-400 hover:text-white hover:bg-white/5'">Vina</button>
+               <button @click="networkTab = 'mobifone'" class="flex-1 py-3 rounded-lg text-xs font-bold transition-all tracking-widest uppercase relative overflow-hidden" 
+                       :class="networkTab === 'mobifone' ? 'text-white shadow-lg bg-gradient-to-r from-yellow-600/80 to-yellow-500/80 border border-white/10' : 'text-slate-400 hover:text-white hover:bg-white/5'">Mobi</button>
             </div>
             
-            <!-- Gói cước nội dung cuộn mịn -->
-            <div class="space-y-4 max-h-[360px] overflow-y-auto custom-scrollbar pr-1.5">
-              
-              <!-- Viettel -->
-              <div v-if="networkTab === 'viettel'" class="grid grid-cols-1 gap-4">
-                  <div class="relative overflow-hidden p-6 rounded-2xl border border-orange-500/20 bg-gradient-to-b from-orange-500/[0.03] to-transparent">
-                      <div class="absolute top-0 right-0 px-3.5 py-1.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[9px] font-bold tracking-widest rounded-bl-xl uppercase">ƯU TIÊN</div>
-                      <div class="flex justify-between items-center mb-4 border-b border-white/[0.04] pb-3">
-                          <span class="text-white font-bold text-sm uppercase">TIKTOK TUẦN (T15KN)</span>
-                          <span class="text-amber-400 font-bold text-xs bg-white/[0.03] px-2.5 py-1 rounded-md border border-white/5 shrink-0">15.000đ / 7 Ngày</span>
+            <div class="flex-grow max-h-[380px] overflow-y-auto custom-scrollbar pr-2 space-y-4">
+              <!-- Tab Viettel -->
+              <div v-if="networkTab === 'viettel'" class="grid grid-cols-1 gap-4 fade-enter-active">
+                  <div class="relative overflow-hidden p-6 rounded-2xl border border-orange-500/40 bg-gradient-to-br from-orange-500/10 to-transparent shadow-[0_4px_20px_rgba(249,115,22,0.1)] transition-all hover:border-orange-500/60">
+                      <div class="absolute top-0 right-0 px-4 py-1.5 bg-orange-500 text-white text-[9px] font-black tracking-widest rounded-bl-xl uppercase shadow-lg">Khuyên dùng</div>
+                      <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-4">
+                          <span class="text-white font-extrabold text-base uppercase block mt-1 tracking-tight">TIKTOK TUẦN</span>
+                          <span class="text-white font-black text-xs bg-white/10 px-3 py-1 rounded-lg border border-white/10 uppercase mt-3 sm:mt-0 shrink-0 shadow-sm">15.000đ / Tuần</span>
                       </div>
-                      <ul class="space-y-2 mb-5 text-xs text-slate-300 font-medium">
-                          <li class="flex items-start gap-2.5">
-                             <i class="fas fa-circle-check text-orange-400 mt-0.5 shrink-0"></i>
-                             <span>Tính ổn định cao nhất, không bị bóp băng thông đột ngột.</span>
+                      <ul class="space-y-3 mb-5">
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-chart-line text-orange-400 mt-0.5 text-sm"></i>
+                             <span>Chênh 10K so với gói T50K, nhưng được <b class="text-white">tổng 100GB/tháng</b>.</span>
                           </li>
-                          <li class="flex items-start gap-2.5">
-                             <i class="fas fa-database text-orange-400 mt-0.5 shrink-0"></i>
-                             <span>Có sẵn <b class="text-white">25GB Data độc lập</b> tốc độ cao của gói cước gốc.</span>
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-bolt text-orange-400 mt-0.5 text-sm"></i>
+                             <span><b class="text-white">25GB</b> Data tốc độ cao, sử dụng trong 7 ngày.</span>
+                          </li>
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-sync-alt text-orange-400 mt-0.5 text-sm"></i>
+                             <span>Nạp đủ <b class="text-white">60K/tháng</b>, hệ thống tự động gia hạn hàng tuần không cần thao tác thêm.</span>
                           </li>
                       </ul>
-                      <div class="bg-black/20 p-3 rounded-xl border border-white/[0.03] text-xs">
-                         <span class="text-slate-400">Soạn cú pháp:</span> <b class="text-orange-400 font-mono bg-white/[0.05] px-2 py-0.5 rounded mx-1">T15KN</b> gửi <b class="text-white font-mono bg-white/[0.05] px-2 py-0.5 rounded">191</b>
+                      <div class="bg-black/40 p-3.5 rounded-xl border border-white/5 flex items-center justify-between shadow-inner">
+                         <div class="text-xs text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-2 py-1 rounded-md border border-white/5 shadow-sm">T15KN</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-1 rounded-md border border-white/5 shadow-sm">191</b></div>
                       </div>
                   </div>
                   
-                  <div class="bg-white/[0.01] border border-white/[0.04] p-5 rounded-2xl">
-                      <div class="flex justify-between items-center mb-3 border-b border-white/[0.04] pb-3">
-                          <span class="text-white font-bold text-sm uppercase">TIKTOK THÁNG (T50K)</span>
-                          <span class="text-slate-300 font-bold text-xs bg-white/[0.03] px-2.5 py-1 rounded-md border border-white/5 shrink-0">50.000đ / Tháng</span>
+                  <div class="glass-button p-6 rounded-2xl">
+                      <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-4">
+                          <span class="text-white font-bold text-base uppercase block tracking-tight">TIKTOK 50K</span>
+                          <span class="text-white font-black text-xs bg-white/10 px-3 py-1 rounded-lg border border-white/5 uppercase shrink-0">50.000đ / Tháng</span>
                       </div>
-                      <div class="bg-black/20 p-3 rounded-xl border border-white/[0.03] text-xs">
-                         <span class="text-slate-400">Soạn cú pháp:</span> <b class="text-orange-400 font-mono bg-white/[0.05] px-2 py-0.5 rounded mx-1">T50K</b> gửi <b class="text-white font-mono bg-white/[0.05] px-2 py-0.5 rounded">191</b>
+                      <ul class="space-y-3 mb-5">
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-star text-orange-400 mt-0.5"></i>
+                             <span>Gói nền rẻ nhất, tối ưu ngân sách.</span>
+                          </li>
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-database text-orange-400 mt-0.5"></i>
+                             <span><b class="text-white">50GB</b> Data TikTok.</span>
+                          </li>
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-sync-alt text-orange-400 mt-0.5"></i>
+                             <span>Gói này gia hạn theo tháng, nạp đủ 50K tự gia hạn.</span>
+                          </li>
+                      </ul>
+                      <div class="bg-black/30 p-3.5 rounded-xl border border-white/5 flex items-center justify-between">
+                         <div class="text-xs text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-2 py-1 rounded-md border border-white/5">T50K</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-1 rounded-md border border-white/5">191</b></div>
                       </div>
                   </div>
 
-                  <div class="bg-white/[0.01] border border-white/[0.04] p-5 rounded-2xl">
-                      <div class="flex justify-between items-center mb-3 border-b border-white/[0.04] pb-3">
-                          <span class="text-white font-bold text-sm uppercase">MẠNG XÃ HỘI (MXH100)</span>
-                          <span class="text-slate-300 font-bold text-xs bg-white/[0.03] px-2.5 py-1 rounded-md border border-white/5 shrink-0">100.000đ / Tháng</span>
+                  <div class="glass-button p-6 rounded-2xl">
+                      <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-4">
+                          <span class="text-white font-bold text-base uppercase block tracking-tight">GÓI MXH100</span>
+                          <span class="text-white font-black text-xs bg-white/10 px-3 py-1 rounded-lg border border-white/5 uppercase shrink-0">100.000đ / Tháng</span>
                       </div>
-                      <div class="bg-black/20 p-3 rounded-xl border border-white/[0.03] text-xs">
-                         <span class="text-slate-400">Soạn cú pháp:</span> <b class="text-orange-400 font-mono bg-white/[0.05] px-2 py-0.5 rounded mx-1">MXH100</b> gửi <b class="text-white font-mono bg-white/[0.05] px-2 py-0.5 rounded">191</b>
+                      <ul class="space-y-3 mb-5">
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-infinity text-orange-400 mt-0.5"></i>
+                             <span>Không lo hết dung lượng, dùng tẹt.</span>
+                          </li>
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-signal text-orange-400 mt-0.5"></i>
+                             <span><b class="text-white">1GB Data/Ngày</b> (30GB/Tháng).</span>
+                          </li>
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-shield-alt text-orange-400 mt-0.5"></i>
+                             <span><b class="text-white">Không giới hạn GB</b> khi bật kèm app VPN.</span>
+                          </li>
+                      </ul>
+                      <div class="bg-black/30 p-3.5 rounded-xl border border-white/5 flex items-center justify-between">
+                         <div class="text-xs text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-2 py-1 rounded-md border border-white/5">MXH100</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-1 rounded-md border border-white/5">191</b></div>
                       </div>
                   </div>
               </div>
 
-              <!-- Vinaphone -->
-              <div v-if="networkTab === 'vinaphone'" class="grid grid-cols-1 gap-4">
-                  <div class="p-6 rounded-2xl border border-cyan-500/20 bg-gradient-to-b from-cyan-500/[0.02] to-transparent">
-                      <div class="flex justify-between items-center mb-4 border-b border-white/[0.04] pb-3">
-                          <span class="text-white font-bold text-sm uppercase">NỀN TIKTOK (TK30)</span>
-                          <span class="text-cyan-400 font-bold text-xs bg-white/[0.03] px-2.5 py-1 rounded-md border border-white/5 shrink-0">30.000đ / Tháng</span>
+              <!-- Tab Vinaphone -->
+              <div v-if="networkTab === 'vinaphone'" class="grid grid-cols-1 gap-4 fade-enter-active">
+                  <div class="relative overflow-hidden p-6 rounded-2xl border border-blue-500/40 bg-gradient-to-br from-blue-500/10 to-transparent shadow-[0_4px_20px_rgba(59,130,246,0.1)] hover:border-blue-500/60 transition-all">
+                      <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-4">
+                          <span class="text-white font-bold text-base uppercase block tracking-tight">NỀN TIKTOK THÁNG</span>
+                          <span class="text-blue-300 font-black text-[10px] bg-blue-500/20 px-3 py-1.5 rounded-lg border border-blue-500/30 uppercase tracking-widest shrink-0">30.000đ / Tháng</span>
                       </div>
-                      <div class="p-3 bg-rose-500/[0.04] rounded-xl border border-rose-500/10 text-xs text-rose-300 mb-4 font-medium leading-relaxed">
-                          ⚠️ <b>Lưu ý cấu hình:</b> Khuyến khích số dư tài khoản chính về cận 0đ hoặc duy trì gói data nền phụ để hạn chế cước phát sinh từ hệ thống định tuyến Vina.
-                      </div>
-                      <div class="bg-black/20 p-3 rounded-xl border border-white/[0.03] text-xs">
-                         <span class="text-slate-400">Soạn cú pháp:</span> <b class="text-cyan-400 font-mono bg-white/[0.05] px-2 py-0.5 rounded mx-1">TK30</b> gửi <b class="text-white font-mono bg-white/[0.05] px-2 py-0.5 rounded">888</b>
+                      <ul class="space-y-3 mb-5">
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-rocket text-blue-400 mt-0.5 text-sm"></i>
+                             <span>Gói cước tối ưu, giá rẻ.</span>
+                          </li>
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-wifi text-blue-400 mt-0.5 text-sm"></i>
+                             <span>Truy cập <b class="text-white">không giới hạn</b> gb, tốc độ ổn định.</span>
+                          </li>
+                          <li class="flex items-start gap-3 text-xs text-slate-300 bg-yellow-500/10 p-2.5 rounded-xl border border-yellow-500/20">
+                             <i class="fas fa-exclamation-triangle text-yellow-500 mt-0.5 text-sm"></i>
+                             <span><b class="text-yellow-500">Lưu ý:</b> Để sim 0đ hoặc mua data nền tránh trừ tiền khi dùng.</span>
+                          </li>
+                      </ul>
+                      <div class="bg-black/50 p-3.5 rounded-xl border border-white/5 flex items-center justify-between shadow-inner">
+                         <div class="text-xs text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-2 py-1 rounded-md border border-white/5">TK30</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-1 rounded-md border border-white/5">888</b></div>
                       </div>
                   </div>
               </div>
 
-              <!-- Mobifone -->
-              <div v-if="networkTab === 'mobifone'" class="grid grid-cols-1 gap-4">
-                  <div class="p-5 rounded-2xl border border-amber-500/15 bg-white/[0.01]">
-                      <div class="flex justify-between items-center mb-4 border-b border-white/[0.04] pb-3">
-                          <span class="text-white font-bold text-sm uppercase">TIKTOK 30 NGÀY (TIK30)</span>
-                          <span class="text-amber-400 font-bold text-xs bg-white/[0.03] px-2.5 py-1 rounded-md border border-white/5 shrink-0">50.000đ / Tháng</span>
+              <!-- Tab Mobifone -->
+              <div v-if="networkTab === 'mobifone'" class="grid grid-cols-1 gap-4 fade-enter-active">
+                  <div class="glass-button p-6 rounded-2xl border-l-4 border-l-yellow-500 relative overflow-hidden bg-gradient-to-r from-yellow-500/5 to-transparent">
+                      <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-4">
+                          <span class="text-white font-bold text-base uppercase block tracking-tight">GÓI DK TIK30</span>
+                          <span class="text-yellow-300 font-black text-[10px] bg-yellow-500/20 px-3 py-1.5 rounded-lg border border-yellow-500/30 uppercase tracking-widest shrink-0">50.000đ / Tháng</span>
                       </div>
-                      <div class="bg-black/20 p-3 rounded-xl border border-white/[0.03] text-xs">
-                         <span class="text-slate-400">Soạn cú pháp:</span> <b class="text-amber-400 font-mono bg-white/[0.05] px-2 py-0.5 rounded mx-1">DK TIK30</b> gửi <b class="text-white font-mono bg-white/[0.05] px-2 py-0.5 rounded">9199</b>
+                      <ul class="space-y-3 mb-5">
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-bullseye text-yellow-500 mt-0.5"></i>
+                             <span>Phù hợp nhu cầu cơ bản, tối ưu ngân sách.</span>
+                          </li>
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-sync-alt text-yellow-500 mt-0.5"></i>
+                             <span><b class="text-white">50GB Data</b> tốc độ cao, hạn sử dụng 30 ngày (có gia hạn được).</span>
+                          </li>
+                          <li class="flex items-start gap-3 text-xs text-slate-300 bg-yellow-500/10 p-2.5 rounded-xl border border-yellow-500/20">
+                             <i class="fas fa-exclamation-triangle text-yellow-500 mt-0.5"></i>
+                             <span><b class="text-yellow-500">Lưu ý:</b> Để sim 0đ tránh trừ tiền trong tài khoản gốc.</span>
+                          </li>
+                      </ul>
+                      <div class="bg-black/30 p-3.5 rounded-xl border border-white/5 flex items-center justify-between">
+                         <div class="text-xs text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-2 py-1 rounded-md border border-white/5">DK TIK30</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-1 rounded-md border border-white/5">9199</b></div>
+                      </div>
+                  </div>
+                  
+                  <div class="glass-button p-6 rounded-2xl border-l-4 border-l-yellow-500 bg-gradient-to-r from-yellow-500/5 to-transparent">
+                      <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-4">
+                          <span class="text-white font-bold text-base uppercase block tracking-tight">GÓI TT80</span>
+                          <span class="text-yellow-300 font-black text-[10px] bg-yellow-500/20 px-3 py-1.5 rounded-lg border border-yellow-500/30 uppercase tracking-widest shrink-0">80.000đ / Tháng</span>
+                      </div>
+                      <ul class="space-y-3 mb-5">
+                          <li class="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
+                             <i class="fas fa-rocket text-yellow-500 mt-0.5"></i>
+                             <span>Không giới hạn dung lượng truy cập tốc độ cao.</span>
+                          </li>
+                      </ul>
+                      <div class="bg-black/30 p-3.5 rounded-xl border border-white/5 flex items-center justify-between mt-2">
+                         <div class="text-xs text-slate-300">Cú pháp: Soạn <b class="text-white font-mono bg-white/10 px-2 py-1 rounded-md border border-white/5">TT80</b> gửi <b class="text-white font-mono bg-white/10 px-2 py-1 rounded-md border border-white/5">9199</b></div>
                       </div>
                   </div>
               </div>
             </div>
 
-            <button @click="nextStep" class="w-full py-4 mt-6 bg-white text-black hover:bg-slate-100 font-bold rounded-xl transition-all duration-300 uppercase tracking-widest text-xs shadow-xl">
-              XÁC NHẬN ĐÃ ĐĂNG KÝ XONG
+            <button @click="nextStep" class="w-full py-4 mt-6 glass-button !bg-white/90 !text-black hover:!bg-white font-extrabold rounded-xl transition-all uppercase tracking-[0.15em] text-xs shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+              ĐÃ ĐĂNG KÝ NỀN XONG
             </button>
           </div>
 
-          <!-- BƯỚC 4: CHỌN HỆ ĐIỀU HÀNH -->
-          <div v-else-if="step === 4" key="step4" class="liquid-glass p-6 sm:p-10 rounded-[2.5rem]">
-            <h3 class="text-lg font-bold mb-6 text-white text-center sm:text-left uppercase tracking-wide">LỰA CHỌN THIẾT BỊ ĐANG DÙNG</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <button v-for="d in devices" @click="os = d.id; nextStep()" class="p-6 rounded-2xl border text-left transition-all duration-300 group relative overflow-hidden"
-                :class="os === d.id ? 'border-orange-500/30 bg-orange-500/[0.04] ring-1 ring-orange-500/20' : 'bg-white/[0.01] border-white/[0.04] hover:border-white/10 hover:bg-white/[0.03]'">
-                <div class="w-12 h-12 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-                  <i :class="d.icon" class="text-xl transition-colors duration-300" :class="os === d.id ? 'text-orange-400' : 'text-slate-300'"></i>
+          <!-- Bước 4 -->
+          <div v-else-if="step === 4" key="step4" class="glass-card p-8 sm:p-12 min-h-[450px] flex flex-col justify-center">
+            <div class="text-center mb-10">
+              <h3 class="text-3xl font-extrabold text-white uppercase tracking-tight drop-shadow-md">Thiết bị sử dụng</h3>
+              <p class="text-slate-400 mt-2 text-sm font-medium">Chọn hệ điều hành thiết bị của bạn</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-lg mx-auto w-full">
+              <button v-for="d in devices" :key="d.id" @click="os = d.id; nextStep()" 
+                class="p-6 rounded-2xl border text-center transition-all duration-300 group flex flex-col items-center justify-center relative overflow-hidden"
+                :class="os === d.id ? 'border-orange-500 bg-orange-500/10 ring-2 ring-orange-500 shadow-[0_0_25px_rgba(249,115,22,0.25)] scale-[1.02]' : 'glass-button hover:border-white/30'">
+                <div class="absolute inset-0 bg-gradient-to-t from-white/[0.02] to-transparent pointer-events-none"></div>
+                <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-5 group-hover:bg-white/10 group-hover:-translate-y-1 transition-all duration-300">
+                  <i :class="d.icon" class="text-4xl drop-shadow-md" :class="os === d.id ? 'text-orange-500' : 'text-slate-200'"></i>
                 </div>
-                <div class="font-bold text-white text-sm tracking-wider uppercase">{{ d.name }}</div>
-                <p class="text-xs text-slate-500 mt-1 font-medium">Nhấp chọn cấu hình chuyên biệt</p>
+                <div class="font-extrabold text-white text-lg uppercase tracking-wider">{{ d.name }}</div>
               </button>
             </div>
           </div>
 
-          <!-- BƯỚC 5: CHỌN ỨNG DỤNG VPN -->
-          <div v-else-if="step === 5" key="step5" class="liquid-glass p-6 sm:p-10 rounded-[2.5rem]">
-            <h3 class="text-lg font-bold mb-6 text-white text-center sm:text-left uppercase tracking-wide">CHỌN PHẦN MỀM KẾT NỐI</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <button v-for="app in availableApps" :key="app.id" @click="selectedApp = app; nextStep()" class="p-6 rounded-2xl border text-left transition-all duration-300 group bg-white/[0.01] border-white/[0.04] hover:border-white/10 hover:bg-white/[0.03] flex flex-col h-full">
-                <div class="flex items-center gap-4 mb-4">
-                  <div class="w-11 h-11 rounded-xl bg-white/[0.02] text-orange-400 flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform">
-                    <i :class="app.icon" class="text-base"></i>
+          <!-- Bước 5 -->
+          <div v-else-if="step === 5" key="step5" class="glass-card p-8 sm:p-12 min-h-[450px] flex flex-col">
+            <div class="text-center mb-10">
+              <h3 class="text-3xl font-extrabold text-white uppercase tracking-tight drop-shadow-md">Chọn Ứng Dụng VPN</h3>
+              <p class="text-slate-400 mt-2 text-sm font-medium">Chọn ứng dụng để cấu hình kết nối</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto w-full">
+              <button v-for="app in availableApps" :key="app.id" @click="selectedApp = app; nextStep()" 
+                class="p-6 rounded-2xl border text-left transition-all duration-300 group glass-button hover:border-white/30 relative overflow-hidden flex flex-col h-full hover:-translate-y-1 hover:shadow-xl">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-3xl -mr-10 -mt-10 transition-all group-hover:bg-orange-500/20"></div>
+                <div class="flex items-center gap-4 mb-4 relative z-10">
+                  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-rose-500/10 text-orange-400 flex items-center justify-center border border-orange-500/30 shadow-inner">
+                    <i :class="app.icon" class="text-xl drop-shadow-sm"></i>
                   </div>
-                  <div class="font-bold text-white text-sm tracking-wide">{{ app.name }}</div>
+                  <div class="font-extrabold text-white text-xl tracking-tight">{{ app.name }}</div>
                 </div>
-                <p class="text-xs text-slate-400 leading-relaxed font-medium flex-grow">{{ app.desc }}</p>
-                <div class="mt-4 text-[10px] font-bold text-orange-400 uppercase tracking-widest flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  CHỌN <i class="fas fa-chevron-right text-[8px]"></i>
+                <p class="text-xs text-slate-300 leading-relaxed normal-case tracking-normal relative z-10 flex-grow font-medium">{{ app.desc }}</p>
+                <div class="mt-5 relative z-10 text-[10px] uppercase tracking-widest text-orange-400 font-bold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  Chọn ứng dụng này <i class="fas fa-arrow-right"></i>
                 </div>
               </button>
             </div>
           </div>
 
-          <!-- BƯỚC 6: DOWNLOAD APP -->
-          <div v-else-if="step === 6" key="step6" class="liquid-glass p-6 sm:p-10 rounded-[2.5rem] border-t border-t-orange-500/20">
+          <!-- Bước 6 -->
+          <div v-else-if="step === 6" key="step6" class="glass-card p-8 sm:p-12 min-h-[450px] flex flex-col justify-center border-t-4 border-t-orange-500">
                <div v-if="selectedApp" class="flex flex-col items-center sm:items-start text-center sm:text-left">
-                  <div class="inline-flex px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 text-[9px] font-bold tracking-widest uppercase mb-6 border border-orange-500/10">BƯỚC TIẾP THEO: CÀI ĐẶT ỨNG DỤNG</div>
+                  <div class="inline-flex px-4 py-1.5 rounded-full bg-orange-500/10 text-orange-400 text-[10px] font-black tracking-[0.25em] uppercase mb-8 border border-orange-500/20 shadow-sm">
+                    Thông tin tải app
+                  </div>
                   
-                  <div class="flex flex-col sm:flex-row items-center gap-5 mb-8 w-full">
-                    <div class="w-14 h-14 rounded-2xl bg-white/[0.02] border border-white/10 flex items-center justify-center shrink-0 shadow-lg">
-                      <i class="fas fa-arrow-down-to-bracket text-xl text-orange-400"></i>
+                  <div class="flex flex-col sm:flex-row items-center gap-6 mb-10 w-full">
+                    <div class="w-20 h-20 rounded-[1.5rem] bg-gradient-to-br from-white/10 to-white/5 border border-white/20 flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.5)] shrink-0 relative overflow-hidden group">
+                      <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                      <i class="fas fa-cloud-download-alt text-3xl text-white drop-shadow-lg group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div>
-                      <h4 class="text-xl font-bold text-white mb-1 tracking-tight">{{ selectedApp.name }}</h4>
-                      <p class="text-slate-400 text-xs font-medium leading-relaxed max-w-md">{{ selectedApp.desc }}</p>
+                      <h4 class="text-3xl sm:text-4xl font-black text-white mb-2 tracking-tight uppercase drop-shadow-md">{{ selectedApp.name }}</h4>
+                      <p class="text-slate-300 text-sm leading-relaxed normal-case tracking-normal max-w-md font-medium">{{ selectedApp.desc }}</p>
                     </div>
                   </div>
                   
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-                    <a :href="selectedApp.link" target="_blank" class="btn-gradient py-4 text-center text-xs tracking-wider uppercase flex items-center justify-center gap-2">
-                      TẢI XUỐNG TỪ CỬA HÀNG <i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                    <a :href="selectedApp.link" target="_blank" class="btn-gradient py-4 text-center text-xs font-bold tracking-[0.1em] uppercase flex items-center justify-center gap-2">
+                      <i class="fab fa-app-store-ios text-lg" v-if="os==='ios'"></i>
+                      <i class="fab fa-google-play text-lg" v-if="os==='android'"></i>
+                      Tải App Ngay
                     </a>
-                    <button @click="nextStep" class="glass-button py-4 text-xs tracking-wider uppercase">TÔI ĐÃ CÀI XONG, TIẾP TỤC</button>
+                    <button @click="nextStep" class="glass-button py-4 text-white font-bold rounded-xl text-xs tracking-[0.1em] uppercase hover:bg-white/10 border border-white/20">Đã cài xong, tiếp tục</button>
                   </div>
                </div>
           </div>
 
-          <!-- BƯỚC 7: XEM TUTORIAL CHI TIẾT -->
-          <div v-else-if="step === 7" key="step7" class="liquid-glass rounded-[2.5rem] flex flex-col h-[560px] overflow-hidden border-t border-t-orange-500/20 animate-fade-in">
-            <!-- Header -->
-            <div class="p-5 border-b border-white/[0.04] bg-black/30 backdrop-blur-md sticky top-0 z-20 flex justify-between items-center">
+          <!-- Bước 7 -->
+          <div v-else-if="step === 7" key="step7" class="glass-card rounded-[1.75rem] flex flex-col h-[550px] overflow-hidden border-t-4 border-t-orange-500 bg-[#0d0d10]/80">
+            <div class="p-6 border-b border-white/10 bg-black/60 backdrop-blur-xl sticky top-0 z-20 flex justify-between items-center shadow-md">
               <div>
-                <h3 class="font-bold text-white text-sm tracking-wider uppercase">TIẾN TRÌNH CẤU HÌNH CHI TIẾT</h3>
-                <div class="flex items-center gap-1.5 mt-1">
-                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                   <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest">{{ os }} &bull; {{ selectedApp?.name }}</p>
+                <h3 class="font-extrabold text-white text-lg tracking-tight uppercase drop-shadow-md">Hướng Dẫn Cấu Hình</h3>
+                <div class="flex items-center gap-2 mt-1.5">
+                   <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                   </span>
+                   <p class="text-[10px] text-slate-300 font-bold uppercase tracking-widest">{{ os }} &bull; {{ selectedApp?.name }}</p>
                 </div>
               </div>
-              <button @click="resetFlow" class="w-8 h-8 rounded-xl glass-button flex items-center justify-center text-slate-400 hover:text-white">
-                <i class="fas fa-house text-xs"></i>
+              <button @click="resetFlow" class="w-10 h-10 rounded-xl glass-button flex items-center justify-center hover:text-white transition-all text-slate-400 hover:scale-105 hover:bg-white/10">
+                <i class="fas fa-home text-sm"></i>
               </button>
             </div>
 
-            <!-- Body list -->
-            <div class="flex-1 overflow-y-auto p-6 custom-scrollbar space-y-6">
-              <div class="relative border-l border-white/[0.04] ml-3 space-y-8 pb-4">
+            <div class="flex-1 overflow-y-auto p-6 sm:p-8 custom-scrollbar">
+              <div class="relative border-l-2 border-white/10 ml-5 space-y-10 pb-8">
                 
-                <div v-for="(item, index) in currentTutorial" :key="index" class="relative pl-7 sm:pl-9">
-                  <!-- Stepper Indicator lơ lửng phát sáng -->
-                  <div class="absolute -left-[11px] top-0.5 w-5 h-5 rounded-full bg-gradient-to-br from-orange-500 to-rose-500 flex items-center justify-center font-bold text-white shadow-[0_0_10px_rgba(249,115,22,0.4)] text-[10px]">
+                <div v-for="(item, index) in currentTutorial" :key="index" class="relative pl-8 sm:pl-10">
+                  <div class="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-rose-600 flex items-center justify-center font-extrabold text-white shadow-[0_0_15px_rgba(249,115,22,0.6)] border-[4px] border-[#0d0d10] text-xs">
                     {{ index + 1 }}
                   </div>
                   
-                  <p class="text-slate-200 font-medium leading-relaxed pt-0.5 text-xs sm:text-sm mb-4">{{ item.text }}</p>
+                  <p class="text-slate-50 font-medium leading-relaxed pt-1 text-sm sm:text-base mb-4 normal-case tracking-normal">{{ item.text }}</p>
                   
-                  <!-- Screenshots -->
-                  <div v-if="item.image" class="relative group inline-block w-full max-w-[240px] sm:max-w-[260px]">
-                     <div class="absolute -inset-1 bg-gradient-to-r from-orange-500 to-rose-500 rounded-2xl blur opacity-10 group-hover:opacity-20 transition duration-500"></div>
-                     <div class="relative rounded-xl border border-white/10 overflow-hidden bg-black/40 p-1">
-                        <img :src="item.image" class="w-full h-auto rounded-lg shadow-2xl" loading="lazy" alt="Minh họa cấu hình">
+                  <div v-if="item.image" class="relative group inline-block w-full max-w-[240px] sm:max-w-[280px]">
+                     <div class="absolute -inset-1.5 bg-gradient-to-r from-orange-500 to-rose-600 rounded-2xl blur opacity-25 group-hover:opacity-60 transition duration-500"></div>
+                     <div class="relative rounded-2xl border border-white/20 overflow-hidden bg-black/60 flex justify-center items-center p-1.5 shadow-xl">
+                        <img :src="item.image" class="w-full h-auto relative z-10 rounded-xl transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy" alt="Hướng dẫn">
                      </div>
                   </div>
 
-                  <!-- Videos -->
-                  <div v-if="item.video" class="relative group inline-block w-full max-w-[280px] sm:max-w-[300px]">
-                     <div class="absolute -inset-1 bg-gradient-to-r from-orange-500 to-rose-500 rounded-2xl blur opacity-10 group-hover:opacity-20 transition duration-500"></div>
-                     <div class="relative rounded-xl border border-white/10 overflow-hidden bg-black/40 p-1 flex flex-col items-center">
-                        <div class="relative w-full aspect-[9/16] rounded-lg overflow-hidden bg-black">
-                            <iframe :src="item.video" class="absolute top-0 left-0 w-full h-full" frameborder="0" allowfullscreen></iframe>
+                  <div v-if="item.video" class="relative group inline-block w-full max-w-[280px] sm:max-w-[320px]">
+                     <div class="absolute -inset-1.5 bg-gradient-to-r from-orange-500 to-rose-600 rounded-[1.25rem] blur opacity-25 group-hover:opacity-60 transition duration-500"></div>
+                     <div class="relative rounded-[1.25rem] border border-white/20 overflow-hidden bg-black/60 p-1.5 flex flex-col items-center shadow-xl">
+                        <div class="relative w-full aspect-[9/16] rounded-xl overflow-hidden shadow-inner bg-black">
+                            <iframe 
+                                :src="item.video" 
+                                class="absolute top-0 left-0 w-full h-full" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
                         </div>
                      </div>
-                     <a v-if="item.youtubeLink" :href="item.youtubeLink" target="_blank" class="mt-3 flex items-center justify-center gap-2 w-full py-2.5 rounded-xl glass-button text-xs font-bold uppercase tracking-wider">
-                        <i class="fab fa-youtube text-red-500 text-sm"></i> Xem Trên Ứng Dụng YouTube
+                     <a v-if="item.youtubeLink" :href="item.youtubeLink" target="_blank" 
+                        class="mt-5 flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl glass-button text-white text-xs font-bold transition-all hover:-translate-y-1 shadow-lg hover:border-white/30 border border-white/10 uppercase tracking-wide">
+                        <i class="fab fa-youtube text-red-500 text-lg"></i> Mở video trên YouTube
                      </a>
                   </div>
                 </div>
 
               </div>
 
-              <!-- Thẻ hoàn tất -->
-              <div class="p-6 text-center bg-gradient-to-b from-emerald-500/[0.02] to-transparent rounded-2xl border border-emerald-500/10 mt-6">
-                  <div class="w-10 h-10 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center mx-auto mb-3 border border-emerald-500/20">
-                    <i class="fas fa-check text-sm"></i>
+              <!-- Complete message -->
+              <div class="p-8 text-center bg-gradient-to-b from-orange-500/10 to-transparent rounded-[1.5rem] border border-orange-500/30 mt-8 relative overflow-hidden">
+                  <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
+                  <div class="relative z-10">
+                    <div class="w-14 h-14 bg-gradient-to-tr from-green-400 to-emerald-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-[0_0_25px_rgba(16,185,129,0.5)] border border-white/20">
+                      <i class="fas fa-check text-2xl drop-shadow-md"></i>
+                    </div>
+                    <h4 class="text-xl font-extrabold text-white mb-2 tracking-tight uppercase drop-shadow-sm">Hoàn tất cài đặt!</h4>
+                    <p class="text-slate-300 text-sm max-w-[280px] mx-auto leading-relaxed normal-case tracking-normal font-medium">Đảm bảo bạn đã bật 4G trước khi nhấn nút Kết nối trong ứng dụng nhé.</p>
+                    <button @click="resetFlow" class="mt-6 px-10 py-3.5 bg-white text-black font-extrabold rounded-xl text-xs uppercase tracking-[0.2em] hover:scale-105 transition-transform shadow-[0_5px_20px_rgba(255,255,255,0.2)]">Trang chủ</button>
                   </div>
-                  <h4 class="text-sm font-bold text-white mb-1 uppercase tracking-wide">THIẾT LẬP HOÀN TẤT</h4>
-                  <p class="text-slate-400 text-xs max-w-[260px] mx-auto leading-relaxed font-medium">Bật dữ liệu mạng di động 4G trước khi kích hoạt công tắc khởi động ứng dụng VPN.</p>
-                  <button @click="resetFlow" class="mt-4 px-5 py-2 bg-white hover:bg-slate-100 text-black font-bold rounded-lg text-[10px] uppercase tracking-wider transition-all shadow-md">QUAY VỀ TRANG CHỦ</button>
               </div>
             </div>
           </div>
 
-          <!-- BƯỚC 8: FIX LỖI -->
-          <div v-else-if="step === 8" key="step8" class="liquid-glass p-6 sm:p-10 rounded-[2.5rem] border-t border-t-rose-500/20">
-            <div class="p-5 border-b border-white/[0.04] bg-black/30 backdrop-blur-md sticky top-0 z-20 flex justify-between items-center mb-6 rounded-t-2xl -mt-6 -mx-6 px-6 sm:px-10 pt-4 pb-4">
+          <!-- Bước 8 -->
+          <div v-else-if="step === 8" key="step8" class="glass-card p-6 sm:p-10 min-h-[450px] flex flex-col border-t-4 border-t-rose-500">
+            <div class="p-6 border-b border-white/10 bg-black/40 backdrop-blur-xl sticky top-0 z-20 flex justify-between items-center mb-6 rounded-t-[1.5rem] -mt-6 -mx-6 px-6 sm:px-10 pt-8 pb-6">
               <div>
-                <h3 class="font-bold text-white text-sm tracking-wider uppercase">TRUNG TÂM SỬA LỖI</h3>
-                <p class="text-[9px] text-rose-400 font-bold uppercase tracking-widest mt-0.5">XỬ LÝ SỰ CỐ MẤT KẾT NỐI MẠNG</p>
+                <h3 class="font-extrabold text-white text-lg tracking-tight uppercase drop-shadow-md">Hướng Dẫn Fix Lỗi</h3>
+                <p class="text-[10px] text-slate-300 font-bold uppercase tracking-widest mt-1.5">Khắc phục sự cố kết nối</p>
               </div>
-              <button @click="resetFlow" class="w-8 h-8 rounded-xl glass-button flex items-center justify-center text-slate-400 hover:text-white">
-                <i class="fas fa-house text-xs"></i>
+              <button @click="resetFlow" class="w-10 h-10 rounded-xl glass-button flex items-center justify-center hover:text-white transition-all text-slate-400 hover:scale-105 hover:bg-white/10">
+                <i class="fas fa-home text-sm"></i>
               </button>
             </div>
 
-            <div class="p-8 text-center bg-white/[0.005] rounded-2xl border border-white/[0.03] border-dashed mt-4">
-                <div class="w-12 h-12 bg-rose-500/5 text-rose-400 rounded-xl flex items-center justify-center mx-auto mb-3 border border-rose-500/10">
-                    <i class="fas fa-wrench text-base"></i>
-                </div>
-                <h4 class="text-sm font-bold text-white mb-1.5 uppercase tracking-wide">Dữ Liệu Đang Được Đồng Bộ</h4>
-                <p class="text-slate-400 text-xs leading-relaxed font-medium max-w-[260px] mx-auto">Các giải pháp khắc phục lỗi xung đột phần mềm hoặc lỗi mạng đang được quản trị viên hoàn thiện tài liệu.</p>
+            <div class="flex-1 flex items-center justify-center">
+              <div class="p-8 text-center bg-white/[0.02] rounded-[1.5rem] border-2 border-white/10 border-dashed w-full max-w-sm mx-auto">
+                  <div class="w-20 h-20 bg-rose-500/10 text-rose-400 rounded-full flex items-center justify-center mx-auto mb-6 border border-rose-500/20 shadow-[0_0_25px_rgba(244,63,94,0.2)]">
+                      <i class="fas fa-tools text-3xl"></i>
+                  </div>
+                  <h4 class="text-xl font-extrabold text-white mb-3 tracking-tight uppercase">Đang cập nhật nội dung</h4>
+                  <p class="text-slate-400 text-sm leading-relaxed normal-case tracking-normal max-w-[260px] mx-auto font-medium">Nội dung hướng dẫn chi tiết cách fix lỗi sẽ được quản trị viên thêm vào khu vực này sớm nhất.</p>
+              </div>
             </div>
           </div>
 
@@ -491,9 +577,8 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <div class="w-full text-center py-5 text-[9px] text-slate-600 font-bold tracking-widest uppercase z-10 relative border-t border-white/[0.01]">
-    VPNSIEUCAP &copy; 2026 &bull; ULTRA GLASS UI ARCHITECTURE
+  <div class="w-full text-center py-6 text-[10px] text-slate-500 font-bold tracking-[0.2em] uppercase z-10 relative">
+    VPNSIEUCAP &copy; 2026. Premium User Interface.
   </div>
 
   <script>
@@ -518,20 +603,20 @@
         const resetFlow = () => { step.value = 1; os.value = null; selectedApp.value = null; };
 
         const devices = [
-          { id: 'android', name: 'THIẾT BỊ ANDROID', icon: 'fab fa-android' },
-          { id: 'ios', name: 'IPHONE / IPAD (IOS)', icon: 'fab fa-apple' }
+          { id: 'android', name: 'ANDROID', icon: 'fab fa-android' },
+          { id: 'ios', name: 'IPHONE (IOS)', icon: 'fab fa-apple' }
         ];
 
         const availableApps = computed(() => {
           if (os.value === 'android') {
             return [
-              { id: 'v2ray', name: 'V2ray Tun', desc: 'Lõi VPN thế hệ mới cực nhẹ, tối ưu hóa thuật toán mã hóa, tiết kiệm pin tuyệt đối cho hệ điều hành Android.', link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=vi', icon: 'fas fa-shuttle-space' },
-              { id: 'happ', name: 'Happ Proxy', desc: 'Trình quản lý proxy tinh gọn sở hữu giao diện trực quan, thao tác đồng bộ hóa 1 chạm thích hợp với người mới sử dụng.', link: 'https://play.google.com/store/search?q=happ+vpn', icon: 'fas fa-bolt' }
+              { id: 'v2ray', name: 'V2ray Tun', desc: 'Ứng dụng VPN đa giao thức, hoạt động ổn định và mượt mà trên hệ điều hành Android.', link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=vi', icon: 'fas fa-rocket' },
+              { id: 'happ', name: 'Happ', desc: 'Ứng dụng VPN mới với khả năng kết nối siêu tốc và giao diện cực kỳ dễ sử dụng.', link: 'https://play.google.com/store/search?q=happ+vpn', icon: 'fas fa-bolt' }
             ];
           } else if (os.value === 'ios') {
             return [
-              { id: 'shadowrocket', name: 'Shadowrocket', desc: 'Phần mềm VPN quốc dân tối ưu băng thông đỉnh cao trên iOS. Hỗ trợ kiểm soát luồng kết nối mạnh mẽ và chuyên nghiệp.', link: 'https://apps.apple.com/us/app/shadowrocket/id932747118', icon: 'fas fa-paper-plane' },
-              { id: 'happ', name: 'Happ Proxy', desc: 'Giải pháp thay thế hiện đại, dung lượng siêu nhẹ chạy nền ổn định giúp duy trì liên kết dữ liệu mượt mà.', link: 'https://apps.apple.com/vn/app/happ-proxy-utility/id6504287215?l=vi', icon: 'fas fa-bolt' }
+              { id: 'shadowrocket', name: 'Shadowrocket', desc: 'App VPN quốc dân cho iPhone. Hỗ trợ tải miễn phí', link: 'https://apps.apple.com/us/app/shadowrocket/id932747118', icon: 'fas fa-paper-plane' },
+              { id: 'happ', name: 'Happ', desc: 'Ứng dụng VPN mới với khả năng kết nối siêu tốc và giao diện cực kỳ dễ sử dụng.', link: 'https://apps.apple.com/vn/app/happ-proxy-utility/id6504287215?l=vi', icon: 'fas fa-bolt' }
             ];
           }
           return [];
@@ -543,44 +628,44 @@
 
           if (appId === 'v2ray') {
               return [
-                { text: `Mở phần mềm V2ray Tun vừa tải trên thiết bị.` },
-                { text: `Truy cập vào bảng danh mục Cài đặt hệ thống của app.`, image: "https://i.ibb.co/psSNRpJ/IMG-2031.png" },
-                { text: `Tìm và chọn vào mục thiết lập luồng dữ liệu mạng sâu.`, image: "https://i.ibb.co/mF2bk9PH/IMG-2032.png" },
-                { text: `Thực hiện TẮT tùy chọn "Bật Sniffing" đồng thời gạt BẬT mục "Bật Local DNS".`, image: "https://i.ibb.co/DfCky1vr/IMG-2033.png" },
-                { text: `Bật hai tính năng phụ trợ liên kết: "Cho phép kết nối từ mạng LAN" và "Bỏ qua xác minh chứng chỉ".`, image: "https://i.ibb.co/chwST52K/IMG-2034.png" },
-                { text: `Quay lại trình duyệt web, tại tài khoản của bạn trên website nhấn nút "Nhập đăng ký".`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
-                { text: `Lựa chọn tiếp tục dòng lệnh "Sao chép địa chỉ liên kết".`, image: "https://i.ibb.co/7hy4HWj/IMG-2040.png" },
-                { text: `Mở lại App V2ray Tun -> Click vào icon dấu cộng (+) ở góc phải thanh công cụ phía trên.` },
-                { text: `Chọn phương thức "Nhập cấu hình từ Clipboard" để nạp máy chủ tự động.`, image: "https://i.ibb.co/XHJWLQS/IMG-2035.png" },
-                { text: `Hệ thống sẽ cập nhật danh sách Server, chọn một cụm máy chủ bất kỳ và nhấn biểu tượng nguồn để kết nối.` }
+                { text: `Mở app V2ray Tun vừa tải lên thiết bị.` },
+                { text: `Bấm cài đặt app`, image: "https://i.ibb.co/psSNRpJ/IMG-2031.png" },
+                { text: `Bấm cài đặt lưu lượng`, image: "https://i.ibb.co/mF2bk9PH/IMG-2032.png" },
+                { text: `Tắt "Bật Sniffing" và bật "Bật Local DNS"`, image: "https://i.ibb.co/DfCky1vr/IMG-2033.png" },
+                { text: `Bật "Cho phép kết nối từ mạng LAN" và bật "Bỏ qua xác minh chứng chỉ"`, image: "https://i.ibb.co/chwST52K/IMG-2034.png" },
+                { text: `Bấm "Nhập đăng ký" ở trang chủ web.`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
+                { text: `Bấm "Sao chép địa chỉ liên kết"`, image: "https://i.ibb.co/7hy4HWj/IMG-2040.png" },
+                { text: `Mở App V2ray Tun -> Bấm dấu cộng phía trên góc phải` },
+                { text: `Chọn "Nhập cấu hình từ Clipboard"`, image: "https://i.ibb.co/XHJWLQS/IMG-2035.png" },
+                { text: `Chọn một trong các server và bật app lên để sử dụng` }
               ];
           } 
           else if (appId === 'shadowrocket') {
-              return [
+            return [
                 { 
-                  text: `Làm theo các bước chỉ dẫn tự động hóa trong video hướng dẫn chi tiết dưới đây:`, 
+                  text: `Xem video hướng dẫn setting chi tiết bên dưới:`, 
                   video: "https://www.youtube.com/embed/e9yszuqRIcw", 
                   youtubeLink: "https://youtube.com/shorts/e9yszuqRIcw" 
                 }
-              ];
+            ];
           } 
           else if (appId === 'happ') {
               if (os.value === 'ios') {
                   return [
-                    { text: `Tại bảng thông tin tài khoản trên trình duyệt, nhấn "Nhập đăng ký".`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
-                    { text: `Chọn tiếp dòng lệnh "Sao chép địa chỉ liên kết".`, image: "https://i.ibb.co/7hy4HWj/IMG-2040.png" },
-                    { text: `Khởi chạy app Happ -> Click chọn mục nạp liên kết Clipboard nằm ở menu cuối màn hình.`, image: "https://i.ibb.co/Gjbckbj/IMG-2044.png" },
-                    { text: `Đợi ứng dụng tải dữ liệu, chọn một máy chủ mong muốn trong danh sách.`, image: "https://i.ibb.co/pvXsjTc4/IMG-2042.png" },
-                    { text: `Nhấn công tắc hình tròn trung tâm diện tích lớn để kích hoạt VPN.`, image: "https://i.ibb.co/YTWcj1dr/IMG-2045.png" }
+                    { text: `Bấm "Nhập đăng ký" ở trang chủ web.`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
+                    { text: `Bấm "Sao chép địa chỉ liên kết"`, image: "https://i.ibb.co/7hy4HWj/IMG-2040.png" },
+                    { text: `Mở App Happ -> Bấm clipboard ở góc dưới`, image: "https://i.ibb.co/Gjbckbj/IMG-2044.png" },
+                    { text: `Chọn một trong các server để sử dụng`, image: "https://i.ibb.co/pvXsjTc4/IMG-2042.png" },
+                    { text: `Bấm như ảnh để khởi động app`, image: "https://i.ibb.co/YTWcj1dr/IMG-2045.png" }
                   ];
               } else {
                   return [
-                    { text: `Tại bảng thông tin tài khoản trên trình duyệt, nhấn "Nhập đăng ký".`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
-                    { text: `Chọn tiếp dòng lệnh "Sao chép địa chỉ liên kết".`, image: "https://i.ibb.co/7hy4HWj/IMG-2040.png" },
-                    { text: `Khởi chạy app Happ -> Click chọn mục nạp liên kết Clipboard nằm ở menu cuối màn hình.`, image: "https://i.ibb.co/Gjbckbj/IMG-2044.png" },
-                    { text: `Ấn icon cài đặt bánh răng -> Vào VPN Settings -> TẮT mục "Enable Sniffing" để khắc phục triệt để lỗi không gửi được hình ảnh/tin nhắn thoại trên Zalo.` },
-                    { text: `Quay về màn hình chính ứng dụng, chọn một Server khả dụng.`, image: "https://i.ibb.co/pvXsjTc4/IMG-2042.png" },
-                    { text: `Bấm nút tròn kích hoạt trung tâm để mở cổng kết nối bảo mật.`, image: "https://i.ibb.co/YTWcj1dr/IMG-2045.png" }
+                    { text: `Bấm "Nhập đăng ký" ở trang chủ web.`, image: "https://i.ibb.co/Swv9D2HY/IMG-2016.png" },
+                    { text: `Bấm "Sao chép địa chỉ liên kết"`, image: "https://i.ibb.co/7hy4HWj/IMG-2040.png" },
+                    { text: `Mở App Happ -> Bấm clipboard ở góc dưới`, image: "https://i.ibb.co/Gjbckbj/IMG-2044.png" },
+                    { text: `Bấm vào cài đặt (bánh răng) góc trên -> Chọn VPN Settings -> Tắt "Enable Sniffing" (để dùng zalo)` },
+                    { text: `Chọn một trong các server để sử dụng`, image: "https://i.ibb.co/pvXsjTc4/IMG-2042.png" },
+                    { text: `Bấm như ảnh để khởi động app`, image: "https://i.ibb.co/YTWcj1dr/IMG-2045.png" }
                   ];
               }
           }
