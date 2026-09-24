@@ -228,12 +228,15 @@
             <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 rounded-full flex items-center justify-center mb-6 border border-emerald-500/20">
                <i class="fas fa-globe-asia text-2xl"></i>
             </div>
-            <h2 class="text-2xl font-bold text-white mb-3 uppercase tracking-tight">GÓI VIỆT NAM HAY NHẬT BẢN?</h2>
+            <h2 class="text-2xl font-bold text-white mb-3 uppercase tracking-tight">CHỌN GÓI BẠN ĐÃ MUA</h2>
             <p class="text-slate-400 text-sm mb-8 max-w-xs mx-auto leading-relaxed">Vui lòng chọn loại gói mà bạn đã mua để hệ thống hướng dẫn chính xác.</p>
             
-            <div class="flex flex-col sm:flex-row gap-3 w-full justify-center max-w-sm mx-auto">
-                <button @click="packageRegion = 'vn'; step = 4" class="btn-gradient w-full px-8 py-3.5 text-xs tracking-[0.1em] uppercase">
-                    GÓI VIỆT NAM
+            <div class="flex flex-col gap-3 w-full justify-center max-w-sm mx-auto">
+                <button @click="packageRegion = 'vina0'; step = 5" class="btn-gradient w-full px-8 py-3.5 text-xs tracking-[0.1em] uppercase">
+                    GÓI VINA 0 NỀN
+                </button>
+                <button @click="packageRegion = 'vn'; step = 4" class="glass-button w-full text-white font-bold px-8 py-3.5 rounded-xl text-xs tracking-[0.1em] uppercase hover:bg-white/10 flex items-center justify-center gap-2">
+                    GÓI VIETTEL, VINA NỀN
                 </button>
                 <button @click="packageRegion = 'jp'; step = 5" class="glass-button w-full text-white font-bold px-8 py-3.5 rounded-xl text-xs tracking-[0.1em] uppercase hover:bg-white/10 flex items-center justify-center gap-2">
                     GÓI NHẬT BẢN
@@ -577,7 +580,7 @@
         const prevStep = () => { 
             if (step.value === 9) {
                 step.value = 1;
-            } else if (step.value === 5 && packageRegion.value === 'jp') {
+            } else if (step.value === 5 && (packageRegion.value === 'jp' || packageRegion.value === 'vina0')) {
                 step.value = 3;
             } else if (step.value > 1) {
                 step.value--; 
@@ -593,8 +596,8 @@
         const availableApps = computed(() => {
           if (os.value === 'android') {
             return [
-              { id: 'v2ray', name: 'VDTVPN', desc: 'Ứng dụng VPN đa giao thức, hoạt động ổn định và mượt mà trên hệ điều hành Android.', link: 'https://play.google.com/store/apps/details?id=com.vdtvpn.app&hl=vi', icon: 'fas fa-rocket', recommended: true },
-              { id: 'happ', name: 'v2Ray Tun', desc: 'Ứng dụng VPN mới với khả năng kết nối siêu tốc và giao diện cực kỳ dễ sử dụng.', link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=vi', icon: 'fas fa-bolt' }
+              { id: 'v2ray', name: 'V2ray Tun', desc: 'Ứng dụng VPN đa giao thức, hoạt động ổn định và mượt mà trên hệ điều hành Android.', link: 'https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=vi', icon: 'fas fa-rocket', recommended: true },
+              { id: 'happ', name: 'Happ', desc: 'Ứng dụng VPN mới với khả năng kết nối siêu tốc và giao diện cực kỳ dễ sử dụng.', link: 'https://play.google.com/store/search?q=happ+vpn', icon: 'fas fa-bolt' }
             ];
           } else if (os.value === 'ios') {
             return [
